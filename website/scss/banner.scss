@@ -1,0 +1,256 @@
+//$mun-width: 20vw;
+//$mun-position: 65vw;
+//$sun-width: 50vw;
+//$sun-position: 40vw;
+//$rotating-speed: 60s;
+//
+//$cloudSize: 30vw;
+//$cloudTop: #f2f9ff;
+//$cloudBottom: #b6cdd8;
+//$skyTop: #ccf;
+//$skyBottom: #99f;
+//
+//#banner {
+//  text-align: center;
+//  margin: 0;
+//  width: 100vw;
+//  height: 100vh;
+//
+//  .panel {
+//    height: 500px;
+//  }
+//}
+//
+//.effects-container {
+//  overflow: hidden;
+//  position: absolute;
+//  left: 0;
+//  top: 0;
+//  width: 100%;
+//  height: 100%;
+//  z-index: 0;
+//  text-align: left;
+//
+//  .banner-circle {
+//    position: absolute;
+//    left: -290vw;
+//    top: 50%;
+//    transform: translate(0, -50%);
+//    width: 400vw;
+//    height: 400vw;
+//
+//    > div {
+//      animation: big-spin $rotating-speed linear infinite;
+//      animation-delay: -20s;
+//    }
+//  }
+//}
+//
+//#cloud-line {
+//  position: absolute;
+//  bottom: 0;
+//  width: 100%;
+//
+//  > * {
+//    position: absolute;
+//    width: $cloudSize;
+//    height: $cloudSize*.35;
+//    border-radius: $cloudSize*.33;
+//    margin: $cloudSize*.28 auto 20px;
+//    background: $cloudTop;
+//    background: linear-gradient(top, $cloudTop 65%, $cloudBottom 100%);
+//    box-shadow: 4px 20px 20px 0px rgba(0, 0, 0, 0.4);
+//    z-index: 3;
+//
+//    &:before,
+//    &:after {
+//      content: '';
+//      position: absolute;
+//      background: $cloudTop;
+//      z-index: -1;
+//    }
+//
+//    &:after {
+//      width: $cloudSize*.33;
+//      height: $cloudSize*.33;
+//      top: -$cloudSize*.15;
+//      left: $cloudSize*.15;
+//      border-radius: $cloudSize*.33;
+//    }
+//
+//    &:before {
+//      width: $cloudSize*.5;
+//      height: $cloudSize*.5;
+//      top: -$cloudSize*.25;
+//      right: $cloudSize*.13;
+//      border-radius: $cloudSize*.66;
+//    }
+//
+//    &:nth-child(1) {
+//      animation: moving1 33s linear 0s infinite alternate;
+//      left: 50%;
+//      bottom: 0;
+//    }
+//
+//    &:nth-child(2) {
+//      animation: moving2 30s linear 0s infinite alternate;
+//      left: 60%;
+//      bottom: -0.5vw;
+//      animation-delay: -12s;
+//    }
+//
+//    &:nth-child(3) {
+//      animation: moving2 29s linear 0s infinite alternate;
+//      left: 30%;
+//      bottom: 0.3vw;
+//      animation-delay: -5s;
+//    }
+//
+//    &:nth-child(4) {
+//      animation: moving1 32s linear 0s infinite alternate;
+//      left: 40%;
+//      bottom: 0.5vw;
+//      animation-delay: -15s;
+//    }
+//
+//    &:nth-child(5) {
+//      animation: moving1 28s linear 0s infinite alternate;
+//      left: 55%;
+//      bottom: -0.2vw;
+//      animation-delay: -18s;
+//    }
+//  }
+//}
+//
+//#banner-rotating {
+//  width: 100%;
+//  height: 100%;
+//
+//  #rocket {
+//    position: absolute;
+//    max-width: 60px;
+//    height: auto;
+//    transform: rotate(180deg);
+//  }
+//
+//  #moon {
+//    background: #d8d8d8;
+//    width: $mun-width;
+//    height: $mun-width;
+//    position: absolute;
+//    top: $mun-position;
+//    right: $mun-position;
+//
+//    animation: big-spin-counter $rotating-speed infinite;
+//  }
+//
+//  #moon:before {
+//    content: "";
+//    position: absolute;
+//    top: 0;
+//    left: 0;
+//    right: 0;
+//    bottom: 0;
+//    background: transparent;
+//
+//    border-radius: 50%;
+//    box-shadow: inset -12px 12px 0 0 #b6b6b6;
+//
+//    animation: big-spin $rotating-speed infinite;
+//  }
+//
+//  .crater {
+//    position: absolute;
+//    top: 50%;
+//    left: 50%;
+//    transform: translate(-160%, -70%);
+//    width: 21%;
+//    height: 21%;
+//    background-color: #b6b6b6;
+//    box-shadow: inset 4px 4px 0 0 #999;
+//    border-radius: 50%;
+//
+//    &:nth-child(2) {
+//      transform: translate(10%, -140%) scale(.7);
+//    }
+//
+//    &:nth-child(3) {
+//      transform: translate(10%, 30%) scale(.5);
+//    }
+//  }
+//
+//  #sun, #moon {
+//    border-radius: 50%;
+//  }
+//
+//  #sun {
+//    position: absolute;
+//    width: $sun-width;
+//    height: $sun-width;
+//    left: $sun-position;
+//    bottom: $sun-position;
+//    background-color: #FB7209;
+//    background-repeat: no-repeat;
+//    background-size: cover;
+//    box-shadow: 0 0 60px rgba(255, 160, 60, 0.4);
+//  }
+//}
+//
+//.space-background {
+//  background: radial-gradient(circle at 0% 100%, #3fb9ce 50%, #493d6f, #080417 75%);
+//  border-radius: 50%;
+//}
+//
+//@-webkit-keyframes Gradient {
+//  0% {
+//    background-position: 0% 50%
+//  }
+//  50% {
+//    background-position: 100% 50%
+//  }
+//  100% {
+//    background-position: 0% 50%
+//  }
+//}
+//
+//@-moz-keyframes Gradient {
+//  0% {
+//    background-position: 0% 50%
+//  }
+//  50% {
+//    background-position: 100% 50%
+//  }
+//  100% {
+//    background-position: 0% 50%
+//  }
+//}
+//
+//@keyframes Gradient {
+//  0% {
+//    background-position: 0% 50%
+//  }
+//  50% {
+//    background-position: 100% 50%
+//  }
+//  100% {
+//    background-position: 0% 50%
+//  }
+//}
+//
+//@keyframes moving1 {
+//  0% {
+//    transform: translateX(-30vw);
+//  }
+//  100% {
+//    transform: translateX(30vw);
+//  }
+//}
+//
+//@keyframes moving2 {
+//  0% {
+//    transform: translateX(-40vw);
+//  }
+//  100% {
+//     transform: translateX(40vw);
+//   }
+//}

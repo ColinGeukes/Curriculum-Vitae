@@ -1,0 +1,31 @@
+{
+  "appName": "Noteworthy",
+  "port": 3000,
+  "pgServer": {
+    "user": "MS-04team",
+    "host": "ancomi.nl",
+    "database": "MS-04team",
+    "password": "BigDataIsBig",
+    "port": 5432
+  },
+  "contributors": [
+    {
+      "name": "Aaron van Diepen"
+    },
+    {
+      "name": "Roelof van der Geest"
+    },
+    {
+      "name": "Colin Geukes"
+    },
+    {
+      "name": "Rembrandt Klazinga"
+    },
+    {
+      "name": "Andor Michels"
+    },
+    {
+      "name": "Nick van Stijn"
+    }
+  ]
+}

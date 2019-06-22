@@ -1,0 +1,15 @@
+{
+  "verbose": false,
+  "events": {
+    "restart": "npm run build-css",
+    "start": "npm run build-css"
+  },
+  "watch": [
+    "routes",
+    "dao",
+    "scss",
+    "config.json",
+    "index.js"
+  ],
+  "ext": "scss,sass,js"
+}
