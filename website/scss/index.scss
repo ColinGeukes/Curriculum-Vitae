@@ -33,19 +33,25 @@ nav {
   font-weight: 400;
 
   .nav-buttons {
-    flex: 1 1 auto;
+    flex: 1 1 calc((100vw - 180px) / 2);
+
+    &.righted {
+      text-align: right;
+    }
 
     a {
       @extend .unselectable;
       cursor: pointer;
+      text-decoration: none;
+      color: $nav-color;
 
       &:hover {
         color: #9b9b96;
       }
-    }
 
-    &.righted {
-      text-align: right;
+      &:not(:first-child) {
+        margin-left: 1.5em;
+      }
     }
   }
 
@@ -56,7 +62,7 @@ nav {
     &:after {
       position: absolute;
       height: 13px;
-      width: 177px;
+      width: 179px;
       top: 73px;
       background-color: $icon-background;
       content: '';
@@ -74,14 +80,47 @@ nav {
 
 #content {
   height: 100vh;
-  background-color: $color-3-background;
+  //background-color: $color-3-background;
   margin-top: 100vh;
   overflow: auto;
+  padding: 3em;
+  visibility: hidden;
 
-  #content-inner {
-    height: 800vh;
+  section {
+    //height: 60vh;
+    margin-top: 3em;
+
+    .panel {
+      padding: 2em;
+      //background-color: #5DA2D5;
+      width: 40vw;
+    }
   }
 }
+
+footer {
+  p {
+    //font-size: 16px;
+    line-height: 1.5em;
+    text-align: right;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font: bold 16px sofia-pro, sans-serif;
+  }
+}
+
+.cs-1 {
+  background-color: $color-1-background;
+}
+
+.cs-2 {
+  background-color: $color-2-background;
+}
+
+.cs-3 {
+  background-color: $color-3-background;
+}
+
 
 #landing-page {
   cursor: pointer;

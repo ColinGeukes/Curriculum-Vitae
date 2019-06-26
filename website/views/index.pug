@@ -11,10 +11,11 @@ html
         div(id="full-nav")
             nav
                 div(class="nav-buttons")
-                    a about
+                    a(href="#about") about
+                    a(href="#skills") skills
                 div(class="nav-icon")
                 div(class="nav-buttons righted")
-                    a contact
+                    a(href="#contact") contact
             div(id="landing-page")
                 div(class="container")
                     div(class="profile")
@@ -43,6 +44,28 @@ html
                         circle(cx="100" cy="100" r="99")
                     div(id="bubble-welcome" class="speech-bubble unselectable") Hello there, and welcome to my curriculum vitae.
         div(id="content")
-            div(id="content-inner")
+            section(id="about")
+                div(class="panel cs-1")
+                    h1 Hello! I’m Meagan Fisher. I create impactful websites for people with good ideas.
+                    p As a rare designer-developer hybrid, I am passionate and knowledgeable about both the visual and technical aspects of creating a website. My mission is to help bring more beauty, creativity, and good ideas into the world through web design.
+            section(id="skills")
+                div(class="panel cs-3")
+                    p Here is a list of all my skills.
+                    div(class="skill")
+                        h2 java
+                        p 11 year experience
+            section(id="recent-work")
+                div(class="panel cs-2")
+                    h1 Recent work
+                    p I’ve been creating websites for over a decade. In that time, I’ve been lucky enough to partner with amazing companies like Twitter, The Wharton School of Business, Dribbble, Campaign Monitor, the Audubon Society, Adobe and more.
+            section(id="achievements")
+                div(class="panel cs-1")
+                    p List of all my achievements
+            section(id="contact")
+                div(class="panel cs-3")
+            footer
+                div(class="panel cs-1")
+                    p © COPYRIGHT 2019 <br> Colin Geukes
+
 
         script(type="text/javascript", src="/js/index.js")

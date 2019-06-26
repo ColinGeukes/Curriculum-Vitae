@@ -15,6 +15,7 @@ $(document).ready(function () {
 		$('#bubble-welcome').hide();
 		content.css('transition', LOGO_NAV_TRANSITION);
 		content.css('margin-top', '85px');
+		content.css('visibility', 'visible');
 		nav.css('transition', LOGO_NAV_TRANSITION);
 		nav.css('top', '0');
 
