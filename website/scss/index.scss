@@ -1,6 +1,4 @@
-@import "banner";
-@import "planetarium";
-@import "portrait";
+@import "portrait", "speech";
 
 $background: #ECECEC;
 
@@ -12,118 +10,90 @@ $border-spacing: 2vw;
 
 body {
   background: $background;
-  //padding: 0 $border-spacing $border-spacing;
   margin: 0;
   display: flex;
   flex-direction: column;
   font-family: 'Maven Pro', sans-serif;
-
-  > section {
-    background: $color-1-background;
-    margin: $border-spacing 0 0 0;
-  }
-
-  overflow-x: hidden;
+  overflow: hidden;
+  height: 100vh;
 }
 
+nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -100px;
+  z-index: 1;
+  background-color: $icon-background;
+  display: flex;
+  padding: 28px 2em;
+  border-bottom: 2px solid #fff;
+  color: $nav-color;
+  font-size: 1.4em;
+  font-weight: 400;
 
-#about {
+  .nav-buttons {
+    flex: 1 1 auto;
 
-  .description {
-    flex: 0 0 50%;
+    a {
+      @extend .unselectable;
+      cursor: pointer;
 
-    .panel {
-      background-image: url('../img/yellow_back.jpg');
-      background-position: left top;
-      background-size: auto auto;
-      background-repeat: no-repeat;
-    }
-  }
-
-  .portrait {
-    flex: 0 0 50%;
-  }
-}
-
-
-.split {
-  background: $background;
-
-
-  // On small screen space panels.
-  > div:not(:first-child) {
-    margin: $border-spacing 0 0;
-  }
-
-  // Displaying with multiple columns
-  @media screen and (min-width: 775px) {
-    display: flex;
-
-    > div {
-      margin: 0 !important;
-    }
-
-    > *:not(:first-child) > * {
-      margin-left: $border-spacing;
-    }
-
-    > * > * {
-      height: 100%;
-
-      h1 {
-        margin: 0 0 0.83em;
+      &:hover {
+        color: #9b9b96;
       }
     }
-  }
-}
 
-.panel {
-  padding: 4vw;
-  position: relative;
-
-  &.color-scheme-1 {
-    background: $color-1-background;
-
-    h1, p {
-      color: black;
+    &.righted {
+      text-align: right;
     }
   }
 
-  &.color-scheme-2 {
-    background: $color-2-background;
+  .nav-icon {
+    flex: 0 0 180px;
+    opacity: 0;
 
-    h1, p {
-      color: black;
+    &:after {
+      position: absolute;
+      height: 13px;
+      width: 177px;
+      top: 73px;
+      background-color: $icon-background;
+      content: '';
+      z-index: 40;
+      margin-left: 2px;
     }
-  }
-
-  &.color-scheme-3 {
-    background: $color-3-background;
-
-    h1, p {
-      color: $background;
-    }
-  }
-
-  h1 {
-    font-weight: 700;
-    font-size: 2.125em;
-  }
-
-  p {
-    font-size: 1.375em;
   }
 }
 
-
-@keyframes big-spin-counter {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-
+#full-nav {
+  //width: 100vw;
+  //height: 100vh;
+  position: fixed;
 }
 
+#content {
+  height: 100vh;
+  background-color: $color-3-background;
+  margin-top: 100vh;
+  overflow: auto;
 
+  #content-inner {
+    height: 800vh;
+  }
+}
+
+#landing-page {
+  cursor: pointer;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unselectable {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
