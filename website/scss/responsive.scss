@@ -1,0 +1,50 @@
+@media (min-width: 1200px) {
+  .content-container {
+    width: 1170px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .content-container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .content-container {
+    width: 750px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-header {
+
+    &:after {
+      visibility: hidden;
+    }
+  }
+
+  .section-body > .shadow {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 616px) {
+  .section-header {
+    text-shadow: 0 0 0 #000 !important;
+
+    h1 {
+      font-size: 30px !important;
+      line-height: 30px !important;
+    }
+
+    h2 {
+      font-size: 15px !important;
+      line-height: 15px !important;
+    }
+  }
+
+  #abilities .row-2 {
+    width: 100% !important;
+  }
+}

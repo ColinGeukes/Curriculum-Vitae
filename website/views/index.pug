@@ -5,67 +5,209 @@ html
         link(href="https://fonts.googleapis.com/css?family=Maven+Pro&display=swap" rel="stylesheet")
         script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js")
         script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js")
-
+        link(href="../fontawesome/css/fontawesome.css" rel="stylesheet")
+        link(href="../fontawesome/css/brands.css" rel="stylesheet")
+        link(href="../fontawesome/css/solid.css" rel="stylesheet")
         link(rel="stylesheet", type="text/css", href="/css/index.css")
     body
-        div(id="full-nav")
-            nav
-                div(class="nav-buttons")
-                    a(href="#about") about
-                    a(href="#skills") skills
-                div(class="nav-icon")
-                div(class="nav-buttons righted")
-                    a(href="#contact") contact
-            div(id="landing-page")
-                div(class="container")
-                    div(class="profile")
-                        div(class="group")
-                            div(class="hair")
-                            div(class="ear")
-                            div(class="ear right")
-                            div(class="fringe")
-                            div(class="face")
-                            div(class="eye left")
-                            div(class="eye right")
-                            div(class="blush")
-                            div(class="nose")
-                            div(class="mouth")
-                                div(class="tongue")
-                            div(class="neck")
-                            div(class="body")
-                            div(class="tie")
-                                div(class="knot")
-                            div(class="collar left")
-                            div(class="collar right")
-                            div(class="jacket right")
-                            div(class="jacket left")
-                            div(class="jacket-back")
-                    svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" class="dotted-circle")
-                        circle(cx="100" cy="100" r="99")
-                    div(id="bubble-welcome" class="speech-bubble unselectable") Hello there, and welcome to my curriculum vitae.
-        div(id="content")
-            section(id="about")
-                div(class="panel cs-1")
-                    h1 Hello! I’m Meagan Fisher. I create impactful websites for people with good ideas.
-                    p As a rare designer-developer hybrid, I am passionate and knowledgeable about both the visual and technical aspects of creating a website. My mission is to help bring more beauty, creativity, and good ideas into the world through web design.
-            section(id="skills")
-                div(class="panel cs-3")
-                    p Here is a list of all my skills.
-                    div(class="skill")
-                        h2 java
-                        p 11 year experience
-            section(id="recent-work")
-                div(class="panel cs-2")
-                    h1 Recent work
-                    p I’ve been creating websites for over a decade. In that time, I’ve been lucky enough to partner with amazing companies like Twitter, The Wharton School of Business, Dribbble, Campaign Monitor, the Audubon Society, Adobe and more.
-            section(id="achievements")
-                div(class="panel cs-1")
-                    p List of all my achievements
+        div(class="content-container")
+            header(id="home")
+                div(class="header-img")
+            section(id="info")
+                div(class="section-header big-header has-shadow")
+                    div(class="content")
+                        h1 Colin Geukes
+                        h2 software programmer
+                    div(class="shadow")
+                div(class="section-body")
+                    div(class="content")
+                        p hello I am colin <br> Guekes and ..d.af.sf.asdf.
+                    div(class="shadow")
+            section(id="education")
+                div(class="section-header has-shadow")
+                    div(class="content")
+                        h1 education
+                    div(class="shadow")
+                div(class="section-body")
+                    div(class="content")
+                        p This is my education thingy
+                    div(class="shadow")
+
+            //---- Abilities section
+            section(id="abilities")
+                div(class="section-header has-shadow")
+                    div(class="content")
+                        h1 abilities
+                    div(class="shadow")
+                div(class="section-body")
+                    div(class="content")
+                        div(class="inner-content")
+
+                            //---- Abilities: Skills
+                            h2 skills
+                            div(id="skills" class="row")
+                                ul(class="row-2 no-bullets scores")
+                                ul(class="row-2 no-bullets scores")
+                            hr
+                            //---- Abilities: Languages
+                            h2 languages
+                            div(id="languages" class="row")
+                                ul(class="row-2 no-bullets scores")
+                                ul(class="row-2 no-bullets scores")
+                            hr
+                            //---- Abilities: Tools
+                            h2 tools
+                            div(class="quote")
+                                p We shape our tools and afterwards our tools shape us.
+                                span(class="author") Marshall McLuhan
+                            div(id="tools" class="row")
+                                ul(class="row-2 no-bullets scores")
+                                ul(class="row-2 no-bullets scores")
+                    div(class="shadow")
+            section(id="projects")
+                div(class="section-header has-shadow")
+                    div(class="content")
+                        h1 projects
+                    div(class="shadow")
+                div(class="section-body")
+                    div(class="content")
+                        p This is my education thingy
+                    div(class="shadow")
             section(id="contact")
-                div(class="panel cs-3")
-            footer
-                div(class="panel cs-1")
-                    p © COPYRIGHT 2019 <br> Colin Geukes
+                div(class="section-header has-shadow")
+                    div(class="content")
+                        h1 contact
+                    div(class="shadow")
+                div(class="section-body")
+                    div(class="content")
+                        p This is my education thingy
+                    div(class="shadow")
 
 
+
+        //div(id="full-nav")
+        //    nav
+        //        div(class="nav-buttons")
+        //            a(href="#about") about
+        //            a(href="#skills") skills
+        //        div(class="nav-icon")
+        //        div(class="nav-buttons righted")
+        //            a(href="#contact") contact
+        //    div(id="landing-page")
+        //        div(class="container")
+        //            div(class="profile")
+        //                div(class="group")
+        //                    div(class="hair")
+        //                    div(class="ear")
+        //                    div(class="ear right")
+        //                    div(class="fringe")
+        //                    div(class="face")
+        //                    div(class="eye left")
+        //                    div(class="eye right")
+        //                    div(class="blush")
+        //                    div(class="nose")
+        //                    div(class="mouth")
+        //                        div(class="tongue")
+        //                    div(class="neck")
+        //                    div(class="body")
+        //                    div(class="tie")
+        //                        div(class="knot")
+        //                    div(class="collar left")
+        //                    div(class="collar right")
+        //                    div(class="jacket right")
+        //                    div(class="jacket left")
+        //                    div(class="jacket-back")
+        //            svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" class="dotted-circle")
+        //                circle(cx="100" cy="100" r="99")
+        //            //div(id="bubble-welcome" class="speech-bubble unselectable") Hello there, and welcome to my curriculum vitae.
+        //        div(id="main-title")
+        //            h1 Colin Geukes
+        //            h2 Computer scientist
+        //        div(id="main-information")
+        //            p colingeukes@gmail.com
+        //            p +31 6 55725038
+
+        //div(id="content")
+        //
+        //    div(id="flex-box-2")
+        //        section(id="about")
+        //            div(class="panel cs-1")
+        //                h1 Hello! I’m Meagan Fisher. I create impactful websites for people with good ideas.
+        //                div(id="circle-progress")
+        //                    div
+        //                    canvas(id="counter")
+        //                    p text
+        //                p As a rare designer-developer hybrid, I am passionate and knowledgeable about both the visual and technical aspects of creating a website. My mission is to help bring more beauty, creativity, and good ideas into the world through web design.
+        //
+        //        section(id="skills")
+        //            div(class="section-title")
+        //                i(class="fas fa-fist-raised")
+        //                h1 Professional Skills
+        //                hr
+        //            div(class="skill-list")
+        //    div(id="flex-box-34")
+        //        div(id="flex-box-3")
+        //            section(id="education")
+        //                div(class="section-title")
+        //                    i(class="fas fa-graduation-cap")
+        //                    h1 Graduation
+        //                    hr
+        //            section(id="languages")
+        //                div(class="section-title")
+        //                    i(class="fas fa-flag")
+        //                    h1 Language skill
+        //                    hr
+        //                div(class="list")
+        //                    div(class="language")
+        //                        img(src="../img/netherlands.png")
+        //                        p native
+        //                    div(class="language")
+        //                        img(src="../img/united-kingdom.png")
+        //                        p proficient
+        //
+        //            section(id="recent-work")
+        //                div(class="panel cs-2")
+        //                    h1 Recent work
+        //                    p I’ve been creating websites for over a decade. In that time, I’ve been lucky enough to partner with amazing companies like Twitter, The Wharton School of Business, Dribbble, Campaign Monitor, the Audubon Society, Adobe and more.
+        //
+        //        div(id="flex-box-4")
+        //            section(id="platforms")
+        //                div(class="section-title")
+        //                    i(class="fas fa-box-open")
+        //                    h1 Libraries/Platforms
+        //                    hr
+        //                div(id="library-list" class="list")
+        //                div(id="platform-list" class="list")
+        //            section(id="personal-skills")
+        //                div(class="section-title")
+        //                    i(class="fas fa-bullhorn")
+        //                    h1 Soft skills
+        //                    hr
+        //                div(class="list")
+        //            section(id="achievements")
+        //                div(class="section-title")
+        //                    i(class="fas fa-medal")
+        //                    h1 Achievements
+        //                    hr
+        //                div(class="achievement-list")
+        //                    div(class="achievement")
+        //                        div
+        //                            h2 First place Artifically Intelligent course
+        //                            p <i>2017</i>, writing an A.I. that won the final challenge in a course.
+        //                    div(class="achievement")
+        //                        div
+        //                            h2 Excellent Student
+        //                            p <i>2015</i>, granted the award of being an excellent student.
+        //                    div(class="achievement")
+        //                        div
+        //                            h2 Participated in Ludum Dare
+        //                            p <i>2015</i>, contest to create a game in a single weekend.
+        //    section(id="contact")
+        //        div(class="panel cs-3")
+        //            div
+        //
+        //    footer
+        //        div(class="panel cs-1")
+        //            p © COPYRIGHT 2019 <br> Colin Geukes
+        script(type="text/javascript", src="/js/skill.js")
         script(type="text/javascript", src="/js/index.js")

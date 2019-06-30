@@ -1,0 +1,354 @@
+$accent: #3ce63b;
+$noise-color: #dedad1;
+$section-body: #f2f2f3;
+$background-color: #d8cdbb;
+
+$color-1: #6ca338;
+$color-2: #f3585b;
+$color-3: #f0ca45;
+$color-4: #4ca5d0;
+
+
+@mixin apply-skew($skewX, $skewY, $rotate) {
+  -webkit-transform: skewX($skewX) skewY($skewY) rotate($rotate);
+  -ms-transform: skewX($skewX) skewY($skewY) rotate($rotate);
+  -o-transform: skewX($skewX) skewY($skewY) rotate($rotate);
+  transform: skewX($skewX) skewY($skewY) rotate($rotate);
+}
+
+@mixin apply-transform($transforms) {
+  -webkit-transform: $transforms;
+  -ms-transform: $transforms;
+  -o-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin apply-box-shadow($x, $y, $z, $color) {
+  -webkit-box-shadow: $x $y $z $color;
+  -moz-box-shadow: $x $y $z $color;
+  box-shadow: $x $y $z $color;
+}
+
+body {
+  overflow: hidden auto;
+  background-color: #272425;
+  margin: 0;
+  position: relative;
+  padding: 65px 0;
+  background-image: url(../img/background.png);
+}
+
+#home {
+  border-bottom: 5px solid #272524;
+  border-radius: 5px 5px 0 0;
+
+  .header-img {
+    background-position: center center;
+    background-image: url(../img/head-image.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 535px;
+    border-radius: 5px 5px 0 0;
+
+    &:before {
+      background-color: rgba(216, 205, 187, 0.5);
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 5px 5px 0 0;
+    }
+
+    &:after {
+      content: '';
+      background-image: url(../img/shadow.png);
+      background-repeat: repeat-x;
+      background-position: bottom;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.content-container {
+  padding: 0;
+  border-radius: 5px;
+  background-color: $background-color;
+  box-shadow: 0 4px 0 #b39d7a;
+  margin: 0 auto;
+}
+
+section, header {
+  position: relative;
+}
+
+
+section:nth-child(4n) .section-header:before {
+  background-color: $color-1;
+}
+
+section:nth-child(4n + 1) .section-header:before {
+  background-color: $color-2;
+}
+
+section:nth-child(4n + 2) .section-header:before {
+  background-color: $color-3;
+}
+
+section:nth-child(4n + 3) .section-header:before {
+  background-color: $color-4;
+}
+
+.section-header {
+
+  z-index: 20;
+  position: absolute;
+  left: 0;
+  top: 35px;
+  padding: 15px 25px 15px 50px;
+
+  &.big-header {
+    padding: 15px;
+    text-align: center;
+    width: 60%;
+    text-transform: uppercase;
+    text-shadow: 0 2px 0 #000;
+    color: #272425;
+    letter-spacing: -1px;
+    min-width: 250px;
+
+    &:before {
+      background-color: $accent;
+    }
+
+    > .content {
+      width: 100%;
+
+      h1 {
+        font-size: 50px;
+        line-height: 50px;
+      }
+
+      h2 {
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 35px;
+        letter-spacing: -1px;
+      }
+    }
+  }
+
+  &:before {
+    border-radius: 0 3px 3px 0;
+    position: absolute;
+    content: '';
+    background-image: url(../img/noise.png);
+    background-color: $noise-color;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    @include apply-skew(-2deg, 0deg, -2deg);
+  }
+
+  &:after {
+    content: '';
+    background: url(../img/clip.png) no-repeat;
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    top: 15%;
+    left: -32px;
+  }
+
+  > .content {
+    position: relative;
+    z-index: 5;
+
+    h1 {
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+  }
+}
+
+.section-body {
+  z-index: 10;
+  width: 103%;
+  position: relative;
+  left: 0;
+  top: 75px;
+  min-height: 300px;
+  padding: 50px 20px;
+  margin: 0 0 80px;
+
+  &:before {
+    background: url(../img/noise.png);
+    background-color: $section-body;
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    @include apply-skew(2deg, 0deg, 2deg);
+  }
+
+  > .content {
+    width: calc(97% - 40px);
+    position: relative;
+    z-index: 30;
+    padding-top: 30px;
+
+    > .inner-content {
+      padding: 0 20px;
+    }
+  }
+}
+
+.section-body > .shadow, .section-header > .shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+
+  &:before {
+    height: 30px;
+    position: absolute;
+    content: '';
+    bottom: 16px;
+    right: 6px;
+    top: auto;
+    left: auto;
+    width: 70%;
+    max-width: 500px;
+    background: transparent;
+    @include apply-box-shadow(0, 15px, 9px, rgba(0, 0, 0, 0.4))
+  }
+}
+
+.section-body > .shadow:before {
+  @include apply-transform(rotate(4deg));
+  bottom: 5px;
+}
+
+ul.scores {
+  li {
+    cursor: default;
+    height: 22px;
+
+    .name {
+      color: #434242;
+      font-size: 1.2em;
+    }
+
+    .extra {
+      opacity: 0;
+      transition: 0.8s opacity;
+      padding: 0 6px;
+      font-style: italic;
+      color: #666;
+      float: right;
+    }
+
+    .score {
+      float: right;
+      color: #c3c4c4;
+
+      i {
+        transition: 0.3s margin;
+        line-height: 22px;
+
+        &.filled {
+          color: #22A39F;
+        }
+      }
+    }
+
+    &:hover {
+
+      background-color: rgba(255, 255, 255, 0.41);
+
+      .score i {
+        margin-right: 5px;
+      }
+
+      .extra {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+#abilities .section-body .content {
+  h2 {
+    color: #22A39F;
+  }
+
+  ul {
+    margin: 0;
+
+    li {
+      padding: 3px 0;
+    }
+  }
+
+  hr {
+    border-top: 1px dashed #646B73;
+    margin: 20px 0;
+  }
+}
+
+
+.quote {
+  text-align: center;
+
+  > * {
+    display: inline;
+  }
+
+  p {
+    &:before {
+      content: '"';
+    }
+
+    &:after {
+      content: '"';
+    }
+  }
+
+  .author:before {
+    content: '-';
+  }
+}
+
+/**********
+--- ROWS FOR GRID
+ **********/
+
+.row {
+  margin: 0 -16px;
+
+  > * {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    padding: 0 16px;
+  }
+}
+
+.row-1 {
+  width: 100%;
+}
+
+.row-2 {
+  width: 50%;
+}
