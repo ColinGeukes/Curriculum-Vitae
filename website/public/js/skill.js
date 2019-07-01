@@ -23,6 +23,51 @@ class Skill {
 		}
 		return 0;
 	}
+
+	static async _loadSkills(sort = false) {
+		// Retrieve all types
+		const dataTypes = await new Promise((resolve) => {
+			$.get({
+				'url': `/api/types`,
+				'success': resolve
+			});
+		});
+
+		// Retrieve all abilities
+		const dataAbilities = await new Promise((resolve) => {
+			$.get({
+				'url': `/api/abilities`,
+				'success': resolve
+			});
+		});
+
+		// Create correct return format.
+		let data = {};
+
+		// Load all types in correct format.
+		for (let i = 0; i < dataTypes.length; i++) {
+			data[dataTypes[i].id] = {
+				'type': dataTypes[i].name,
+				'skills': []
+			}
+		}
+
+		// Load all skills in correct format, and group correct types.
+		for (let i = 0; i < dataAbilities.length; i++) {
+			const curr = dataAbilities[i];
+			data[dataAbilities[i].type].skills.push(new Skill(curr.title, curr.stars, curr.extra));
+		}
+
+		// Sort is sort is true.
+		if (sort) {
+			for (let i = 0; i < dataTypes.length; i++) {
+				data[dataTypes[i].id].skills.sort(Skill.compare);
+			}
+		}
+
+		return data;
+	}
+
 }
 
 

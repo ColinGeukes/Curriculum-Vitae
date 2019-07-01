@@ -5,6 +5,10 @@ const path = require('path');
 
 const config = require('./config.json');
 
+
+const Dao = require('./dao/dao.js');
+const Api = require('./routes/api.js');
+
 // Instantiate app
 const app = express();
 
@@ -16,21 +20,18 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // Home route
-app.get('/', function(req, res) {
-  // config.deepfried = req.query.deepfried;
-  // let language = 'english';
-  // if (req.query.lang) {
-  //   language = req.query.lang;
-  // } else if (req.query.deepfried) {
-  //   language = 'deepfried';
-  // }
-  // // config.strings = require(`./language/${language}.json`);
-  res.render('index', config);
+app.get('/', function (req, res) {
+	res.render('index', config);
 });
 
-app.listen(config.port, function() {
-  console.log(`${config.appName} started on port ${config.port}`);
-});
+// Create the api
+const dao = new Dao(config.mysql);
+const api = new Api(dao);
 
+app.use('/api', api);
+
+app.listen(config.port, function () {
+	console.log(`${config.appName} started on port ${config.port}`);
+});
 
 module.exports = app;
