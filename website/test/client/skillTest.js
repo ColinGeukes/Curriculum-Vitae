@@ -40,10 +40,14 @@ describe('Skill', () => {
 
 	context('comparator', () => {
 		it('Sorting based on stars', (done) => {
-			let skill1 = new Skill('a', 5);
-			let skill2 = new Skill('b', 3);
-			let skill3 = new Skill('c', 4);
-			let array = [skill1, skill2, skill3].sort(Skill.compare);
+			const skill1 = new Skill('a', 5);
+			const skill2 = new Skill('b', 3);
+			const skill3 = new Skill('c', 4);
+			const array = [
+				skill1,
+				skill2,
+				skill3
+			].sort(Skill.compare);
 
 			// Check equalities.
 			expect(array[0]).to.be.equal(skill1);
@@ -53,10 +57,14 @@ describe('Skill', () => {
 		});
 
 		it('Sorting based on name', (done) => {
-			let skill1 = new Skill('c', 3);
-			let skill2 = new Skill('a', 3);
-			let skill3 = new Skill('b', 3);
-			let array = [skill1, skill2, skill3].sort(Skill.compare);
+			const skill1 = new Skill('c', 3);
+			const skill2 = new Skill('a', 3);
+			const skill3 = new Skill('b', 3);
+			const array = [
+				skill1,
+				skill2,
+				skill3
+			].sort(Skill.compare);
 
 			// Check equalities.
 			expect(array[0]).to.be.equal(skill2);
@@ -66,9 +74,12 @@ describe('Skill', () => {
 		});
 
 		it('Sorting based on equality, no change', (done) => {
-			let skill1 = new Skill('a', 3, 'extra_1');
-			let skill2 = new Skill('a', 3, 'extra_2');
-			let array = [skill1, skill2].sort(Skill.compare);
+			const skill1 = new Skill('a', 3, 'extra_1');
+			const skill2 = new Skill('a', 3, 'extra_2');
+			const array = [
+				skill1,
+				skill2
+			].sort(Skill.compare);
 
 			// Check equalities.
 			expect(array[0].extra).to.be.equal('extra_1');
