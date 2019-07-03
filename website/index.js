@@ -1,14 +1,10 @@
-'use strict';
+
 
 const express = require('express');
 const path = require('path');
-
 const config = require('./config.json');
-
-
 const Dao = require('./dao/dao.js');
 const Api = require('./routes/api.js');
-
 // Instantiate app
 const app = express();
 
@@ -20,7 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // Home route
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
 	res.render('index', config);
 });
 
@@ -30,7 +26,7 @@ const api = new Api(dao);
 
 app.use('/api', api);
 
-app.listen(config.port, function () {
+app.listen(config.port, () => {
 	console.log(`${config.appName} started on port ${config.port}`);
 });
 

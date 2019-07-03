@@ -1,4 +1,5 @@
 const express = require('express');
+const Console = console;
 
 /**
  * An api class for adding /api routes to express
@@ -19,13 +20,21 @@ class Api extends express.Router {
 
 		function createPath(url, query) {
 			that.get(url, async (req, res) => {
-				that._dao.query(query, req.query, function (err, rows) {
+				that._dao.query(query, req.query, (err, rows) => {
+					// Check if the request resulted in an error
 					if (err) {
-						if (that.debugging)
-							console.log("Error", err);
+						// If debugging is on, do something with the error.
+						if (that.debugging) {
+							// Print the error, for debugging purposes.
+							Console.error(err);
+						}
+
+						// Respond with the error
 						res.send(err);
 						return;
 					}
+
+					// Respond with the result
 					res.send(rows);
 				});
 			});

@@ -1,11 +1,11 @@
 class Skill {
-	constructor(name, stars, extra = '') {
+	constructor (name, stars, extra = '') {
 		this.name = name;
 		this.stars = stars;
 		this.extra = extra;
 	}
 
-	static compare(a, b) {
+	static compare (a, b) {
 		// First, compare the amount of stars
 		if (a.stars > b.stars) {
 			return -1;
@@ -24,7 +24,7 @@ class Skill {
 		return 0;
 	}
 
-	static async _loadSkills(sort = false) {
+	static async _loadSkills (sort = false) {
 		// Retrieve all types
 		const dataTypes = await new Promise((resolve) => {
 			$.get({
@@ -32,7 +32,6 @@ class Skill {
 				'success': resolve
 			});
 		});
-
 		// Retrieve all abilities
 		const dataAbilities = await new Promise((resolve) => {
 			$.get({
@@ -40,21 +39,21 @@ class Skill {
 				'success': resolve
 			});
 		});
-
 		// Create correct return format.
-		let data = {};
+		const data = {};
 
 		// Load all types in correct format.
 		for (let i = 0; i < dataTypes.length; i++) {
 			data[dataTypes[i].id] = {
 				'type': dataTypes[i].name,
 				'skills': []
-			}
+			};
 		}
 
 		// Load all skills in correct format, and group correct types.
 		for (let i = 0; i < dataAbilities.length; i++) {
 			const curr = dataAbilities[i];
+
 			data[dataAbilities[i].type].skills.push(new Skill(curr.title, curr.stars, curr.extra));
 		}
 
@@ -67,7 +66,4 @@ class Skill {
 
 		return data;
 	}
-
 }
-
-

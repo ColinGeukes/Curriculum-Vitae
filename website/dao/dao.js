@@ -1,14 +1,14 @@
 const mysqlLib = require('mysql');
 const fs = require('fs');
-// const ts = require('es6-template-strings');
+// Const ts = require('es6-template-strings');
 const compile = require('es6-template-strings/compile');
 const resolveToString = require('es6-template-strings/resolve-to-string');
+const Console = console;
 
 /**
  * Class that is responsible for querying data from the mysql server.
  */
 class Dao {
-
 	/**
 	 * Initializes a Data Access Object (DAO).
 	 * This object is responsible for handling interaction between server and database
@@ -28,16 +28,16 @@ class Dao {
 		this.queries = {};
 		const that = this;
 
-		// function readFiles(dirname, onFileContent, onError) {
-		fs.readdir(dirname, function (err, filenames) {
-			if (err) {
-				console.log("Error, while opening query file", err);
+		// Function readFiles(dirname, onFileContent, onError) {
+		fs.readdir(dirname, (err1, filenames) => {
+			if (err1) {
+				Console.error('Error, while opening query file', err1);
 				return;
 			}
-			filenames.forEach(function (filename) {
-				fs.readFile(dirname + filename, 'utf-8', function (err, content) {
-					if (err) {
-						console.log("Error, while opening query file", err);
+			filenames.forEach((filename) => {
+				fs.readFile(dirname + filename, 'utf-8', (err2, content) => {
+					if (err2) {
+						Console.error('Error, while opening query file', err2);
 						return;
 					}
 
@@ -54,46 +54,16 @@ class Dao {
 		this.sql.end();
 	}
 
-
 	query(name, identifiers, callback) {
-
-
 		if (!('type' in identifiers)) {
-			identifiers['type'] = '';
+			identifiers.type = '';
 		}
 
-		this.sql.query(resolveToString(this.queries[name], identifiers), //TODO: Use the dedicated query files.
-			function (err, rows) {
+		this.sql.query(resolveToString(this.queries[name], identifiers),
+			(err, rows) => {
 				callback(err, rows);
-			}
-		);
+			});
 	}
-
-	/**
-	 * Method to retrieve all abilities.
-	 * @param identifiers - extra parameters used for the query.
-	 * @param callback {function(errors, rows)} - function that is called after the query was executed.
-	 */
-	// getAbilities(identifiers, callback) {
-	// 	this.sql.query(this.queries['get_abilities'], //TODO: Use the dedicated query files.
-	// 		function (err, rows) {
-	// 			callback(err, rows);
-	// 		}
-	// 	);
-	// }
-	//
-	// /**
-	//  * Method to retrieve all types.
-	//  * @param identifiers - extra parameters used for the query.
-	//  * @param callback {function(errors, rows)} - function that is called after the query was executed.
-	//  */
-	// getTypes(identifiers, callback) {
-	// 	this.sql.query(this.queries['get_types'], //TODO: Use the dedicated query files.
-	// 		function (err, rows) {
-	// 			callback(err, rows);
-	// 		}
-	// 	);
-	// }
 }
 
 module.exports = Dao;
