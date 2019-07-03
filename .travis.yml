@@ -1,7 +1,6 @@
 language: node_js
 node_js:
-  - "6"
-
+  - "8"
 
 # Displays time before each script
 before_script:
@@ -11,19 +10,10 @@ before_script:
 after_script:
   - date
 
-# Stages
-stages:
-  - static-analyis
-
-nodejs-static-analysis:
-  stage: static-analysis
-
-  before_script:
-    - cd website/
-
-  script:
-    - npm install npm@latest -g
-    - npm install
-    - npm run lint
+script:
+ - cd website/
+ - npm install npm@latest -g
+ - npm install
+ - npm run lint
 
 
