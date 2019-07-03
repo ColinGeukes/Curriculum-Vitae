@@ -1,0 +1,34 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "Website to show my curriculum Vitae",
+  "main": "index.js",
+  "dependencies": {
+    "es6-template-strings": "^2.0.1",
+    "eslint": "^6.0.1",
+    "express": "^4.17.1",
+    "mysql": "^2.17.1",
+    "node-sass": "^4.12.0",
+    "pug": "^2.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon",
+    "build-css": "node-sass -o public/css scss/index.scss",
+    "lint": "eslint 'public/js/**/*.js' 'routes/**/*.js' 'dao/**/*.js/'  --ignore-pattern node_modules/",
+    "lint-fix": "eslint 'public/js/**/*.js' 'routes/**/*.js' 'dao/**/*.js/'  --ignore-pattern node_modules/ --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColinGeukes/Curriculum-Vitae.git"
+  },
+  "keywords": [
+    "Curriculum-Vitae"
+  ],
+  "author": "Colin Geukes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ColinGeukes/Curriculum-Vitae/issues"
+  },
+  "homepage": "https://github.com/ColinGeukes/Curriculum-Vitae#readme"
+}
