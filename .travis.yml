@@ -2,6 +2,10 @@ language: node_js
 node_js:
   - "8"
 
+stages:
+  - static_analysis
+  - test
+
 # Displays time before each script
 before_script:
   - date
@@ -10,12 +14,18 @@ before_script:
 after_script:
   - date
 
-script:
- - cd website/
- - npm install npm@latest -g
- - npm install
- - npm run lint
-
-after_success: 'npm run coveralls'
-
-
+jobs:
+   include:
+    - stage: static_analysis
+      script:
+       - cd website/
+       - npm install npm@latest -g
+       - npm install
+       - npm run lint
+    - stage: static_analysis
+      script:
+       - cd website/
+       - npm install npm@latest -g
+       - npm install
+       - npm test
+       - npm run coveralls
