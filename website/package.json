@@ -11,12 +11,20 @@
     "node-sass": "^4.12.0",
     "pug": "^2.0.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.4",
+    "istanbul": "^0.4.5",
+    "mocha": "^6.1.4",
+    "rewire": "^4.0.1"
+  },
   "scripts": {
     "start": "nodemon",
     "build-css": "node-sass -o public/css scss/index.scss",
-    "lint": "eslint 'public/js/**/*.js' 'routes/**/*.js' 'dao/**/*.js/'  --ignore-pattern node_modules/",
-    "lint-fix": "eslint 'public/js/**/*.js' 'routes/**/*.js' 'dao/**/*.js/'  --ignore-pattern node_modules/ --fix"
+    "test": "nyc mocha --all --recursive --timeout=10000 --exit",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
+    "lint": "eslint 'public/js/**/*.js' 'routes/**/*.js' 'dao/**/*.js/' 'test/**/*.js' --ignore-pattern node_modules/",
+    "lint-fix": "eslint 'public/js/**/*.js' 'routes/**/*.js' 'dao/**/*.js/' 'test/**/*.js' --ignore-pattern node_modules/ --fix"
   },
   "repository": {
     "type": "git",

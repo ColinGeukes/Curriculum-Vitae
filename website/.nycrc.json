@@ -1,0 +1,19 @@
+{
+  "all": true,
+  "include": "*",
+  "exclude": [
+    "test",
+    "coverage",
+    "public/fontawesome"
+  ],
+  "reporter": [
+    "text",
+    "html"
+  ],
+  "skip-full": false,
+  "check-coverage": true,
+  "statements": 0,
+  "branches": 0,
+  "functions": 0,
+  "lines": 0
+}
