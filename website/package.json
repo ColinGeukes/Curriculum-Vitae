@@ -16,6 +16,7 @@
     "coveralls": "^3.0.4",
     "istanbul": "^0.4.5",
     "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
     "rewire": "^4.0.1"
   },
   "scripts": {
