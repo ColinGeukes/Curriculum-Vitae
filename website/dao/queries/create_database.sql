@@ -34,7 +34,8 @@ insert into abilities
   (type, title, stars, start_date, extra)
 values
   (0, 'GML', 5, DATE('2008-01-01'), null),
-  (1, 'Java', 5, DATE('2009-01-01'), null),
+  (0, 'Java', 5, DATE('2009-01-01'), null),
+  (0, 'HTML(5)', 5, DATE('2014-10-28'), null),
   (0, 'JavaScript', 4,null, null),
   (1, 'Dutch', 5, null,  'native'),
   (1, 'English', 5,null, 'proficient');

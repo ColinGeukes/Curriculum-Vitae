@@ -19,6 +19,7 @@ function insertSkillTables(parent, tables, array) {
 	}
 }
 
+
 // SKILLS = [
 // 	new Skill('Java', 5, '10+ years'),
 // 	new Skill('JavaScript', 5, '4 years'),
@@ -34,7 +35,8 @@ function insertSkillTables(parent, tables, array) {
 // 	new Skill('C++', 4),
 // 	new Skill('Scrum', 4),
 // 	new Skill('SASS / SCSS', 4)
-// ].sort(Skill.compare);
+// 	new Skill('LibGDX', 5, '7 years')
+
 //
 // TOOLS = [
 // 	new Skill('Windows', 5, '10+ years'),
