@@ -39,3 +39,19 @@ values
   (0, 'JavaScript', 4,null, null),
   (1, 'Dutch', 5, null,  'native'),
   (1, 'English', 5,null, 'proficient');
+
+
+-- TESTING VALUES
+
+insert into types
+  (id, name)
+values
+  (0, 't0'), (0, 't1');
+
+insert into abilities
+  (type, title, stars, start_date, extra)
+values
+  (0, 'a0', 1, DATE('2008-01-01'), null),
+  (0, 'a1', 2, DATE('2009-01-01'), 'extra'),
+  (1, 'a2', 3, null, 'extra'),
+  (1, 'a3', 5 ,null, null);

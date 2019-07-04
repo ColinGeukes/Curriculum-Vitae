@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 // Create the api
-const dao = new Dao(config.mysql);
+const dao = new Dao(config.dao, true);
 const api = new Api(dao);
 
 app.use('/api', api);
