@@ -1,0 +1,25 @@
+@import "imports/variables";
+
+.tag {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 4px 6px;
+  margin: 4px 6px;
+  background-color: $color-1;
+
+  &.tag-1 {
+    background-color: $color-4;
+  }
+
+  &.tag-2 {
+    background-color: $color-3;
+  }
+
+  &.tag-3 {
+    background-color: $color-1;
+  }
+
+  &.tag-4 {
+    background-color: $color-2;
+  }
+}

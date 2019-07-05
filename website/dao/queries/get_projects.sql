@@ -1,1 +1,1 @@
-SELECT id, title, description, date_start FROM project;
+select id, title, SUBSTRING(description,1,260) as description, date_start from project;

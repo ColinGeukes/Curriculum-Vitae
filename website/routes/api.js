@@ -1,25 +1,46 @@
 const express = require('express');
 const Console = console;
 
+/**
+ * Method to retrieve and bind the correct params.
+ * @param {JSON} queryParams - the params from the query.
+ * @param {[String]} neededParams - list of all keys the query needs.
+ * @return {Array} param array that the query needs.
+ */
+function getRequestParams(queryParams, neededParams) {
+	const requestParams = [];
 
-function createBasicQueryPath(api, url, query) {
+	neededParams.forEach((element) => {
+		requestParams.push(queryParams[element]);
+	});
+	return requestParams;
+}
+
+function standardResponse(res, err, rows) {
+	// Check if the request resulted in an error
+	if (err) {
+		// If debugging is on, do something with the error.
+		if (this.debugging) {
+			// Print the error, for debugging purposes.
+			Console.error(err);
+		}
+
+		// Respond with the error
+		res.send(err);
+		return;
+	}
+
+	// Respond with the result
+	res.send(rows);
+}
+
+function createBasicQueryPath(api, url, query, params = []) {
 	api.get(url, async (req, res) => {
-		api._dao.query(query, req.query, (err, rows) => {
-			// Check if the request resulted in an error
-			if (err) {
-				// If debugging is on, do something with the error.
-				if (this.debugging) {
-					// Print the error, for debugging purposes.
-					Console.error(err);
-				}
+		// Retrieve all the needed params from the request.
+		const requestParams = getRequestParams(req.query, params);
 
-				// Respond with the error
-				res.send(err);
-				return;
-			}
-
-			// Respond with the result
-			res.send(rows);
+		api._dao.query(query, requestParams, (err, rows) => {
+			standardResponse(res, err, rows);
 		});
 	});
 }
@@ -32,6 +53,27 @@ function createContactPath(api, url) {
 			if (rows) {
 				res.redirect(`/thanks/${body.name}`);
 			}
+		});
+	});
+}
+
+function createProjectPath(api, url) {
+	api.get(url, async (req, res) => {
+		// Retrieve all the needed params from the request.
+		const requestParams = getRequestParams(req.query, ['id']);
+
+		api._dao.query('get_project', requestParams, (err, rows) => {
+			api._dao.query('get_project_abilities', requestParams, (err2, rows2) => {
+				// Create the correct response format.
+				const respFormat = {
+					'project': rows[0]
+				};
+
+				respFormat.project.tags = rows2;
+
+				// Send the response
+				standardResponse(res, err2, respFormat);
+			});
 		});
 	});
 }
@@ -57,6 +99,7 @@ class Api extends express.Router {
 		createBasicQueryPath(this, '/abilities', 'get_abilities');
 		createBasicQueryPath(this, '/types', 'get_types');
 		createBasicQueryPath(this, '/projects', 'get_projects');
+		createProjectPath(this, '/project');
 		createContactPath(this, '/contact');
 	}
 }

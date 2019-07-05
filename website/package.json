@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "nodemon",
-    "build-css": "node-sass -o public/css scss/index.scss",
+    "build-css": "node-sass -o public/css scss --recursive false",
     "test": "nyc mocha --all --recursive --timeout=10000 --exit && nyc report --reporter=lcov",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "lint": "eslint 'public/js/**/*.js' 'routes/**/*.js' 'dao/**/*.js/' 'test/**/*.js' --ignore-pattern node_modules/",

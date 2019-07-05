@@ -414,7 +414,7 @@ ul.scores {
     flex: 0 0 40px;
     position: relative;
     margin: 0 5px;
-    background-color: #646B73;
+    background-color: #a2a2a2;
 
     &.button-left {
       border-top-left-radius: 12px;
@@ -426,10 +426,16 @@ ul.scores {
       border-bottom-right-radius: 12px;
     }
 
+    &:hover {
+      cursor: pointer;
+      background-color: #646B73;
+    }
+
     i {
       position: absolute;
       left: 50%;
       top: 50%;
+      font-size: 20px;
       @include apply-transform(translateX(-50%) translateY(-50%))
     }
   }
@@ -460,21 +466,28 @@ ul.scores {
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      border-radius: 6px;
+      text-decoration: none;
+      color: black;
 
       .image {
         flex: 1 1 auto;
-        background-color: $dark;
         overflow: hidden;
         position: relative;
+        background-color: $dark;
+        color: white;
 
         img {
+          transition: min-height 0.3s ease-out, max-height 0.3s ease-out, height 0.3s ease-out,
+          min-width 0.3s ease-out, max-width 0.3s ease-out, width 0.3s ease-out;
+
           -o-object-fit: cover;
           object-fit: cover;
           min-height: 105%;
           min-width: 105%;
+          width: 100%;
           margin: auto;
           display: block;
-          width: 100%;
           position: absolute;
           left: 50%;
           top: 50%;
@@ -512,6 +525,19 @@ ul.scores {
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        h1 {
+          background-color: #5dbbe8;
+        }
+
+        .image img {
+          min-height: 130%;
+          min-width: 130%;
         }
       }
     }

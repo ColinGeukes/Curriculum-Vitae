@@ -1,0 +1,38 @@
+doctype html
+html
+    head
+        title #{appName}
+        link(href="https://fonts.googleapis.com/css?family=Maven+Pro&display=swap" rel="stylesheet")
+        script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+        script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js")
+        link(href="../fontawesome/css/fontawesome.css" rel="stylesheet")
+        link(href="../fontawesome/css/brands.css" rel="stylesheet")
+        link(href="../fontawesome/css/solid.css" rel="stylesheet")
+        link(rel="stylesheet", type="text/css", href="/css/index.css")
+        link(rel="stylesheet", type="text/css", href="/css/pageProject.css")
+    body
+        div(class="content-container fully-hidden")
+            section(id="project" class="central-section")
+                div(class="section-header clip-always-visible has-shadow")
+                    div(class="content")
+                        h1
+                    div(class="shadow")
+                div(class="section-body small straight")
+                    div(class="content")
+                        div(class="description")
+                    div(class="shadow")
+            section(id="tags" class="central-section")
+                div(class="section-header clip-always-visible has-shadow")
+                    div(class="content")
+                        h1 Tags
+                    div(class="shadow")
+                div(class="section-body small straight")
+                    div(class="content")
+                        div(class="tags")
+                    div(class="shadow")
+        script const PROJECT_ID = #{params.id}
+        script(type="text/javascript", src="/js/views/project/project.js")
+        script(type="text/javascript", src="/js/views/project/projectAbility.js")
+        script(type="text/javascript", src="/js/views/project/pageHandler.js")
+
+

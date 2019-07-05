@@ -1,20 +1,11 @@
-$noise-color: #dedad1;
-$section-body: #f2f2f3;
-$background-color: #d8cdbb;
-
-$color-1: #6ca338;
-$color-2: #f3585b;
-$color-3: #f0ca45;
-$color-4: #4ca5d0;
-$dark: #272425;
-
-@import "responsive", "form", "theme";
+@import "imports/variables", "imports/responsive", "imports/form", "imports/theme";
 
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 h1, h2, h3, h4, h5 {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
@@ -33,6 +24,11 @@ ul {
   }
 }
 
+
+.fully-hidden {
+  position: absolute;
+  visibility: hidden;
+}
 
 //$background: #ECECEC;
 //

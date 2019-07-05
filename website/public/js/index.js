@@ -130,6 +130,8 @@ function updateProjectPreview(value = 0) {
 
 	projectPreviewPointer = ((projectPreviewPointer + value) % cardsAmount + cardsAmount) % cardsAmount;
 
+	// Console.log('UPDATING');
+
 	cards.each((index) => {
 		const card = $(this);
 
@@ -150,9 +152,9 @@ async function loadAllProjectPreviews() {
 
 	function htmlProjectPreview(projectPreview) {
 		const textField = `<div class="text"><h1>${projectPreview.title}</h1><p>${projectPreview.description}</p></div>`;
-		const imageField = `<div class="image"><img alt="${projectPreview.title}" src="/img/projects/${projectPreview.id}/thumbnail.png"></div>`;
+		const imageField = `<div class="image"><img alt="${projectPreview.title} thumbnail" src="/img/projects/${projectPreview.id}/thumbnail.png"></div>`;
 
-		$('#projects .content .cards > .row').append(`<div class="row-flex"><div class="card">${imageField}${textField}</div></div>`);
+		$('#projects .content .cards > .row').append(`<div class="row-flex"><a class="card" href="/project/${projectPreview.id}">${imageField}${textField}</a></div>`);
 	}
 
 	for (let i = 0; i < data.length; i++) {
@@ -175,6 +177,7 @@ function resizeResponsive() {
 	}
 }
 
+
 resizeResponsive();
 
 $(document).ready(() => {
@@ -188,12 +191,6 @@ $(document).ready(() => {
 	$('#projects .button-right').click(() => {
 		updateProjectPreview(1);
 	});
-
-	/*
-	 * Trigger resize to have correct standard for every initial display.
-	 * $(window).trigger('resize');
-	 * resizeEvent();
-	 */
 });
 
 // Handle different screen sizes

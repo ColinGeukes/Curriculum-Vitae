@@ -31,6 +31,12 @@ app.get('/thanks/:name', (req, res) => {
 	res.render('thanks', values);
 });
 
+app.get('/project/:id', (req, res) => {
+	let values = config;
+	values['params'] = req.params;
+	res.render('project', values);
+});
+
 // Create the api
 const dao = new Dao(config.dao, true);
 const api = new Api(dao);
