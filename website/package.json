@@ -4,6 +4,7 @@
   "description": "Website to show my curriculum Vitae",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "es6-template-strings": "^2.0.1",
     "eslint": "^6.0.1",
     "express": "^4.17.1",

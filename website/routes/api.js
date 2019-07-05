@@ -1,6 +1,41 @@
 const express = require('express');
 const Console = console;
 
+
+function createBasicQueryPath(api, url, query) {
+	api.get(url, async (req, res) => {
+		api._dao.query(query, req.query, (err, rows) => {
+			// Check if the request resulted in an error
+			if (err) {
+				// If debugging is on, do something with the error.
+				if (this.debugging) {
+					// Print the error, for debugging purposes.
+					Console.error(err);
+				}
+
+				// Respond with the error
+				res.send(err);
+				return;
+			}
+
+			// Respond with the result
+			res.send(rows);
+		});
+	});
+}
+
+function createContactPath(api, url) {
+	api.post(url, async (req, res) => {
+		const body = req.body;
+
+		api._dao.queryContact(body.name, body.organization, body.email, body.description, (err, rows) => {
+			if (rows) {
+				res.redirect(`/thanks/${body.name}`);
+			}
+		});
+	});
+}
+
 /**
  * An api class for adding /api routes to express
  */
@@ -18,30 +53,11 @@ class Api extends express.Router {
 		// Create a simple api query call.
 		const that = this;
 
-		function createPath(url, query) {
-			that.get(url, async (req, res) => {
-				that._dao.query(query, req.query, (err, rows) => {
-					// Check if the request resulted in an error
-					if (err) {
-						// If debugging is on, do something with the error.
-						if (that.debugging) {
-							// Print the error, for debugging purposes.
-							Console.error(err);
-						}
 
-						// Respond with the error
-						res.send(err);
-						return;
-					}
-
-					// Respond with the result
-					res.send(rows);
-				});
-			});
-		}
-
-		createPath('/abilities', 'get_abilities');
-		createPath('/types', 'get_types');
+		createBasicQueryPath(this, '/abilities', 'get_abilities');
+		createBasicQueryPath(this, '/types', 'get_types');
+		createBasicQueryPath(this, '/projects', 'get_projects');
+		createContactPath(this, '/contact');
 	}
 }
 

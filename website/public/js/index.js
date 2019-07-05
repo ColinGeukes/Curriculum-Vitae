@@ -1,4 +1,4 @@
-function addSkill(parent, skill, stars, extra) {
+function addSkill(parent, skill) {
 	/**
 	 * Method to create the star span
 	 * @param {number} amount - The number of stars that should be filled
@@ -30,17 +30,22 @@ function addSkill(parent, skill, stars, extra) {
 		return `${ret}</span>`;
 	}
 
-
+	/**
+	 * Method to create the subtext field.
+	 * This field is visible if the user hovers over the element.
+	 * @param {string} text - the subtext that should be displayed.
+	 * @return {string} a html representation of the subtext.
+	 */
 	function extraField(text) {
 		if (text) {
-			return `<span class="extra">(${extra})</span>`;
+			return `<span class="extra">(${text})</span>`;
 		}
 		return '';
 	}
 
-	$(parent).append(`<li><span class="name">${skill}</span>
-		${createStarsField(stars, 5)}
-		${extraField(extra)}</li>`);
+	$(parent).append(`<li><span class="name">${skill.name}</span>
+		${createStarsField(skill.stars, 5)}
+		${extraField(skill.subtext)}</li>`);
 }
 
 function insertSkillTables(parent, tables, array) {
@@ -48,7 +53,7 @@ function insertSkillTables(parent, tables, array) {
 	for (let i = 0; i < array.length; i++) {
 		const table = 1 + Math.floor(i / (array.length / tables));
 
-		addSkill(`${parent}:nth-child(${table})`, array[i].name, array[i].stars, array[i].extra);
+		addSkill(`${parent}:nth-child(${table})`, array[i]);
 	}
 }
 
@@ -69,6 +74,15 @@ function insertSkillTables(parent, tables, array) {
  * 	new Skill('Scrum', 4),
  * 	new Skill('SASS / SCSS', 4)
  * 	new Skill('LibGDX', 5, '7 years')
+ * 	new Skill('Scala', 5, '3 years')
+ * 	new Skill('Prolog', 5, '3 years')
+ * 	new Skill('Goal', 5, '3 years')
+ * 	new Skill('Scala', 5, '3 years')
+ */
+
+
+/**
+ * Assembly x86 ('2016-09-05')
  */
 
 /*
@@ -100,11 +114,91 @@ function insertSkillTables(parent, tables, array) {
  * @returns {Promise<void>}
  */
 async function loadAll() {
-	data = await Skill._loadSkills(true);
+	const data = await Skill._loadSkills(true);
 
 	insertSkillTables('#skills ul', 2, data[0].skills);
 	insertSkillTables('#languages ul', 2, data[1].skills);
 	insertSkillTables('#tools ul', 2, data[2].skills);
 }
 
-loadAll();
+let projectPreviewPointer = 0;
+let displayAmount = 3;
+
+function updateProjectPreview(value = 0) {
+	const cards = $('#projects .cards > .row').children();
+	const cardsAmount = cards.length;
+
+	projectPreviewPointer = ((projectPreviewPointer + value) % cardsAmount + cardsAmount) % cardsAmount;
+
+	cards.each((index) => {
+		const card = $(this);
+
+		if (index >= projectPreviewPointer && index < projectPreviewPointer + displayAmount) {
+			card.removeClass("hidden");
+			card.css("order", 0);
+		} else if (projectPreviewPointer + displayAmount - index > cardsAmount) {
+			card.removeClass("hidden");
+			card.css("order", `${1 + index}`);
+		} else {
+			card.addClass("hidden");
+		}
+	});
+}
+
+async function loadAllProjectPreviews() {
+	const data = await ProjectCard._loadAll(true);
+
+	function htmlProjectPreview(projectPreview) {
+		const textField = `<div class="text"><h1>${projectPreview.title}</h1><p>${projectPreview.description}</p></div>`;
+		const imageField = `<div class="image"><img alt="${projectPreview.title}" src="/img/projects/${projectPreview.id}/thumbnail.png"></div>`;
+
+		$('#projects .content .cards > .row').append(`<div class="row-flex"><div class="card">${imageField}${textField}</div></div>`);
+	}
+
+	for (let i = 0; i < data.length; i++) {
+		htmlProjectPreview(data[i]);
+	}
+
+	updateProjectPreview();
+}
+
+function resizeResponsive() {
+	const width = $(window).width();
+
+	// Updates the amount of project previews visible.
+	if (width >= 978) {
+		displayAmount = 3;
+	} else if (width >= 754) {
+		displayAmount = 2;
+	} else {
+		displayAmount = 1;
+	}
+}
+
+resizeResponsive();
+
+$(document).ready(() => {
+	loadAll();
+	loadAllProjectPreviews();
+
+	$('#projects .button-left').click(() => {
+		updateProjectPreview(-1);
+	});
+
+	$('#projects .button-right').click(() => {
+		updateProjectPreview(1);
+	});
+
+	/*
+	 * Trigger resize to have correct standard for every initial display.
+	 * $(window).trigger('resize');
+	 * resizeEvent();
+	 */
+});
+
+// Handle different screen sizes
+$(window).resize(() => {
+	resizeResponsive();
+	updateProjectPreview();
+});
+

@@ -91,6 +91,18 @@ class Dao {
 				callback(err, rows);
 			});
 	}
+
+	queryContact(name, organization, email, description, callback) {
+		this.sql.query(this.queries.post_contact, [
+			name,
+			organization,
+			email,
+			description
+		],
+		(err, rows) => {
+			callback(err, rows);
+		});
+	}
 }
 
 module.exports = Dao;

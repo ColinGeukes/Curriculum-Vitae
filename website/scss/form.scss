@@ -1,0 +1,47 @@
+.form {
+  margin-bottom: -32px !important;
+
+  label {
+    display: block;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    line-height: 1.5em;
+    letter-spacing: .08em;
+    font: bold 14px sofia-pro sans-serif;
+    vertical-align: baseline;
+  }
+
+  .required > label:after {
+    content: '*';
+    margin-left: 6px;
+  }
+
+  &.row > *, .row > * {
+    margin-bottom: 32px;
+  }
+
+  input, textarea {
+    line-height: 1.4545em;
+    background: #fff2dd;
+    border: none;
+    color: #214261;
+    display: block;
+    font-family: "GT Walsheim", sans-serif;
+    font-size: 20px;
+    padding: 2px 12px;
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    width: auto;
+    border-radius: 12px;
+    padding: 6px 20px;
+    min-width: 160px;
+    background-color: $color-2;
+    font-weight: 700;
+  }
+}
+
+#contact-form {
+
+}
