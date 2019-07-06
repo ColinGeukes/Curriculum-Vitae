@@ -57,58 +57,6 @@ function insertSkillTables(parent, tables, array) {
 	}
 }
 
-/*
- * SKILLS = [
- * 	new Skill('Java', 5, '10+ years'),
- * 	new Skill('JavaScript', 5, '4 years'),
- * 	new Skill('Angular', 5, '2 years'),
- * 	new Skill('HTML(5)', 5, '4 years'),
- * 	new Skill('JSON', 5, '4 years'),
- * 	new Skill('Object Oriented Programming', 5),
- * 	new Skill('MySQL', 4),
- * 	new Skill('Python', 4),
- * 	new Skill('JQuery', 4),
- * 	new Skill('Command Line Interface', 4),
- * 	new Skill('C', 4),
- * 	new Skill('C++', 4),
- * 	new Skill('Scrum', 4),
- * 	new Skill('SASS / SCSS', 4)
- * 	new Skill('LibGDX', 5, '7 years')
- * 	new Skill('Scala', 5, '3 years')
- * 	new Skill('Prolog', 5, '3 years')
- * 	new Skill('Goal', 5, '3 years')
- * 	new Skill('Scala', 5, '3 years')
- */
-
-
-/**
- * Assembly x86 ('2016-09-05')
- */
-
-/*
- *
- * TOOLS = [
- * 	New Skill('Windows', 5, '10+ years'),
- * 	New Skill('Linux', 4, '2 years'),
- * 	New Skill('Eclipse', 5, '10+ years'),
- * 	New Skill('WebStorm', 4, '2 years'),
- * 	New Skill('PyCharm', 4, '1 year'),
- * 	New Skill('IntelliJ IDEA', 5, '3 years'),
- * 	New Skill('Notepad++', 4, '8 years')
- * ].sort(Skill.compare);
- *
- *
- * InsertSkillTables('#skills ul', 2, SKILLS);
- * InsertSkillTables('#languages ul', 2, [
- * 	New Skill('Dutch', 5, 'Native'),
- * 	New Skill('English', 5, 'Proficient')
- * ]);
- * InsertSkillTables('#tools ul', 2, TOOLS);
- *
- */
-
-// Console.log('abilities', _getAbilities());
-
 /**
  * Method to load all abilities and display them.
  * @returns {Promise<void>}

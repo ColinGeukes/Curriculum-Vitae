@@ -5,7 +5,7 @@ class Project {
 		this.description = settings.description.split('<br>');
 		this.startDate = settings.startDate;
 		this.endDate = settings.endDate;
-		this.tags = [];
+		this.tags = {};
 	}
 
 	/**
@@ -13,10 +13,10 @@ class Project {
 	 * @param {number} projectId - the id of the project you want to retrieve.
 	 * @return {Promise<Project>} - returns a Project object.
 	 */
-	static async load(projectId, jQuery = $, ProjectAbilityClass = ProjectAbility) {
+	static async load(projectId) {
 		// Retrieve the project
 		const projectData = (await new Promise((resolve) => {
-			jQuery.get({
+			$.get({
 				'url': `/api/project?id=${projectId}`,
 				'success': resolve
 			});
@@ -32,11 +32,23 @@ class Project {
 
 		// Add the tags of the project to the list of Tags inside the Project.
 		projectData.tags.forEach((element) => {
-			project.tags.push(new ProjectAbilityClass(element));
+
+			// Create the array dictionary.
+			if (!(element['type_name'] in project.tags)) {
+				project.tags[element['type_name']] = [];
+			}
+
+			project.tags[element['type_name']].push(new ProjectAbility({
+				'id': element['id'],
+				'type': element['type_id'],
+				'title': element['title']
+			}));
 		});
 
-		// Sort the tags.
-		project.tags.sort(ProjectAbilityClass.compare);
+		// Sort all the tags.
+		$.each(project.tags, (key, value) => {
+			value.sort(ProjectAbility.compare);
+		});
 
 		return project;
 	}

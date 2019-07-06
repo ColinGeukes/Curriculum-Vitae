@@ -1,25 +1,150 @@
-@import "imports/variables";
+@import "imports/variables", "imports/functions";
 
-.tag {
-  display: inline-block;
-  border-radius: 4px;
-  padding: 4px 6px;
-  margin: 4px 6px;
-  background-color: $color-1;
+$TAGS_WIDTH: 250px;
+$TAG_BORDER: 2px dashed $dark;
 
-  &.tag-1 {
-    background-color: $color-4;
+#project {
+  .section-body .content {
+    padding-top: 15px;
+
+    .flex-wrap {
+      display: flex;
+
+      .image {
+        max-height: 280px;
+        min-height: 250px;
+        flex: 0 0 300px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+
+        img {
+          position: absolute;
+          -o-object-fit: cover;
+          object-fit: cover;
+          min-height: 105%;
+          min-width: 105%;
+          width: 100%;
+          margin: auto;
+          display: block;
+          left: 50%;
+          top: 50%;
+          @include apply-transform(translate(-50%, -50%))
+        }
+      }
+
+      .description {
+        flex: 1 1 100%;
+        padding: 0 20px;
+      }
+
+      #project-tags {
+        border-left: $TAG_BORDER;
+        padding-left: 20px;
+        margin: auto 0;
+        padding-top: 10px;
+        flex: 0 1 $TAGS_WIDTH;
+
+        > div {
+          padding-bottom: 10px;
+          text-align: center;
+        }
+
+        h2 {
+          text-align: center;
+          font-size: 20px;
+          text-transform: none;
+          text-decoration: underline;
+          background-color: #0000001a;
+        }
+
+        .tag {
+          display: inline-block;
+          border-radius: 4px;
+          padding: 4px 6px;
+          margin: 4px 6px;
+          white-space: nowrap;
+
+        }
+
+        > *:nth-child(4n + 1) .tag {
+          background-color: $color-3;
+        }
+
+        > *:nth-child(4n + 2) .tag {
+          background-color: $color-1;
+        }
+
+        > *:nth-child(4n + 3) .tag {
+          background-color: $color-4;
+        }
+
+        > *:nth-child(4n + 4) .tag {
+          background-color: $color-2;
+        }
+      }
+    }
   }
+}
 
-  &.tag-2 {
-    background-color: $color-3;
+/**
+-- RESPONSIVE WORKINGS
+ */
+@media (max-width: 992px) {
+  #project .section-body .content .flex-wrap {
+    flex-wrap: wrap;
+
+    .description {
+      order: 1;
+      margin-top: -1em;
+    }
+
+    .image {
+      order: 2;
+      flex-grow: 1;
+      margin: 0 20px 0;
+    }
+
+    #project-tags {
+      order: 3;
+    }
   }
+}
 
-  &.tag-3 {
-    background-color: $color-1;
+
+@media (max-width: 768px) {
+  #project .section-body .content .flex-wrap {
+
+    .image {
+      order: 0;
+      flex: 1 1 100%;
+    }
+
+    .description {
+      flex-basis: calc(100% - #{$TAGS_WIDTH});
+      margin-top: 0;
+    }
   }
+}
 
-  &.tag-4 {
-    background-color: $color-2;
+@media (max-width: 616px) {
+  #project .section-body .content .flex-wrap {
+
+    .image {
+      order: 0;
+      flex: 1 1 100%;
+    }
+
+    .description {
+      flex-basis: 100%;
+    }
+
+    #project-tags {
+      border-left: 0;
+      //border-top: $TAG_BORDER;
+      padding: 0;
+      margin: 0 20px;
+      flex: 1 1 100%;
+    }
   }
 }

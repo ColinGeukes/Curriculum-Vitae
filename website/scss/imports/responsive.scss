@@ -33,14 +33,6 @@
   }
 }
 
-@media (max-width: 600px) {
-  section.central-section .section-body {
-    border-left: 0 !important;
-    border-right: 0 !important;
-    border-radius: 0 !important;
-  }
-}
-
 @media (max-width: 616px) {
   .section-header {
     text-shadow: 0 0 0 $dark !important;
@@ -56,4 +48,14 @@
     }
   }
 
+  section.central-section .section-body {
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+
+    &:before {
+      border-left: 0;
+      border-right: 0;
+    }
+  }
 }

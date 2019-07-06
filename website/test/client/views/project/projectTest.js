@@ -84,30 +84,42 @@ describe('Project', () => {
 			tags = [
 				{
 					'id': 1,
-					'type': 1,
+					'type_id': 1,
+					'type_name': 'language',
 					'title': 'Java'
 				},
 				{
 					'id': 2,
-					'type': 1,
+					'type_id': 1,
+					'type_name': 'language',
 					'title': 'JavaScript'
 				}
 			];
 
-			Project.load(1, {
-				'get'(data) {
-					data.success({
-						'project': {
-							id,
-							title,
-							'description': descr1,
-							'date_start': startDate,
-							'date_end': endDate,
-							tags
-						}
-					});
-				}
-			}, ProjectAbility).then((projectObj) => {
+			projectModule.__set__({
+				'$': {
+					'get': (data) => {
+						data.success({
+							'project': {
+								id,
+								title,
+								'description': descr1,
+								'date_start': startDate,
+								'date_end': endDate,
+								tags
+							}
+						});
+					},
+					'each': (dictionary, func) => {
+						Object.keys(dictionary).forEach(function (key) {
+							func(key, dictionary[key]);
+						})
+					}
+				},
+				'ProjectAbility': ProjectAbility
+			});
+
+			Project.load(1).then((projectObj) => {
 				project = projectObj;
 				done();
 			});
@@ -136,19 +148,21 @@ describe('Project', () => {
 
 		it('Load should yield correct tags', (done) => {
 			// Compare the tags.
-			expect(project.tags).to.be.a('array');
-			expect(project.tags[0].id).to.be.a('number');
-			expect(project.tags[0].id).to.be.equal(tags[0].id);
-			expect(project.tags[0].type).to.be.a('number');
-			expect(project.tags[0].type).to.be.equal(tags[0].type);
-			expect(project.tags[0].title).to.be.a('string');
-			expect(project.tags[0].title).to.be.equal(tags[0].title);
-			expect(project.tags[1].id).to.be.a('number');
-			expect(project.tags[1].id).to.be.equal(tags[1].id);
-			expect(project.tags[1].type).to.be.a('number');
-			expect(project.tags[1].type).to.be.equal(tags[1].type);
-			expect(project.tags[1].title).to.be.a('string');
-			expect(project.tags[1].title).to.be.equal(tags[1].title);
+			expect(project.tags).to.be.a('Object');
+			expect(project.tags['language']).to.be.a('array');
+			expect(project.tags['language'].length).to.be.equal(2);
+			expect(project.tags['language'][0].id).to.be.a('number');
+			expect(project.tags['language'][0].id).to.be.equal(tags[0].id);
+			expect(project.tags['language'][0].type).to.be.a('number');
+			expect(project.tags['language'][0].type).to.be.equal(tags[0].type_id);
+			expect(project.tags['language'][0].title).to.be.a('string');
+			expect(project.tags['language'][0].title).to.be.equal(tags[0].title);
+			expect(project.tags['language'][1].id).to.be.a('number');
+			expect(project.tags['language'][1].id).to.be.equal(tags[1].id);
+			expect(project.tags['language'][1].type).to.be.a('number');
+			expect(project.tags['language'][1].type).to.be.equal(tags[1].type_id);
+			expect(project.tags['language'][1].title).to.be.a('string');
+			expect(project.tags['language'][1].title).to.be.equal(tags[1].title);
 			done();
 		});
 	});

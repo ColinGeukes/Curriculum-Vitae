@@ -82,11 +82,14 @@ values
   (15, 0, 'Typescript', 4, DATE('2017-09-01'), null),
   (16, 0, 'SASS / SCSS', 5, DATE('2017-09-01'), null),
   (17, 0, 'LibGDX', 5, DATE('2011-01-01'), null),
+  (18, 0, 'Swing', 5, DATE('2015-01-01'), null),
   (50, 1, 'Dutch', 5, DATE('1998-01-11'),  'native'),
   (51, 1, 'English', 5, DATE('2007-01-11'), 'proficient'),
   (55, 2, 'Eclipse', 5, DATE('2009-01-01'), null),
   (80, 3, 'SCRUM', 5, null, null),
   (81, 3, 'Object Oriented Programming', 5, null, null);
+  (82, 3, 'CLI', 5, null, null);
+  (83, 3, 'Networking', 5, null, null);
 
 insert into project
   (id, title, date_start, date_end, description)

@@ -17,22 +17,16 @@ html
                     div(class="content")
                         h1
                     div(class="shadow")
-                div(class="section-body small straight")
+                div(class="section-body straight")
                     div(class="content")
-                        div(class="description")
+                        div(class="flex-wrap")
+                            div(class="image")
+                            div(class="description")
+                            div(id="project-tags")
                     div(class="shadow")
-            section(id="tags" class="central-section")
-                div(class="section-header clip-always-visible has-shadow")
-                    div(class="content")
-                        h1 Tags
-                    div(class="shadow")
-                div(class="section-body small straight")
-                    div(class="content")
-                        div(class="tags")
-                    div(class="shadow")
-        script const PROJECT_ID = #{params.id}
         script(type="text/javascript", src="/js/views/project/project.js")
         script(type="text/javascript", src="/js/views/project/projectAbility.js")
         script(type="text/javascript", src="/js/views/project/pageHandler.js")
+        script loadProject(#{params.id})
 
 
