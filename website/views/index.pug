@@ -11,60 +11,60 @@ html
         link(rel="stylesheet", type="text/css", href="/css/index.css")
     body
         div(class="content-container")
-            div(class="content-wrap background")
-                header(id="home")
-                    div(class="header-img")
-                section(id="info")
-                    div(class="section-header big-header has-shadow")
-                        div(class="content")
-                            h1 Colin Geukes
-                            h2 software programmer
-                        div(class="shadow")
-                    div(class="section-body")
-                        div(class="content")
-                            p hello I am colin <br> Guekes and ..d.af.sf.asdf.
-                        div(class="shadow")
-                section(id="education")
-                    div(class="section-header has-shadow")
-                        div(class="content")
-                            h1 education
-                        div(class="shadow")
-                    div(class="section-body")
-                        div(class="content")
-                            p This is my education thingy
-                        div(class="shadow")
+            //div(class="content-wrap background")
+            header(id="home")
+                div(class="header-img")
+            section(id="info")
+                div(class="section-header big-header has-shadow")
+                    div(class="content")
+                        h1 Colin Geukes
+                        h2 software programmer
+                    div(class="shadow")
+                div(class="section-body")
+                    div(class="content")
+                        p hello I am colin <br> Guekes and ..d.af.sf.asdf.
+                    div(class="shadow")
+            section(id="education")
+                div(class="section-header has-shadow")
+                    div(class="content")
+                        h1 education
+                    div(class="shadow")
+                div(class="section-body")
+                    div(class="content")
+                        p This is my education thingy
+                    div(class="shadow")
 
-                //---- Abilities section
-                section(id="abilities")
-                    div(class="section-header has-shadow")
-                        div(class="content")
-                            h1 abilities
-                        div(class="shadow")
-                    div(class="section-body")
-                        div(class="content")
-                            div(class="inner-content")
+            //---- Abilities section
+            section(id="abilities" class="central-section")
+                div(class="section-header has-shadow")
+                    div(class="content")
+                        h1 abilities
+                    div(class="shadow")
+                div(class="section-body")
+                    div(class="content")
+                        div(class="inner-content")
 
-                                //---- Abilities: Skills
-                                h2 skills
-                                div(id="skills" class="row")
-                                    ul(class="row-2 no-bullets scores")
-                                    ul(class="row-2 no-bullets scores")
-                                hr
-                                //---- Abilities: Languages
-                                h2 languages
-                                div(id="languages" class="row")
-                                    ul(class="row-2 no-bullets scores")
-                                    ul(class="row-2 no-bullets scores")
-                                hr
-                                //---- Abilities: Tools
-                                h2 tools
-                                div(class="quote")
-                                    p We shape our tools and afterwards our tools shape us.
-                                    span(class="author") Marshall McLuhan
-                                div(id="tools" class="row")
-                                    ul(class="row-2 no-bullets scores")
-                                    ul(class="row-2 no-bullets scores")
-                        div(class="shadow")
+                            //---- Abilities: Skills
+                            h2 skills
+                            div(id="skills" class="row")
+                                ul(class="row-2 no-bullets scores")
+                                ul(class="row-2 no-bullets scores")
+                            hr
+                            //---- Abilities: Languages
+                            h2 languages
+                            div(id="languages" class="row")
+                                ul(class="row-2 no-bullets scores")
+                                ul(class="row-2 no-bullets scores")
+                            hr
+                            //---- Abilities: Tools
+                            h2 tools
+                            div(class="quote")
+                                p We shape our tools and afterwards our tools shape us.
+                                span(class="author") Marshall McLuhan
+                            div(id="tools" class="row")
+                                ul(class="row-2 no-bullets scores")
+                                ul(class="row-2 no-bullets scores")
+                    div(class="shadow")
             section(id="projects" class="central-section")
                 div(class="section-header has-shadow")
                     div(class="content")
@@ -104,7 +104,6 @@ html
                             div(class="row-1")
                                 input(id="form-input-submit" type="submit", value="Go!")
                     div(class="shadow")
-
         script(type="text/javascript", src="/js/skill.js")
         script(type="text/javascript", src="/js/projectCard.js")
-        script(type="text/javascript", src="/js/index.js")
+        script(type="text/javascript", src="/js/views/main/pageHandler.js")

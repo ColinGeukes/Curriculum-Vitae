@@ -2,11 +2,11 @@ const MILLISECONDS_PER_YEAR = 1000 * 60 * 60 * 24 * 365;
 const MAX_EXPERIENCE_YEARS = 10;
 
 class Skill {
-	constructor(name, stars, extra, startDate) {
-		this.name = name;
-		this.stars = stars;
-		this.extra = extra;
-		this.startDate = startDate;
+	constructor(settings) {
+		this.name = settings.name;
+		this.stars = settings.stars;
+		this.extra = settings.extra;
+		this.startDate = settings.startDate;
 		this._setSubtext();
 	}
 
@@ -20,8 +20,8 @@ class Skill {
 		// Display the years of experience as subtext.
 		if (this.startDate) {
 			// Calculate the amount of years of experience.
-			const yearsExperience = Math.round(1 +
-				((new Date()).getTime() - (new Date(this.startDate)).getTime()) / MILLISECONDS_PER_YEAR);
+			const yearsExperience =
+				Math.round(((new Date()).getTime() - (new Date(this.startDate)).getTime()) / MILLISECONDS_PER_YEAR);
 
 			// Bound the max experience years
 			if (yearsExperience >= MAX_EXPERIENCE_YEARS) {
@@ -87,7 +87,12 @@ class Skill {
 			const curr = dataAbilities[i];
 
 			// Display extra field if it is not empty.
-			data[dataAbilities[i].type].skills.push(new Skill(curr.title, curr.stars, curr.extra, curr.start_date));
+			data[dataAbilities[i].type].skills.push(new Skill({
+				'name': curr.title,
+				'stars': curr.stars,
+				'extra': curr.extra,
+				'startDate': curr.start_date
+			}));
 		}
 
 		// Sort is sort is true.

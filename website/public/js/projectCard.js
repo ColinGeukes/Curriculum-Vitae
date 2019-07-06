@@ -1,9 +1,9 @@
 class ProjectCard {
-	constructor(id, title, description, startDate) {
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.startDate = startDate;
+	constructor(settings) {
+		this.id = settings.id;
+		this.title = settings.title;
+		this.description = settings.description;
+		this.startDate = settings.startDate;
 	}
 
 	static compare(a, b) {
@@ -31,7 +31,12 @@ class ProjectCard {
 		for (let i = 0; i < projects.length; i++) {
 			const project = projects[i];
 
-			data.push(new ProjectCard(project.id, project.title, project.description, project.date_start));
+			data.push(new ProjectCard({
+				'id': project.id,
+				'title': project.title,
+				'description': project.description,
+				'startDate': new Date(project.date_start)
+			}));
 		}
 
 		// Sort is sort is true.

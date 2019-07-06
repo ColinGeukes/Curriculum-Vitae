@@ -7,18 +7,25 @@ const rewire = require('rewire');
 const skillModule = rewire('../../public/js/skill.js');
 const Skill = skillModule.__get__('Skill');
 // The skills
+let skill;
 let extra;
 let name;
-let skill;
 let stars;
+let date;
 
 describe('Skill', () => {
 	context('constructor', () => {
 		beforeEach((done) => {
 			name = 'Java';
 			stars = 5;
-			extra = '11+ years';
-			skill = new Skill(name, stars, extra);
+			extra = 'native';
+			date = new Date();
+			skill = new Skill({
+				name,
+				stars,
+				extra,
+				'startDate': date
+			});
 			done();
 		});
 
@@ -38,11 +45,73 @@ describe('Skill', () => {
 		});
 	});
 
+	context('correct subtext', () => {
+		it('Low experience', (done) => {
+			skill = new Skill({
+				name,
+				stars,
+				'startDate': new Date()
+			});
+
+			// Assertion
+			expect(skill.subtext).to.be.a('string');
+			expect(skill.subtext).to.be.equal(`1 year`);
+			done();
+		});
+
+		it('Normal experience', (done) => {
+			// Create the skill
+			const yearsExperience = 5;
+
+			date = new Date();
+
+			date.setFullYear(date.getFullYear() - yearsExperience);
+			skill = new Skill({
+				name,
+				stars,
+				'startDate': date
+			});
+
+			// Assertion
+			expect(skill.subtext).to.be.a('string');
+			expect(skill.subtext).to.be.equal(`${yearsExperience} years`);
+			done();
+		});
+
+		it('High experience', (done) => {
+			// Create the skill
+			const yearsExperience = skillModule.__get__('MAX_EXPERIENCE_YEARS');
+
+			date = new Date();
+
+			date.setFullYear(date.getFullYear() - yearsExperience);
+			skill = new Skill({
+				name,
+				stars,
+				'startDate': date
+			});
+
+			// Assertion
+			expect(skill.subtext).to.be.a('string');
+			expect(skill.subtext).to.be.equal(`${yearsExperience}+ years`);
+			done();
+		});
+	});
+
 	context('comparator', () => {
 		it('Sorting based on stars', (done) => {
-			const skill1 = new Skill('a', 5);
-			const skill2 = new Skill('b', 3);
-			const skill3 = new Skill('c', 4);
+			const skill1 = new Skill({
+				'name': 'a',
+				'stars': 5
+			});
+			const skill2 = new Skill({
+				'name': 'b',
+				'stars': 3
+			});
+			const skill3 = new Skill({
+				'name': 'c',
+				'stars': 4
+			});
 			const array = [
 				skill1,
 				skill2,
@@ -57,9 +126,18 @@ describe('Skill', () => {
 		});
 
 		it('Sorting based on name', (done) => {
-			const skill1 = new Skill('c', 3);
-			const skill2 = new Skill('a', 3);
-			const skill3 = new Skill('b', 3);
+			const skill1 = new Skill({
+				'name': 'c',
+				'stars': 3
+			});
+			const skill2 = new Skill({
+				'name': 'a',
+				'stars': 3
+			});
+			const skill3 = new Skill({
+				'name': 'b',
+				'stars': 3
+			});
 			const array = [
 				skill1,
 				skill2,
@@ -74,8 +152,16 @@ describe('Skill', () => {
 		});
 
 		it('Sorting based on equality, no change', (done) => {
-			const skill1 = new Skill('a', 3, 'extra_1');
-			const skill2 = new Skill('a', 3, 'extra_2');
+			const skill1 = new Skill({
+				'name': 'a',
+				'stars': 5,
+				'extra': 'extra_1'
+			});
+			const skill2 = new Skill({
+				'name': 'a',
+				'stars': 5,
+				'extra': 'extra_2'
+			});
 			const array = [
 				skill1,
 				skill2

@@ -1,4 +1,4 @@
-@import "imports/variables", "imports/functions";
+@import "imports/defaults";
 
 $TAGS_WIDTH: 250px;
 $TAG_BORDER: 2px dashed $dark;
@@ -39,6 +39,7 @@ $TAG_BORDER: 2px dashed $dark;
       }
 
       #project-tags {
+        @extend .unselectable;
         border-left: $TAG_BORDER;
         padding-left: 20px;
         margin: auto 0;
@@ -141,7 +142,6 @@ $TAG_BORDER: 2px dashed $dark;
 
     #project-tags {
       border-left: 0;
-      //border-top: $TAG_BORDER;
       padding: 0;
       margin: 0 20px;
       flex: 1 1 100%;

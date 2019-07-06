@@ -1,3 +1,11 @@
+// Which project preview should be displayed
+let projectPreviewPointer = 0;
+
+/**
+ * Method to add an ability skill to the page
+ * @param parent - where the skill should be added
+ * @param {Skill}skill - the skill object that should be added
+ */
 function addSkill(parent, skill) {
 	/**
 	 * Method to create the star span
@@ -57,81 +65,82 @@ function insertSkillTables(parent, tables, array) {
 	}
 }
 
+
 /**
- * Method to load all abilities and display them.
- * @returns {Promise<void>}
+ * Method that updates the project previewer.
+ * @param {number} value - how much the pointer should be changing.
  */
-async function loadAll() {
-	const data = await Skill._loadSkills(true);
-
-	insertSkillTables('#skills ul', 2, data[0].skills);
-	insertSkillTables('#languages ul', 2, data[1].skills);
-	insertSkillTables('#tools ul', 2, data[2].skills);
-}
-
-let projectPreviewPointer = 0;
-let displayAmount = 3;
-
 function updateProjectPreview(value = 0) {
+	/**
+	 * Method to get the amount of displays that should be visible;
+	 * @return {number}
+	 */
+	function getDisplayAmount() {
+		const width = $(window).width();
+
+		if (width >= 978) {
+			return 3;
+		} else if (width >= 754) {
+			return 2;
+		}
+		return 1;
+	}
+
 	const cards = $('#projects .cards > .row').children();
 	const cardsAmount = cards.length;
 
 	projectPreviewPointer = ((projectPreviewPointer + value) % cardsAmount + cardsAmount) % cardsAmount;
 
-	// Console.log('UPDATING');
+	const displayAmount = getDisplayAmount();
 
-	cards.each((index) => {
+	cards.each(function eachCard(index) {
 		const card = $(this);
 
 		if (index >= projectPreviewPointer && index < projectPreviewPointer + displayAmount) {
-			card.removeClass("hidden");
+			card.removeClass("fully-hidden");
 			card.css("order", 0);
 		} else if (projectPreviewPointer + displayAmount - index > cardsAmount) {
-			card.removeClass("hidden");
+			card.removeClass("fully-hidden");
 			card.css("order", `${1 + index}`);
 		} else {
-			card.addClass("hidden");
+			$(this).addClass("fully-hidden");
 		}
 	});
 }
 
-async function loadAllProjectPreviews() {
-	const data = await ProjectCard._loadAll(true);
+/**
+ * Method to load everything from the page that is connected to external sources.
+ * @returns {void}
+ */
+function loadAll() {
+	// Load all the skills.
+	Skill._loadSkills(true).then((data) => {
+		insertSkillTables('#skills ul', 2, data[0].skills);
+		insertSkillTables('#languages ul', 2, data[1].skills);
+		insertSkillTables('#tools ul', 2, data[2].skills);
+	});
 
-	function htmlProjectPreview(projectPreview) {
-		const textField = `<div class="text"><h1>${projectPreview.title}</h1><p>${projectPreview.description}</p></div>`;
-		const imageField = `<div class="image"><img alt="${projectPreview.title} thumbnail" src="/img/projects/${projectPreview.id}/thumbnail.png"></div>`;
+	// Load all project previews.
+	ProjectCard._loadAll(true).then((data) => {
+		/**
+		 * Method to add a project preview to the DOM.
+		 * @param projectPreview
+		 */
+		function htmlProjectPreview(projectPreview) {
+			const textField = `<div class="text"><h1>${projectPreview.title}</h1><p>${projectPreview.description}</p></div>`;
+			const imageField = `<div class="image"><img alt="${projectPreview.title} thumbnail" src="/img/projects/${projectPreview.id}/thumbnail.png"></div>`;
 
-		$('#projects .content .cards > .row').append(`<div class="row-flex"><a class="card" href="/project/${projectPreview.id}">${imageField}${textField}</a></div>`);
-	}
+			$('#projects .content .cards > .row').append(`<div class="row-flex"><a class="card" href="/project/${projectPreview.id}">${imageField}${textField}</a></div>`);
+		}
 
-	for (let i = 0; i < data.length; i++) {
-		htmlProjectPreview(data[i]);
-	}
+		for (let i = 0; i < data.length; i++) {
+			htmlProjectPreview(data[i]);
+		}
 
-	updateProjectPreview();
-}
+		updateProjectPreview();
+	});
 
-function resizeResponsive() {
-	const width = $(window).width();
-
-	// Updates the amount of project previews visible.
-	if (width >= 978) {
-		displayAmount = 3;
-	} else if (width >= 754) {
-		displayAmount = 2;
-	} else {
-		displayAmount = 1;
-	}
-}
-
-
-resizeResponsive();
-
-$(document).ready(() => {
-	loadAll();
-	loadAllProjectPreviews();
-
+	// Give the preview buttons an onclick event.
 	$('#projects .button-left').click(() => {
 		updateProjectPreview(-1);
 	});
@@ -139,11 +148,14 @@ $(document).ready(() => {
 	$('#projects .button-right').click(() => {
 		updateProjectPreview(1);
 	});
+}
+
+$(document).ready(() => {
+	loadAll();
 });
 
 // Handle different screen sizes
 $(window).resize(() => {
-	resizeResponsive();
 	updateProjectPreview();
 });
 

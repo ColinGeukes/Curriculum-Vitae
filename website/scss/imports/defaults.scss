@@ -1,0 +1,36 @@
+@import "variables", "functions";
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+ul {
+  &.no-bullets {
+    list-style-type: none;
+  }
+}
+
+.fully-hidden {
+  position: absolute;
+  visibility: hidden;
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
