@@ -111,12 +111,12 @@ describe('Project', () => {
 						});
 					},
 					'each': (dictionary, func) => {
-						Object.keys(dictionary).forEach(function (key) {
+						Object.keys(dictionary).forEach((key) => {
 							func(key, dictionary[key]);
-						})
+						});
 					}
 				},
-				'ProjectAbility': ProjectAbility
+				ProjectAbility
 			});
 
 			Project.load(1).then((projectObj) => {
@@ -149,20 +149,20 @@ describe('Project', () => {
 		it('Load should yield correct tags', (done) => {
 			// Compare the tags.
 			expect(project.tags).to.be.a('Object');
-			expect(project.tags['language']).to.be.a('array');
-			expect(project.tags['language'].length).to.be.equal(2);
-			expect(project.tags['language'][0].id).to.be.a('number');
-			expect(project.tags['language'][0].id).to.be.equal(tags[0].id);
-			expect(project.tags['language'][0].type).to.be.a('number');
-			expect(project.tags['language'][0].type).to.be.equal(tags[0].type_id);
-			expect(project.tags['language'][0].title).to.be.a('string');
-			expect(project.tags['language'][0].title).to.be.equal(tags[0].title);
-			expect(project.tags['language'][1].id).to.be.a('number');
-			expect(project.tags['language'][1].id).to.be.equal(tags[1].id);
-			expect(project.tags['language'][1].type).to.be.a('number');
-			expect(project.tags['language'][1].type).to.be.equal(tags[1].type_id);
-			expect(project.tags['language'][1].title).to.be.a('string');
-			expect(project.tags['language'][1].title).to.be.equal(tags[1].title);
+			expect(project.tags.language).to.be.a('array');
+			expect(project.tags.language.length).to.be.equal(2);
+			expect(project.tags.language[0].id).to.be.a('number');
+			expect(project.tags.language[0].id).to.be.equal(tags[0].id);
+			expect(project.tags.language[0].type).to.be.a('number');
+			expect(project.tags.language[0].type).to.be.equal(tags[0].type_id);
+			expect(project.tags.language[0].title).to.be.a('string');
+			expect(project.tags.language[0].title).to.be.equal(tags[0].title);
+			expect(project.tags.language[1].id).to.be.a('number');
+			expect(project.tags.language[1].id).to.be.equal(tags[1].id);
+			expect(project.tags.language[1].type).to.be.a('number');
+			expect(project.tags.language[1].type).to.be.equal(tags[1].type_id);
+			expect(project.tags.language[1].title).to.be.a('string');
+			expect(project.tags.language[1].title).to.be.equal(tags[1].title);
 			done();
 		});
 	});

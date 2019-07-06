@@ -17,6 +17,7 @@ function loadProject(projectId) {
 
 			// Put all the tags inside the display block.
 			const tagsElement = $(`#project-tags #type-${type}`);
+
 			tags.forEach((tag) => {
 				tagsElement.append(`<p class="tag tag-${tag.type}">${tag.title}</p>`);
 			});

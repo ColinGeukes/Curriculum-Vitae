@@ -32,16 +32,15 @@ class Project {
 
 		// Add the tags of the project to the list of Tags inside the Project.
 		projectData.tags.forEach((element) => {
-
 			// Create the array dictionary.
-			if (!(element['type_name'] in project.tags)) {
-				project.tags[element['type_name']] = [];
+			if (!(element.type_name in project.tags)) {
+				project.tags[element.type_name] = [];
 			}
 
-			project.tags[element['type_name']].push(new ProjectAbility({
-				'id': element['id'],
-				'type': element['type_id'],
-				'title': element['title']
+			project.tags[element.type_name].push(new ProjectAbility({
+				'id': element.id,
+				'type': element.type_id,
+				'title': element.title
 			}));
 		});
 
