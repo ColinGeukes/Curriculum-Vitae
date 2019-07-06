@@ -20,7 +20,6 @@ class Education {
 		});
 		const data = [];
 
-
 		educations.forEach((education) => {
 			// Check if there is an end date if parsing, providing null will give the UTC time.
 			let endDate = education.date_end;
