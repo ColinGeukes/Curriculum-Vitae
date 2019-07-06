@@ -57,13 +57,6 @@ class Skill {
 	}
 
 	static async _loadSkills(sort = false) {
-		// Retrieve all types
-		const dataTypes = await new Promise((resolve) => {
-			$.get({
-				'url': `/api/types`,
-				'success': resolve
-			});
-		});
 		// Retrieve all abilities
 		const dataAbilities = await new Promise((resolve) => {
 			$.get({
@@ -74,20 +67,20 @@ class Skill {
 		// Create correct return format.
 		const data = {};
 
-		// Load all types in correct format.
-		for (let i = 0; i < dataTypes.length; i++) {
-			data[dataTypes[i].id] = {
-				'type': dataTypes[i].name,
-				'skills': []
-			};
-		}
-
 		// Load all skills in correct format, and group correct types.
 		for (let i = 0; i < dataAbilities.length; i++) {
 			const curr = dataAbilities[i];
 
+			// Create the ability type array if not existing yet
+			if (!(curr.type_name in data)) {
+				data[curr.type_name] = {
+					'id': curr.type_id,
+					'skills': []
+				};
+			}
+
 			// Display extra field if it is not empty.
-			data[dataAbilities[i].type].skills.push(new Skill({
+			data[curr.type_name].skills.push(new Skill({
 				'name': curr.title,
 				'stars': curr.stars,
 				'extra': curr.extra,
@@ -97,9 +90,9 @@ class Skill {
 
 		// Sort is sort is true.
 		if (sort) {
-			for (let i = 0; i < dataTypes.length; i++) {
-				data[dataTypes[i].id].skills.sort(Skill.compare);
-			}
+			$.each(data, (key, typeData) => {
+				typeData.skills.sort(Skill.compare);
+			});
 		}
 
 		return data;

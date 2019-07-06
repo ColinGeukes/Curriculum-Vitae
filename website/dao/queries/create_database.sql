@@ -51,6 +51,18 @@ CREATE TABLE contact (
     PRIMARY KEY (id)
 ) ENGINE=INNODB;
 
+CREATE TABLE education (
+    id INT AUTO_INCREMENT,
+    name VARCHAR(120) NOT NULL,
+    type VARCHAR(400) NOT NULL,
+    title VARCHAR(400) NOT NULL,
+    icon VARCHAR(200) NOT NULL,
+    description VARCHAR(3000) NOT NULL,
+    date_start DATE NOT NULL,
+    date_end DATE,
+    PRIMARY KEY (id)
+) ENGINE=INNODB;
+
 -- INITIAL VALUES
 DELETE FROM types WHERE 1=1;
 insert into types
@@ -98,6 +110,28 @@ values
   (2,'Uptovet', DATE('2017-09-05'), DATE('2019-01-01'), 'Cloud veterinary service'),
   (3,'An Outpost', DATE('2015-12-11'), DATE('2015-12-14'), 'Ludum Dare 34 entry.'),
   (4,'F1 Racing Manager', DATE('2016-11-17'), DATE('2017-01-30'), 'Formula-1 Racing Manager is a managing game, in which the player controls a racing team that takes part in Formula-1 races. The player is able to race amongst other players online, or versus bots in a single player match. The manager decides which strategies to use for his racing season. This include which equipment, driving techniques and drivers! <br> This project was the result of a course given by the Technical University of Delft. The product is created by a total of five students. In order to successfully cooperate with each other, weekly scrum meetings were conducted.');
+
+insert into education
+  (id, icon, name, type, title, description, date_start, date_end)
+values
+  (1,'fas fa-university', 'Technical University of Delft', 'University education', 'BSc: Computer Science', 'The university in Delft', DATE('2016-09-05'), null),
+  (2,'fas fa-school', 'De Goudse Waarden', 'Pre-university education', 'Grammar school','A pre-university located in Gouda',DATE('2011-09-05'), DATE('2015-07-05'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 DELETE FROM project_ability WHERE 1=1;
 insert into project_ability

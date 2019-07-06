@@ -30,13 +30,6 @@ describe('Dao', () => {
 			done();
 		});
 
-		it('get types', (done) => {
-			dao.query('get_types', {}, (err, rows) => {
-				expect(rows[0].id).to.be.a('number');
-				done();
-			});
-		});
-
 		it('query file invalid extension', (done) => {
 			// Keep track of the queries loaded.
 			const queriesLoaded = Object.keys(dao.queries).length;

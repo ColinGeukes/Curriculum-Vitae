@@ -24,14 +24,14 @@ html
                     div(class="content")
                         p hello I am colin <br> Guekes and ..d.af.sf.asdf.
                     div(class="shadow")
-            section(id="education")
+            section(id="education" class="central-section")
                 div(class="section-header has-shadow")
                     div(class="content")
                         h1 education
                     div(class="shadow")
                 div(class="section-body")
                     div(class="content")
-                        p This is my education thingy
+                        div(class="main-timeline")
                     div(class="shadow")
 
             //---- Abilities section
@@ -43,28 +43,9 @@ html
                 div(class="section-body")
                     div(class="content")
                         div(class="inner-content")
-
-                            //---- Abilities: Skills
-                            h2 skills
-                            div(id="skills" class="row")
-                                ul(class="row-2 no-bullets scores")
-                                ul(class="row-2 no-bullets scores")
-                            hr
-                            //---- Abilities: Languages
-                            h2 languages
-                            div(id="languages" class="row")
-                                ul(class="row-2 no-bullets scores")
-                                ul(class="row-2 no-bullets scores")
-                            hr
-                            //---- Abilities: Tools
-                            h2 tools
-                            div(class="quote")
-                                p We shape our tools and afterwards our tools shape us.
-                                span(class="author") Marshall McLuhan
-                            div(id="tools" class="row")
-                                ul(class="row-2 no-bullets scores")
-                                ul(class="row-2 no-bullets scores")
                     div(class="shadow")
+
+            //---- Projects preview section
             section(id="projects" class="central-section")
                 div(class="section-header has-shadow")
                     div(class="content")
@@ -106,4 +87,7 @@ html
                     div(class="shadow")
         script(type="text/javascript", src="/js/skill.js")
         script(type="text/javascript", src="/js/projectCard.js")
+        script(type="text/javascript", src="/js/education.js")
         script(type="text/javascript", src="/js/views/main/pageHandler.js")
+
+

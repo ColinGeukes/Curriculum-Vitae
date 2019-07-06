@@ -108,16 +108,83 @@ function updateProjectPreview(value = 0) {
 	});
 }
 
+/*
+ * Function createTimelineComponent(){
+ *
+ * }
+ */
+
 /**
  * Method to load everything from the page that is connected to external sources.
  * @returns {void}
  */
 function loadAll() {
+	function getYearDifference(dateStart, dateEnd) {
+		const yearA = dateStart.getFullYear();
+
+		// End date not known yet.
+
+		if (!dateEnd) {
+			return `${yearA} - ...`;
+		}
+		const yearB = dateEnd.getFullYear();
+
+		// Date year is equal, thus do not display  a period of years
+		if (yearA === yearB) {
+			return `${yearA}`;
+		}
+
+		// Date year is unequal, thus display a period of years.
+		return `${yearA} - ${yearB}`;
+	}
+
+	// Load education types.
+	Education.loadAll().then((educations) => {
+		educations.forEach((education) => {
+			$('#education .main-timeline').append(`<div class="timeline">
+			<a href="/education/${education.id}" class="timeline-content">
+			<div class="timeline-year-tag">
+				<div class="timeline-year-outer">
+					<span class="timeline-year">${getYearDifference(education.dateStart, education.dateEnd)}</span>
+				</div>
+				<div class="timeline-icon-outer">
+					<div class="timeline-icon"><i class="${education.icon}" aria-hidden="true"></i></div>
+				</div>
+			</div>
+			<div class="content"><h3 class="title">${education.name}</h3>
+			<p class="description">${education.description}</p></div></a></div>`);
+		});
+
+
+		/*
+		 * Div(class="timeline")
+		 * a(href="#" class="timeline-content")
+		 * span(class="timeline-year") 2018
+		 * div(class="timeline-icon")
+		 * i(class="fa fa-rocket" aria-hidden="true")
+		 * div(class="content")
+		 * h3(class="title") Web Development
+		 * p(class="description") Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+		 */
+	});
+
 	// Load all the skills.
 	Skill._loadSkills(true).then((data) => {
-		insertSkillTables('#skills ul', 2, data[0].skills);
-		insertSkillTables('#languages ul', 2, data[1].skills);
-		insertSkillTables('#tools ul', 2, data[2].skills);
+		let first = true;
+		const abilitiesContentElement = $('#abilities .inner-content');
+
+		$.each(data, (key, skillType) => {
+			// Add a row index.
+			if (!first) {
+				abilitiesContentElement.append('<hr>');
+			}
+
+			// Add the skill.
+			abilitiesContentElement.append(`<h2>${key}</h2><div id="${key}" class="row">
+				<ul class="row-2 no-bullets scores"></ul><ul class="row-2 no-bullets scores"></ul></div>`);
+			insertSkillTables(`#${key} ul`, 2, skillType.skills);
+			first = false;
+		});
 	});
 
 	// Load all project previews.
