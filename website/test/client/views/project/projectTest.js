@@ -74,7 +74,7 @@ describe('Project', () => {
 	});
 
 	context('Load a project', () => {
-		it('Should load correct project', (done) => {
+		before((done) => {
 			id = 1;
 			title = 'Test Project';
 			descr1 = 'A test project';
@@ -82,16 +82,20 @@ describe('Project', () => {
 			endDate = '2000-05-11';
 
 			tags = [
-				{'id': 1,
+				{
+					'id': 1,
 					'type': 1,
-					'title': 'Java'},
-				{'id': 2,
+					'title': 'Java'
+				},
+				{
+					'id': 2,
 					'type': 1,
-					'title': 'JavaScript'}
+					'title': 'JavaScript'
+				}
 			];
 
 			Project.load(1, {
-				'get' (data) {
+				'get'(data) {
 					data.success({
 						'project': {
 							id,
@@ -104,38 +108,48 @@ describe('Project', () => {
 					});
 				}
 			}, ProjectAbility).then((projectObj) => {
-				// Compare projectObj details.
-				expect(projectObj.id).to.be.a('number');
-				expect(projectObj.id).to.be.equal(id);
-				expect(projectObj.title).to.be.a('string');
-				expect(projectObj.title).to.be.equal(title);
-				expect(projectObj.description).to.be.a('array');
-				expect(projectObj.description.length).to.be.equal(1);
-				expect(projectObj.description[0]).to.be.equal(descr1);
-
-				// Compare dates with get time, as objects are not equal in memory location.
-				expect(projectObj.startDate).to.be.a('date');
-				expect(projectObj.startDate.getTime()).to.be.equal(new Date(startDate).getTime());
-				expect(projectObj.endDate).to.be.a('date');
-				expect(projectObj.endDate.getTime()).to.be.equal(new Date(endDate).getTime());
-
-				// Compare the tags.
-				expect(projectObj.tags).to.be.a('array');
-				expect(projectObj.tags[0].id).to.be.a('number');
-				expect(projectObj.tags[0].id).to.be.equal(tags[0].id);
-				expect(projectObj.tags[0].type).to.be.a('number');
-				expect(projectObj.tags[0].type).to.be.equal(tags[0].type);
-				expect(projectObj.tags[0].title).to.be.a('string');
-				expect(projectObj.tags[0].title).to.be.equal(tags[0].title);
-				expect(projectObj.tags[1].id).to.be.a('number');
-				expect(projectObj.tags[1].id).to.be.equal(tags[1].id);
-				expect(projectObj.tags[1].type).to.be.a('number');
-				expect(projectObj.tags[1].type).to.be.equal(tags[1].type);
-				expect(projectObj.tags[1].title).to.be.a('string');
-				expect(projectObj.tags[1].title).to.be.equal(tags[1].title);
-
+				project = projectObj;
 				done();
 			});
+		});
+
+		it('Load should yield correct values', (done) => {
+			// Compare projectObj details.
+			expect(project.id).to.be.a('number');
+			expect(project.id).to.be.equal(id);
+			expect(project.title).to.be.a('string');
+			expect(project.title).to.be.equal(title);
+			expect(project.description).to.be.a('array');
+			expect(project.description.length).to.be.equal(1);
+			expect(project.description[0]).to.be.equal(descr1);
+			done();
+		});
+
+		it('Load should yield correct date objects', (done) => {
+			// Compare dates with get time, as objects are not equal in memory location.
+			expect(project.startDate).to.be.a('date');
+			expect(project.startDate.getTime()).to.be.equal(new Date(startDate).getTime());
+			expect(project.endDate).to.be.a('date');
+			expect(project.endDate.getTime()).to.be.equal(new Date(endDate).getTime());
+			done();
+		});
+
+		it('Load should yield correct tags', (done) => {
+			// Compare the tags.
+			expect(project.tags).to.be.a('array');
+			expect(project.tags[0].id).to.be.a('number');
+			expect(project.tags[0].id).to.be.equal(tags[0].id);
+			expect(project.tags[0].type).to.be.a('number');
+			expect(project.tags[0].type).to.be.equal(tags[0].type);
+			expect(project.tags[0].title).to.be.a('string');
+			expect(project.tags[0].title).to.be.equal(tags[0].title);
+			expect(project.tags[1].id).to.be.a('number');
+			expect(project.tags[1].id).to.be.equal(tags[1].id);
+			expect(project.tags[1].type).to.be.a('number');
+			expect(project.tags[1].type).to.be.equal(tags[1].type);
+			expect(project.tags[1].title).to.be.a('string');
+			expect(project.tags[1].title).to.be.equal(tags[1].title);
+			done();
 		});
 	});
 });
