@@ -51,8 +51,8 @@ class Experience {
 			}));
 		});
 
-		if(sort) {
-			data.sort(Experience.compare)
+		if (sort) {
+			data.sort(Experience.compare);
 		}
 
 		return data;

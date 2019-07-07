@@ -53,8 +53,8 @@ class Education {
 			}));
 		});
 
-		if(sort){
-			data.sort(Education.compare)
+		if (sort) {
+			data.sort(Education.compare);
 		}
 
 		return data;

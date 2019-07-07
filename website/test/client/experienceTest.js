@@ -70,39 +70,46 @@ describe('Experience', () => {
 
 	context('comparator', () => {
 		before((done) => {
-			testObject = [new Experience({
-				'id': 1,
-				'name': 'Education name',
-				'title': 'Education title',
-				'description': 'Education description',
-				'icon': 'Education icon',
-				'dateStart': new Date('2001-01-01'),
-				'dateEnd': new Date('2005-01-01'),
-				'url': 'bing'
-			}), new Experience({
-				'id': 2,
-				'name': 'Education name 2',
-				'title': 'Education title 2',
-				'description': 'Education description 2',
-				'icon': 'Education icon 2',
-				'dateStart': new Date('2001-01-02'),
-				'dateEnd': new Date('2005-01-02'),
-				'url': 'google'
-			}), new Experience({
-				'id': 3,
-				'name': 'Education name 2',
-				'title': 'Education title 2',
-				'description': 'Education description 2',
-				'icon': 'Education icon 2',
-				'dateStart': new Date('2001-01-02'),
-				'dateEnd': new Date('2005-01-02'),
-				'url': 'google'
-			})];
+			testObject = [
+				new Experience({
+					'id': 1,
+					'name': 'Education name',
+					'title': 'Education title',
+					'description': 'Education description',
+					'icon': 'Education icon',
+					'dateStart': new Date('2001-01-01'),
+					'dateEnd': new Date('2005-01-01'),
+					'url': 'bing'
+				}),
+				new Experience({
+					'id': 2,
+					'name': 'Education name 2',
+					'title': 'Education title 2',
+					'description': 'Education description 2',
+					'icon': 'Education icon 2',
+					'dateStart': new Date('2001-01-02'),
+					'dateEnd': new Date('2005-01-02'),
+					'url': 'google'
+				}),
+				new Experience({
+					'id': 3,
+					'name': 'Education name 2',
+					'title': 'Education title 2',
+					'description': 'Education description 2',
+					'icon': 'Education icon 2',
+					'dateStart': new Date('2001-01-02'),
+					'dateEnd': new Date('2005-01-02'),
+					'url': 'google'
+				})
+			];
 			done();
 		});
 
 		it('Should sort based on date first, with swap', () => {
-			const array = [testObject[0], testObject[1]].sort(Experience.compare);
+			const array = [
+				testObject[0],
+				testObject[1]
+			].sort(Experience.compare);
 
 			// Should be in correct order, latest start date first.
 			expect(array[0]).to.be.equal(testObject[1]);
@@ -111,7 +118,10 @@ describe('Experience', () => {
 
 
 		it('Should sort based on date first, without swap', () => {
-			const array = [testObject[1], testObject[0]].sort(Experience.compare);
+			const array = [
+				testObject[1],
+				testObject[0]
+			].sort(Experience.compare);
 
 			// Should be in correct order, latest start date first.
 			expect(array[0]).to.be.equal(testObject[1]);
@@ -119,14 +129,20 @@ describe('Experience', () => {
 		});
 
 		it('equal date should not swap', () => {
-			let array = [testObject[1], testObject[2]].sort(Experience.compare);
+			let array = [
+				testObject[1],
+				testObject[2]
+			].sort(Experience.compare);
 
 			// Should be in correct order, latest start date first.
 			expect(array[0]).to.be.equal(testObject[1]);
 			expect(array[1]).to.be.equal(testObject[2]);
 
 			// Should be in correct order, latest start date first.
-			array = [testObject[2], testObject[1]].sort(Experience.compare);
+			array = [
+				testObject[2],
+				testObject[1]
+			].sort(Experience.compare);
 			expect(array[0]).to.be.equal(testObject[2]);
 			expect(array[1]).to.be.equal(testObject[1]);
 		});

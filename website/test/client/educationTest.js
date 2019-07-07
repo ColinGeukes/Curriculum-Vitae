@@ -76,42 +76,49 @@ describe('Education', () => {
 
 	context('comparator', () => {
 		before((done) => {
-			testObject = [new Education({
-				'id': 1,
-				'name': 'Education name',
-				'title': 'Education title',
-				'description': 'Education description',
-				'icon': 'Education icon',
-				'type': 'Education type',
-				'dateStart': new Date('2001-01-01'),
-				'dateEnd': new Date('2005-01-01'),
-				'url': 'bing'
-			}), new Education({
-				'id': 2,
-				'name': 'Education name 2',
-				'title': 'Education title 2',
-				'description': 'Education description 2',
-				'icon': 'Education icon 2',
-				'type': 'Education type 2',
-				'dateStart': new Date('2001-01-02'),
-				'dateEnd': new Date('2005-01-02'),
-				'url': 'google'
-			}), new Education({
-				'id': 3,
-				'name': 'Education name 2',
-				'title': 'Education title 2',
-				'description': 'Education description 2',
-				'icon': 'Education icon 2',
-				'type': 'Education type 2',
-				'dateStart': new Date('2001-01-02'),
-				'dateEnd': new Date('2005-01-02'),
-				'url': 'google'
-			})];
+			testObject = [
+				new Education({
+					'id': 1,
+					'name': 'Education name',
+					'title': 'Education title',
+					'description': 'Education description',
+					'icon': 'Education icon',
+					'type': 'Education type',
+					'dateStart': new Date('2001-01-01'),
+					'dateEnd': new Date('2005-01-01'),
+					'url': 'bing'
+				}),
+				new Education({
+					'id': 2,
+					'name': 'Education name 2',
+					'title': 'Education title 2',
+					'description': 'Education description 2',
+					'icon': 'Education icon 2',
+					'type': 'Education type 2',
+					'dateStart': new Date('2001-01-02'),
+					'dateEnd': new Date('2005-01-02'),
+					'url': 'google'
+				}),
+				new Education({
+					'id': 3,
+					'name': 'Education name 2',
+					'title': 'Education title 2',
+					'description': 'Education description 2',
+					'icon': 'Education icon 2',
+					'type': 'Education type 2',
+					'dateStart': new Date('2001-01-02'),
+					'dateEnd': new Date('2005-01-02'),
+					'url': 'google'
+				})
+			];
 			done();
 		});
 
 		it('Should sort based on date first, with swap', () => {
-			const array = [testObject[0], testObject[1]].sort(Education.compare);
+			const array = [
+				testObject[0],
+				testObject[1]
+			].sort(Education.compare);
 
 			// Should be in correct order, latest start date first.
 			expect(array[0]).to.be.equal(testObject[1]);
@@ -120,7 +127,10 @@ describe('Education', () => {
 
 
 		it('Should sort based on date first, without swap', () => {
-			const array = [testObject[1], testObject[0]].sort(Education.compare);
+			const array = [
+				testObject[1],
+				testObject[0]
+			].sort(Education.compare);
 
 			// Should be in correct order, latest start date first.
 			expect(array[0]).to.be.equal(testObject[1]);
@@ -128,14 +138,20 @@ describe('Education', () => {
 		});
 
 		it('equal date should not swap', () => {
-			let array = [testObject[1], testObject[2]].sort(Education.compare);
+			let array = [
+				testObject[1],
+				testObject[2]
+			].sort(Education.compare);
 
 			// Should be in correct order, latest start date first.
 			expect(array[0]).to.be.equal(testObject[1]);
 			expect(array[1]).to.be.equal(testObject[2]);
 
 			// Should be in correct order, latest start date first.
-			array = [testObject[2], testObject[1]].sort(Education.compare);
+			array = [
+				testObject[2],
+				testObject[1]
+			].sort(Education.compare);
 			expect(array[0]).to.be.equal(testObject[2]);
 			expect(array[1]).to.be.equal(testObject[1]);
 		});
