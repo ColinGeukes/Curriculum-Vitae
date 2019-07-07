@@ -68,6 +68,7 @@ function insertSkillTables(parent, tables, array) {
 
 /**
  * Method that updates the project previewer.
+ * TODO: Split this to a new file.
  * @param {number} value - how much the pointer should be changing.
  */
 function updateProjectPreview(value = 0) {
@@ -107,12 +108,6 @@ function updateProjectPreview(value = 0) {
 		}
 	});
 }
-
-/*
- * Function createTimelineComponent(){
- *
- * }
- */
 
 /**
  * Method to load everything from the page that is connected to external sources.
@@ -229,12 +224,21 @@ function loadAll() {
 	});
 }
 
-$(document).ready(() => {
-	loadAll();
-});
 
-// Handle different screen sizes
-$(window).resize(() => {
-	updateProjectPreview();
-});
+/**
+ * Method to initialise everything of this page handler.
+ * Should be called in a script in the html file.
+ * Calling function right away does not work for testing purposes.
+ */
+function initPageHandler(){
+	// Do events when the document is ready.
+	$(document).ready(() => {
+		loadAll();
+	});
+
+	// Handle different screen sizes
+	$(window).resize(() => {
+		updateProjectPreview();
+	});
+}
 
