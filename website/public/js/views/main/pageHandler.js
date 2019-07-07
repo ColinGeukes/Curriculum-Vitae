@@ -230,7 +230,7 @@ function loadAll() {
  * Should be called in a script in the html file.
  * Calling function right away does not work for testing purposes.
  */
-function initPageHandler(){
+function initPageHandler() {
 	// Do events when the document is ready.
 	$(document).ready(() => {
 		loadAll();
