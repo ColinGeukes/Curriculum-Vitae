@@ -185,7 +185,7 @@ describe('Skill', () => {
 					'title': 'Java',
 					'stars': 5,
 					'extra': 'First',
-					'start_date': '2001-01-01',
+					'start_date': '2001-01-01'
 				},
 				{
 					'id': 2,
@@ -194,7 +194,7 @@ describe('Skill', () => {
 					'title': 'JavaScript',
 					'stars': 5,
 					'extra': 'Second',
-					'start_date': '2001-01-01',
+					'start_date': '2001-01-01'
 				}
 			];
 
@@ -218,13 +218,12 @@ describe('Skill', () => {
 		});
 
 		it('Load should yield correct values first object', (done) => {
-			console.log(testObject['Language'].skills);
-			expect(testObject['Language'].id).to.be.a('number');
-			expect(testObject['Language'].id).to.be.equal(5);
-			expect(testObject['Language'].skills[0].name).to.be.a('string');
-			expect(testObject['Language'].skills[0].name).to.be.equal('Java');
-			expect(testObject['Language'].skills[1].name).to.be.a('string');
-			expect(testObject['Language'].skills[1].name).to.be.equal('JavaScript');
+			expect(testObject.Language.id).to.be.a('number');
+			expect(testObject.Language.id).to.be.equal(5);
+			expect(testObject.Language.skills[0].name).to.be.a('string');
+			expect(testObject.Language.skills[0].name).to.be.equal('Java');
+			expect(testObject.Language.skills[1].name).to.be.a('string');
+			expect(testObject.Language.skills[1].name).to.be.equal('JavaScript');
 
 			done();
 		});
@@ -240,7 +239,7 @@ describe('Skill', () => {
 					'title': 'Bad language',
 					'stars': 3,
 					'extra': 'First',
-					'start_date': '2001-01-01',
+					'start_date': '2001-01-01'
 				},
 				{
 					'id': 2,
@@ -249,7 +248,7 @@ describe('Skill', () => {
 					'title': 'JavaScript',
 					'stars': 5,
 					'extra': 'Second',
-					'start_date': '2001-01-01',
+					'start_date': '2001-01-01'
 				}
 			];
 
@@ -273,13 +272,12 @@ describe('Skill', () => {
 		});
 
 		it('Load should yield correct values first object', (done) => {
-			console.log(testObject['Language'].skills);
-			expect(testObject['Language'].id).to.be.a('number');
-			expect(testObject['Language'].id).to.be.equal(5);
-			expect(testObject['Language'].skills[0].name).to.be.a('string');
-			expect(testObject['Language'].skills[0].name).to.be.equal('JavaScript');
-			expect(testObject['Language'].skills[1].name).to.be.a('string');
-			expect(testObject['Language'].skills[1].name).to.be.equal('Bad language');
+			expect(testObject.Language.id).to.be.a('number');
+			expect(testObject.Language.id).to.be.equal(5);
+			expect(testObject.Language.skills[0].name).to.be.a('string');
+			expect(testObject.Language.skills[0].name).to.be.equal('JavaScript');
+			expect(testObject.Language.skills[1].name).to.be.a('string');
+			expect(testObject.Language.skills[1].name).to.be.equal('Bad language');
 
 			done();
 		});
