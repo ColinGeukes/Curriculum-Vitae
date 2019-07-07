@@ -99,6 +99,7 @@ class Api extends express.Router {
 		createBasicQueryPath(this, '/abilities', 'get_abilities');
 		createBasicQueryPath(this, '/projects', 'get_projects');
 		createBasicQueryPath(this, '/educations', 'get_educations');
+		createBasicQueryPath(this, '/experiences', 'get_experiences');
 		createProjectPath(this, '/project');
 		createContactPath(this, '/contact');
 	}

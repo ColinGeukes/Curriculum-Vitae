@@ -4,27 +4,26 @@ const chai = require('chai');
 const {expect} = chai;
 const rewire = require('rewire');
 // The education module
-const educationModule = rewire('../../public/js/education.js');
-const Education = educationModule.__get__('Education');
+const experienceModule = rewire('../../public/js/experience.js');
+const Experience = experienceModule.__get__('Experience');
 // Keeping track of testing values.
 let settings;
 let testObject;
 
-describe('Education', () => {
+describe('Experience', () => {
 	context('constructor', () => {
 		before((done) => {
 			settings = {
 				'id': 1,
-				'name': 'Education name',
-				'title': 'Education title',
-				'description': 'Education description',
-				'icon': 'Education icon',
-				'type': 'Education type',
+				'name': 'Experience name',
+				'title': 'Experience title',
+				'description': 'Experience description',
+				'icon': 'Experience icon',
 				'dateStart': new Date('2001-01-01'),
 				'dateEnd': new Date('2005-01-01'),
 				'url': 'bing'
 			};
-			testObject = new Education(settings);
+			testObject = new Experience(settings);
 			done();
 		});
 
@@ -41,11 +40,6 @@ describe('Education', () => {
 		it('Should have correct title', () => {
 			expect(testObject.title).to.be.a('string');
 			expect(testObject.title).to.be.equal(settings.title);
-		});
-
-		it('Should have correct type', () => {
-			expect(testObject.type).to.be.a('string');
-			expect(testObject.type).to.be.equal(settings.type);
 		});
 
 		it('Should have correct description', () => {
@@ -76,33 +70,30 @@ describe('Education', () => {
 
 	context('comparator', () => {
 		before((done) => {
-			testObject = [new Education({
+			testObject = [new Experience({
 				'id': 1,
 				'name': 'Education name',
 				'title': 'Education title',
 				'description': 'Education description',
 				'icon': 'Education icon',
-				'type': 'Education type',
 				'dateStart': new Date('2001-01-01'),
 				'dateEnd': new Date('2005-01-01'),
 				'url': 'bing'
-			}), new Education({
+			}), new Experience({
 				'id': 2,
 				'name': 'Education name 2',
 				'title': 'Education title 2',
 				'description': 'Education description 2',
 				'icon': 'Education icon 2',
-				'type': 'Education type 2',
 				'dateStart': new Date('2001-01-02'),
 				'dateEnd': new Date('2005-01-02'),
 				'url': 'google'
-			}), new Education({
+			}), new Experience({
 				'id': 3,
 				'name': 'Education name 2',
 				'title': 'Education title 2',
 				'description': 'Education description 2',
 				'icon': 'Education icon 2',
-				'type': 'Education type 2',
 				'dateStart': new Date('2001-01-02'),
 				'dateEnd': new Date('2005-01-02'),
 				'url': 'google'
@@ -111,7 +102,7 @@ describe('Education', () => {
 		});
 
 		it('Should sort based on date first, with swap', () => {
-			const array = [testObject[0], testObject[1]].sort(Education.compare);
+			const array = [testObject[0], testObject[1]].sort(Experience.compare);
 
 			// Should be in correct order, latest start date first.
 			expect(array[0]).to.be.equal(testObject[1]);
@@ -120,7 +111,7 @@ describe('Education', () => {
 
 
 		it('Should sort based on date first, without swap', () => {
-			const array = [testObject[1], testObject[0]].sort(Education.compare);
+			const array = [testObject[1], testObject[0]].sort(Experience.compare);
 
 			// Should be in correct order, latest start date first.
 			expect(array[0]).to.be.equal(testObject[1]);
@@ -128,45 +119,44 @@ describe('Education', () => {
 		});
 
 		it('equal date should not swap', () => {
-			let array = [testObject[1], testObject[2]].sort(Education.compare);
+			let array = [testObject[1], testObject[2]].sort(Experience.compare);
 
 			// Should be in correct order, latest start date first.
 			expect(array[0]).to.be.equal(testObject[1]);
 			expect(array[1]).to.be.equal(testObject[2]);
 
 			// Should be in correct order, latest start date first.
-			array = [testObject[2], testObject[1]].sort(Education.compare);
+			array = [testObject[2], testObject[1]].sort(Experience.compare);
 			expect(array[0]).to.be.equal(testObject[2]);
 			expect(array[1]).to.be.equal(testObject[1]);
 		});
 	});
 
-	context('Load a project', () => {
+
+	context('Load an experience', () => {
 		before((done) => {
 			settings = [
 				{
 					'id': 1,
-					'name': 'Education name',
-					'title': 'Education title',
-					'type': 'Education type',
-					'description': 'Education description',
-					'icon': 'Education icon',
+					'name': 'Experience name',
+					'title': 'Experience title',
+					'description': 'Experience description',
+					'icon': 'Experience icon',
 					'date_start': '2001-01-01',
 					'date_end': '2005-01-01'
 				},
 				{
 					'id': 2,
-					'name': 'Pre-Education name',
-					'title': 'Pre-Education title',
-					'type': 'Pre-Education type',
-					'description': 'Pre-Education description',
-					'icon': 'Pre-Education icon',
-					'date_start': '1990-01-01',
+					'name': 'Pre-Experience name',
+					'title': 'Pre-Experience title',
+					'description': 'Pre-Experience description',
+					'icon': 'Pre-Experience icon',
+					'date_start': '2010-01-01',
 					'date_end': null
 				}
 			];
 
-			educationModule.__set__({
+			experienceModule.__set__({
 				'$': {
 					'get': (data) => {
 						data.success(settings);
@@ -174,8 +164,8 @@ describe('Education', () => {
 				}
 			});
 
-			Education.loadAll().then((educations) => {
-				testObject = educations;
+			Experience.loadAll().then((experiences) => {
+				testObject = experiences;
 				done();
 			});
 		});
@@ -185,8 +175,6 @@ describe('Education', () => {
 			expect(testObject[0].id).to.be.equal(settings[0].id);
 			expect(testObject[0].name).to.be.a('string');
 			expect(testObject[0].name).to.be.equal(settings[0].name);
-			expect(testObject[0].type).to.be.a('string');
-			expect(testObject[0].type).to.be.equal(settings[0].type);
 			expect(testObject[0].title).to.be.a('string');
 			expect(testObject[0].title).to.be.equal(settings[0].title);
 			expect(testObject[0].description).to.be.a('string');
@@ -205,8 +193,6 @@ describe('Education', () => {
 			expect(testObject[1].id).to.be.equal(settings[1].id);
 			expect(testObject[1].name).to.be.a('string');
 			expect(testObject[1].name).to.be.equal(settings[1].name);
-			expect(testObject[1].type).to.be.a('string');
-			expect(testObject[1].type).to.be.equal(settings[1].type);
 			expect(testObject[1].title).to.be.a('string');
 			expect(testObject[1].title).to.be.equal(settings[1].title);
 			expect(testObject[1].description).to.be.a('string');
@@ -220,32 +206,30 @@ describe('Education', () => {
 		});
 	});
 
-	context('Load a project with sorting', () => {
+	context('Load an experience with sorting', () => {
 		before((done) => {
 			settings = [
 				{
 					'id': 1,
-					'name': 'Education name',
-					'title': 'Education title',
-					'type': 'Education type',
-					'description': 'Education description',
-					'icon': 'Education icon',
+					'name': 'Experience name',
+					'title': 'Experience title',
+					'description': 'Experience description',
+					'icon': 'Experience icon',
 					'date_start': '2001-01-01',
-					'date_end': '1995-01-01'
+					'date_end': '2005-01-01'
 				},
 				{
 					'id': 2,
-					'name': 'Pre-Education name',
-					'title': 'Pre-Education title',
-					'type': 'Pre-Education type',
-					'description': 'Pre-Education description',
-					'icon': 'Pre-Education icon',
+					'name': 'Pre-Experience name',
+					'title': 'Pre-Experience title',
+					'description': 'Pre-Experience description',
+					'icon': 'Pre-Experience icon',
 					'date_start': '2010-01-01',
 					'date_end': null
 				}
 			];
 
-			educationModule.__set__({
+			experienceModule.__set__({
 				'$': {
 					'get': (data) => {
 						data.success(settings);
@@ -253,8 +237,8 @@ describe('Education', () => {
 				}
 			});
 
-			Education.loadAll(true).then((educations) => {
-				testObject = educations;
+			Experience.loadAll(true).then((experiences) => {
+				testObject = experiences;
 				done();
 			});
 		});
@@ -264,8 +248,6 @@ describe('Education', () => {
 			expect(testObject[0].id).to.be.equal(settings[1].id);
 			expect(testObject[0].name).to.be.a('string');
 			expect(testObject[0].name).to.be.equal(settings[1].name);
-			expect(testObject[0].type).to.be.a('string');
-			expect(testObject[0].type).to.be.equal(settings[1].type);
 			expect(testObject[0].title).to.be.a('string');
 			expect(testObject[0].title).to.be.equal(settings[1].title);
 			expect(testObject[0].description).to.be.a('string');
@@ -283,8 +265,6 @@ describe('Education', () => {
 			expect(testObject[1].id).to.be.equal(settings[0].id);
 			expect(testObject[1].name).to.be.a('string');
 			expect(testObject[1].name).to.be.equal(settings[0].name);
-			expect(testObject[1].type).to.be.a('string');
-			expect(testObject[1].type).to.be.equal(settings[0].type);
 			expect(testObject[1].title).to.be.a('string');
 			expect(testObject[1].title).to.be.equal(settings[0].title);
 			expect(testObject[1].description).to.be.a('string');

@@ -11,10 +11,11 @@ html
         link(rel="stylesheet", type="text/css", href="/css/index.css")
     body
         div(class="content-container")
-            //div(class="content-wrap background")
             header(id="home")
                 div(class="header-img")
-            section(id="info")
+
+            //---- Profile section section
+            section(id="info" class="central-section")
                 div(class="section-header big-header has-shadow")
                     div(class="content")
                         h1 Colin Geukes
@@ -22,12 +23,30 @@ html
                     div(class="shadow")
                 div(class="section-body")
                     div(class="content")
-                        p hello I am colin <br> Guekes and ..d.af.sf.asdf.
+                        div(class="profile")
+                            div(class="profile-image")
+                                img(src="img/profile.jpg")
+                            div(class="details")
+
+                        p Hello I am Colin Geukes. Nice to meet you!
                     div(class="shadow")
+
+            //---- Education section
             section(id="education" class="central-section")
                 div(class="section-header has-shadow")
                     div(class="content")
                         h1 education
+                    div(class="shadow")
+                div(class="section-body")
+                    div(class="content")
+                        div(class="main-timeline")
+                    div(class="shadow")
+
+            //---- Education section
+            section(id="experiences" class="central-section")
+                div(class="section-header has-shadow")
+                    div(class="content")
+                        h1 experiences
                     div(class="shadow")
                 div(class="section-body")
                     div(class="content")
@@ -88,6 +107,7 @@ html
         script(type="text/javascript", src="/js/skill.js")
         script(type="text/javascript", src="/js/projectCard.js")
         script(type="text/javascript", src="/js/education.js")
+        script(type="text/javascript", src="/js/experience.js")
         script(type="text/javascript", src="/js/views/main/pageHandler.js")
 
 

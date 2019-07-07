@@ -1,8 +1,7 @@
-class Education {
+class Experience {
 	constructor(settings) {
 		this.id = settings.id;
 		this.name = settings.name;
-		this.type = settings.type;
 		this.title = settings.title;
 		this.icon = settings.icon;
 		this.description = settings.description;
@@ -24,37 +23,36 @@ class Education {
 
 	static async loadAll(sort = false) {
 		// Retrieve all abilities
-		const educations = await new Promise((resolve) => {
+		const experiences = await new Promise((resolve) => {
 			$.get({
-				'url': `/api/educations`,
+				'url': `/api/experiences`,
 				'success': resolve
 			});
 		});
 		const data = [];
 
-		educations.forEach((education) => {
+		experiences.forEach((experience) => {
 			// Check if there is an end date if parsing, providing null will give the UTC time.
-			let endDate = education.date_end;
+			let endDate = experience.date_end;
 
 			if (endDate) {
 				endDate = new Date(endDate);
 			}
 
-			data.push(new Education({
-				'id': education.id,
-				'name': education.name,
-				'type': education.type,
-				'title': education.title,
-				'icon': education.icon,
-				'description': education.description,
-				'dateStart': new Date(education.date_start),
+			data.push(new Experience({
+				'id': experience.id,
+				'name': experience.name,
+				'title': experience.title,
+				'icon': experience.icon,
+				'description': experience.description,
+				'dateStart': new Date(experience.date_start),
 				'dateEnd': endDate,
-				'url': education.link
+				'url': experience.link
 			}));
 		});
 
-		if(sort){
-			data.sort(Education.compare)
+		if(sort) {
+			data.sort(Experience.compare)
 		}
 
 		return data;

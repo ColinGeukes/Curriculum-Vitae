@@ -34,3 +34,17 @@ ul {
   user-select: none;
   cursor: default;
 }
+
+.perfect-fit {
+  -o-object-fit: cover;
+  object-fit: cover;
+  min-height: 105%;
+  min-width: 105%;
+  width: 100%;
+  margin: auto;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  @include apply-transform(translate(-50%, -50%))
+}

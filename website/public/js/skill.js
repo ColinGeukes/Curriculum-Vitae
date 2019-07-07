@@ -21,7 +21,7 @@ class Skill {
 		if (this.startDate) {
 			// Calculate the amount of years of experience.
 			const yearsExperience =
-				Math.round(((new Date()).getTime() - (new Date(this.startDate)).getTime()) / MILLISECONDS_PER_YEAR);
+				Math.ceil(((new Date()).getTime() - (new Date(this.startDate)).getTime()) / MILLISECONDS_PER_YEAR);
 
 			// Bound the max experience years
 			if (yearsExperience >= MAX_EXPERIENCE_YEARS) {

@@ -65,7 +65,7 @@ describe('Skill', () => {
 
 			date = new Date();
 
-			date.setFullYear(date.getFullYear() - yearsExperience);
+			date.setTime(date.getTime() - yearsExperience * skillModule.__get__('MILLISECONDS_PER_YEAR'));
 			skill = new Skill({
 				name,
 				stars,
@@ -74,7 +74,7 @@ describe('Skill', () => {
 
 			// Assertion
 			expect(skill.subtext).to.be.a('string');
-			expect(skill.subtext).to.be.equal(`${yearsExperience} years`);
+			expect(skill.subtext).to.be.equal(`${Math.ceil(yearsExperience)} years`);
 			done();
 		});
 

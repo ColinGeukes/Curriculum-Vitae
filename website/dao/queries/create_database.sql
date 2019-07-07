@@ -60,6 +60,19 @@ CREATE TABLE education (
     description VARCHAR(3000) NOT NULL,
     date_start DATE NOT NULL,
     date_end DATE,
+    link varchar(200),
+    PRIMARY KEY (id)
+) ENGINE=INNODB;
+
+CREATE TABLE experience (
+    id INT AUTO_INCREMENT,
+    name VARCHAR(120) NOT NULL,
+    title VARCHAR(400) NOT NULL,
+    icon VARCHAR(200) NOT NULL,
+    description VARCHAR(3000) NOT NULL,
+    date_start DATE NOT NULL,
+    date_end DATE,
+    link varchar(200),
     PRIMARY KEY (id)
 ) ENGINE=INNODB;
 
@@ -112,24 +125,18 @@ values
   (4,'F1 Racing Manager', DATE('2016-11-17'), DATE('2017-01-30'), 'Formula-1 Racing Manager is a managing game, in which the player controls a racing team that takes part in Formula-1 races. The player is able to race amongst other players online, or versus bots in a single player match. The manager decides which strategies to use for his racing season. This include which equipment, driving techniques and drivers! <br> This project was the result of a course given by the Technical University of Delft. The product is created by a total of five students. In order to successfully cooperate with each other, weekly scrum meetings were conducted.');
 
 insert into education
-  (id, icon, name, type, title, description, date_start, date_end)
+  (id, icon, name, type, title, description, date_start, date_end, link)
 values
-  (1,'fas fa-university', 'Technical University of Delft', 'University education', 'BSc: Computer Science', 'The university in Delft', DATE('2016-09-05'), null),
-  (2,'fas fa-school', 'De Goudse Waarden', 'Pre-university education', 'Grammar school','A pre-university located in Gouda',DATE('2011-09-05'), DATE('2015-07-05'));
+  (1,'fas fa-university', 'Technical University of Delft', 'University education', 'BSc: Computer Science', 'Self-driving cars, smartphone navigation, personalized offers based on surfing behavior, healthcare robots, and searching through films and pictures. During the Computer Science and Engineering degree program, one learns how to develop software and implement data processing for the intelligent systems of today and the future. This could include medical systems, security and perhaps even the new YouTube. Mathematical analysis and modeling, logical reasoning, programming algorithms and working with concepts of programming languages are all important subjects of this study, and so is collaboration. This is why, every half a year, one will work on a project with a group of fellow students, designing systems like an intelligent bot in a computer game.', DATE('2016-09-05'), null, 'https://www.tudelft.nl/en/education/programmes/bachelors/cse/bachelor-of-computer-science-and-engineering/'),
+  (2,'fas fa-school', 'De Goudse Waarden', 'Pre-university education', 'Grammar school','A pre-university located in Gouda',DATE('2011-09-05'), DATE('2015-07-05'), 'https://www.degoudsewaarden.nl/');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+insert into experience
+  (id, icon, name, title, description, date_start, date_end, link)
+values
+  (0, 'fas fa-hands-helping', 'De Heemtuin', 'Volunteer gardener', 'Volunteer work as a gardener at a nature preserve located in Gouda. This work consisted of every mundane task that can be done in a volunteer nature preserve. The most important aspect of this work was teamwork and coordination.', DATE('2013-11-01'), DATE('2014-05-28'), 'http://www.heemtuingoudsehout.nl/'),
+  (1, 'fas fa-chalkboard-teacher','De Bijles Student', 'Assistent teacher', 'Teaching the basics of programming in p5js to a pre-vocational secondary education class. This class had no prior experiences in programming at all, hence the key aspect of this task was to explain everything as effectively as possible.', DATE('2018-11-01'), DATE('2018-11-30'), 'https://www.debijlesstudent.nl/');
 
 
 

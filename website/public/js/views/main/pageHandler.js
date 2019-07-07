@@ -138,34 +138,46 @@ function loadAll() {
 		return `${yearA} - ${yearB}`;
 	}
 
-	// Load education types.
-	Education.loadAll().then((educations) => {
+	// Load educations.
+	Education.loadAll(true).then((educations) => {
 		educations.forEach((education) => {
+			// Add filler classes to the experience so the colour-schema passes correctly to the next section.
+			$('#experiences .main-timeline').prepend(`<div class="fully-hidden"></div>`);
+
+			// Add the education to the education timeline.
 			$('#education .main-timeline').append(`<div class="timeline">
-			<a href="/education/${education.id}" class="timeline-content">
-			<div class="timeline-year-tag">
-				<div class="timeline-year-outer">
-					<span class="timeline-year">${getYearDifference(education.dateStart, education.dateEnd)}</span>
-				</div>
-				<div class="timeline-icon-outer">
-					<div class="timeline-icon"><i class="${education.icon}" aria-hidden="true"></i></div>
-				</div>
-			</div>
-			<div class="content"><h3 class="title">${education.name}</h3>
-			<p class="description">${education.description}</p></div></a></div>`);
+				<a href="${education.url}" class="timeline-content">
+					<div class="timeline-year-tag">
+						<div class="timeline-icon"><i class="${education.icon}" aria-hidden="true"></i></div>
+						<span class="timeline-year">${getYearDifference(education.dateStart, education.dateEnd)}</span>
+					</div>
+					<div class="content">
+						<h3 class="title">${education.name}</h3>
+						<h4 class="subtitle">${education.title}</h4>
+						<p class="description">${education.description}</p>
+					</div>
+				</a>
+			</div>`);
 		});
+	});
 
-
-		/*
-		 * Div(class="timeline")
-		 * a(href="#" class="timeline-content")
-		 * span(class="timeline-year") 2018
-		 * div(class="timeline-icon")
-		 * i(class="fa fa-rocket" aria-hidden="true")
-		 * div(class="content")
-		 * h3(class="title") Web Development
-		 * p(class="description") Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-		 */
+	// Load experiences.
+	Experience.loadAll(true).then((experiences) => {
+		experiences.forEach((experience) => {
+			$('#experiences .main-timeline').append(`<div class="timeline">
+				<a href="${experience.url}" class="timeline-content">
+					<div class="timeline-year-tag">
+						<div class="timeline-icon"><i class="${experience.icon}" aria-hidden="true"></i></div>
+						<span class="timeline-year">${getYearDifference(experience.dateStart, experience.dateEnd)}</span>
+					</div>
+					<div class="content">
+						<h3 class="title">${experience.name}</h3>
+						<h4 class="subtitle">${experience.title}</h4>
+						<p class="description">${experience.description}</p>
+					</div>
+				</a>
+			</div>`);
+		});
 	});
 
 	// Load all the skills.
