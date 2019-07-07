@@ -12,6 +12,7 @@ let extra;
 let name;
 let stars;
 let date;
+let testObject;
 
 describe('Skill', () => {
 	context('constructor', () => {
@@ -61,7 +62,7 @@ describe('Skill', () => {
 
 		it('Normal experience', (done) => {
 			// Create the skill
-			const yearsExperience = 5;
+			const yearsExperience = 5.3;
 
 			date = new Date();
 
@@ -170,6 +171,116 @@ describe('Skill', () => {
 			// Check equalities.
 			expect(array[0].extra).to.be.equal('extra_1');
 			expect(array[1].extra).to.be.equal('extra_2');
+			done();
+		});
+	});
+
+	context('Load skills', () => {
+		before((done) => {
+			settings = [
+				{
+					'id': 1,
+					'type_id': 5,
+					'type_name': 'Language',
+					'title': 'Java',
+					'stars': 5,
+					'extra': 'First',
+					'start_date': '2001-01-01',
+				},
+				{
+					'id': 2,
+					'type_id': 5,
+					'type_name': 'Language',
+					'title': 'JavaScript',
+					'stars': 5,
+					'extra': 'Second',
+					'start_date': '2001-01-01',
+				}
+			];
+
+			skillModule.__set__({
+				'$': {
+					'get': (data) => {
+						data.success(settings);
+					},
+					'each': (dictionary, func) => {
+						Object.keys(dictionary).forEach((key) => {
+							func(key, dictionary[key]);
+						});
+					}
+				}
+			});
+
+			Skill._loadSkills().then((skills) => {
+				testObject = skills;
+				done();
+			});
+		});
+
+		it('Load should yield correct values first object', (done) => {
+			console.log(testObject['Language'].skills);
+			expect(testObject['Language'].id).to.be.a('number');
+			expect(testObject['Language'].id).to.be.equal(5);
+			expect(testObject['Language'].skills[0].name).to.be.a('string');
+			expect(testObject['Language'].skills[0].name).to.be.equal('Java');
+			expect(testObject['Language'].skills[1].name).to.be.a('string');
+			expect(testObject['Language'].skills[1].name).to.be.equal('JavaScript');
+
+			done();
+		});
+	});
+
+	context('Load skills with sorting', () => {
+		before((done) => {
+			settings = [
+				{
+					'id': 1,
+					'type_id': 5,
+					'type_name': 'Language',
+					'title': 'Bad language',
+					'stars': 3,
+					'extra': 'First',
+					'start_date': '2001-01-01',
+				},
+				{
+					'id': 2,
+					'type_id': 5,
+					'type_name': 'Language',
+					'title': 'JavaScript',
+					'stars': 5,
+					'extra': 'Second',
+					'start_date': '2001-01-01',
+				}
+			];
+
+			skillModule.__set__({
+				'$': {
+					'get': (data) => {
+						data.success(settings);
+					},
+					'each': (dictionary, func) => {
+						Object.keys(dictionary).forEach((key) => {
+							func(key, dictionary[key]);
+						});
+					}
+				}
+			});
+
+			Skill._loadSkills(true).then((skills) => {
+				testObject = skills;
+				done();
+			});
+		});
+
+		it('Load should yield correct values first object', (done) => {
+			console.log(testObject['Language'].skills);
+			expect(testObject['Language'].id).to.be.a('number');
+			expect(testObject['Language'].id).to.be.equal(5);
+			expect(testObject['Language'].skills[0].name).to.be.a('string');
+			expect(testObject['Language'].skills[0].name).to.be.equal('JavaScript');
+			expect(testObject['Language'].skills[1].name).to.be.a('string');
+			expect(testObject['Language'].skills[1].name).to.be.equal('Bad language');
+
 			done();
 		});
 	});
