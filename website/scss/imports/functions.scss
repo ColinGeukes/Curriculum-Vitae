@@ -5,12 +5,21 @@
   transform: skewX($skewX) skewY($skewY) rotate($rotate);
 }
 
-@mixin apply-transform($transforms) {
+
+@mixin apply-transform ($transforms) {
   -webkit-transform: $transforms;
   -ms-transform: $transforms;
   -o-transform: $transforms;
   transform: $transforms;
 }
+
+@mixin apply-transform-important($transforms) {
+  -webkit-transform: $transforms !important;
+  -ms-transform: $transforms !important;
+  -o-transform: $transforms !important;
+  transform: $transforms !important;
+}
+
 
 @mixin apply-box-shadow($x, $y, $z, $color) {
   -webkit-box-shadow: $x $y $z $color;

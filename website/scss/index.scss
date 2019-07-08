@@ -11,22 +11,343 @@
 }
 
 
-#info .profile {
-  background-color: #fff;
-  width: 250px;
-  padding: 20px;
-  box-shadow: 0 0 10px #000;
+#info {
 
-  .profile-image {
-    max-width: 300px;
-    overflow: hidden;
-    max-height: 500px;
-    height: 400px;
-    position: relative;
+  .section-body .content {
+    display: flex;
+    flex-direction: row;
+    padding-top: 60px;
 
-    img {
-      height: auto;
-      width: 100%;
+    .profile-outer {
+      flex: 0 0 400px;
+      position: relative;
+
+      .profile {
+        @include apply-transform(rotate(-1deg) translateY(-50%));
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px #000;
+        margin-left: 20px;
+        flex: 0 0 auto;
+        position: absolute;
+        top: 50%;
+
+
+        .profile-image {
+          overflow: hidden;
+          position: relative;
+
+          img {
+            height: auto;
+            width: 100%;
+          }
+        }
+
+        .details {
+          @include apply-transform(rotate(1deg));
+          text-align: center;
+
+          .details-inner {
+            text-align: left;
+            display: inline-block;
+            margin: 12px 0 -8px;
+          }
+
+          .attribute {
+            text-decoration: none;
+            display: block;
+            font-size: 20px;
+            cursor: default;
+            margin-bottom: 8px;
+
+            &[href] {
+              cursor: pointer;
+            }
+
+            i {
+              width: 30px;
+              text-align: center;
+              font-size: 25px;
+            }
+
+            span {
+              line-height: 25px;
+              margin-left: 10px;
+              color: $dark;
+            }
+          }
+        }
+
+        #detail-email i {
+          color: $color-3;
+        }
+
+        #detail-place i {
+          color: $color-2;
+        }
+
+        #detail-birthday i {
+          color: $color-4;
+        }
+      }
     }
+
+
+    .content-body {
+      flex: 1 1 auto;
+      margin-left: 50px;
+      display: flex;
+      flex-direction: column;
+      margin-top: 1em;
+
+      p {
+        font-size: 20px;
+        margin: 0 0 1em 0;
+      }
+
+      .hobbies-tag {
+        margin-top: auto;
+        text-align: center;
+
+        h2 {
+          margin-bottom: 16px;
+          display: inline-block;
+          background-color: $header-background;
+          padding: 0 30px;
+          text-transform: none;
+        }
+      }
+    }
+  }
+}
+
+$hobby-icon: 20px;
+$hobby-tag: 16px;
+$hobby-bracket: 150px;
+
+
+.hobbies-outer {
+  text-align: center;
+}
+
+.hobbies {
+  position: relative;
+  margin: 0 -30px;
+  display: inline-block;
+
+  &::before, &::after {
+    content: "{";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto 0;
+    font-size: $hobby-bracket;
+    line-height: $hobby-bracket;
+    height: $hobby-bracket;
+  }
+
+  &::after {
+    content: "}";
+    left: auto;
+    right: 0;
+
+  }
+
+  .hobbies-row {
+    text-align: center;
+    padding: 0 75px;
+
+    .hobby-icon {
+      border-radius: 100%;
+      display: inline-block;
+      text-align: center;
+      background-color: $background-color;
+      width: 100px;
+      height: 100px;
+      position: relative;
+      border: 2px dashed $dark;
+      cursor: default;
+      margin: 4px;
+
+      i {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -15%;
+        bottom: 0;
+        margin: auto;
+        width: $hobby-icon;
+        height: $hobby-icon;
+        font-size: $hobby-icon;
+        line-height: $hobby-icon;
+        transition: all 0.3s ease;
+      }
+
+      span {
+        position: absolute;
+        text-transform: capitalize;
+        left: 0;
+        right: 0;
+        top: 30%;
+        bottom: 0;
+        height: $hobby-tag;
+        line-height: $hobby-tag;
+        font-size: $hobby-tag;
+        margin: auto;
+      }
+
+      &:hover {
+
+        border: 2px dashed white;
+        color: white;
+
+        i {
+          @include apply-transform(scale(1.5));
+          top: -18px;
+        }
+
+        span {
+          @include apply-transform(scale(0.9));
+        }
+
+        &:nth-child(4n + 1) {
+          background-color: $color-1;
+        }
+
+        &:nth-child(4n + 2) {
+          background-color: $color-2;
+        }
+
+        &:nth-child(4n + 3) {
+          background-color: $color-3;
+        }
+
+        &:nth-child(4n + 4) {
+          background-color: $color-4;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .profile-outer {
+    flex-basis: 310px !important;
+
+    .attribute span {
+      font-size: 18px;
+    }
+  }
+
+  .content-body {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 992px) {
+  #info .section-body .content {
+    flex-direction: column;
+
+    .profile-outer {
+      position: static;
+      flex-basis: auto;
+      margin-top: -80px;
+
+      .profile {
+        position: static;
+        display: flex;
+        margin-left: 0;
+        flex-direction: row;
+        @include apply-transform(rotate(-1deg));
+
+        .details {
+          position: relative;
+          flex: 0 0 300px;
+
+          .details-inner {
+            @include apply-transform-important(translate(-50%, -50%));
+            position: absolute;
+            white-space: nowrap;
+            left: 50%;
+            top: 50%;
+          }
+        }
+      }
+    }
+
+    .content-body {
+      margin-top: 2em !important;
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #info .section-body .content .profile-outer {
+    margin-top: -50px;
+  }
+}
+
+@media (max-width: 616px) {
+  #info .section-body .content {
+
+    .profile-outer {
+      margin-top: -90px;
+      text-align: center;
+
+      .profile {
+        flex-direction: column;
+        max-width: 400px;
+        display: inline-block;
+        transform: none;
+
+        .details {
+          display: block;
+
+          .details-inner {
+            position: static;
+            transform: none !important;
+
+            .attribute {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+
+    .content-body > p {
+      padding: 0 20px;
+    }
+
+    .hobbies {
+      &::before, &::after {
+        content: none;
+      }
+
+      .hobbies-row {
+        padding: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .section-body {
+    padding: 0 !important;
+  }
+
+  .profile-outer {
+    margin-top: -50px !important;
+
+    .details-inner .attribute span {
+      white-space: normal !important;
+      word-wrap: break-word;
+    }
+  }
+
+  .hobbies-row {
+    max-width: 300px;
   }
 }
