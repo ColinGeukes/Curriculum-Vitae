@@ -64,4 +64,36 @@
   .big-header {
     padding: 10px 15px !important;
   }
+
+  ul.scores li {
+    position: relative;
+
+    .extra {
+      transition: none !important;
+      position: absolute;
+      background: dimgrey;
+      color: white !important;
+      right: 0;
+      width: 120px;
+      text-align: center;
+      z-index: 10;
+      top: 0;
+
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    &:hover {
+      .extra {
+        top: -13px;
+      }
+      .score {
+        border-left: 3px dashed dimgrey;
+        padding-left: 2px;
+
+      }
+    }
+  }
 }
+
+
