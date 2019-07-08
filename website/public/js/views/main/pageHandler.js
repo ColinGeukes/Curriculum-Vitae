@@ -1,5 +1,5 @@
 // Which project preview should be displayed
-let projectPreviewPointer = 0;
+let projectGallery;
 
 /**
  * Method to add an ability skill to the page
@@ -63,50 +63,6 @@ function insertSkillTables(parent, tables, array) {
 
 		addSkill(`${parent}:nth-child(${table})`, array[i]);
 	}
-}
-
-
-/**
- * Method that updates the project previewer.
- * TODO: Split this to a new file.
- * @param {number} value - how much the pointer should be changing.
- */
-function updateProjectPreview(value = 0) {
-	/**
-	 * Method to get the amount of displays that should be visible;
-	 * @return {number}
-	 */
-	function getDisplayAmount() {
-		const width = $(window).width();
-
-		if (width >= 978) {
-			return 3;
-		} else if (width >= 754) {
-			return 2;
-		}
-		return 1;
-	}
-
-	const cards = $('#projects .cards > .row').children();
-	const cardsAmount = cards.length;
-
-	projectPreviewPointer = ((projectPreviewPointer + value) % cardsAmount + cardsAmount) % cardsAmount;
-
-	const displayAmount = getDisplayAmount();
-
-	cards.each(function eachCard(index) {
-		const card = $(this);
-
-		if (index >= projectPreviewPointer && index < projectPreviewPointer + displayAmount) {
-			card.removeClass("fully-hidden");
-			card.css("order", 0);
-		} else if (projectPreviewPointer + displayAmount - index > cardsAmount) {
-			card.removeClass("fully-hidden");
-			card.css("order", `${1 + index}`);
-		} else {
-			$(this).addClass("fully-hidden");
-		}
-	});
 }
 
 /**
@@ -194,36 +150,33 @@ function loadAll() {
 		});
 	});
 
-	// Load all project previews.
+	// Load all project previews inside a Gallery.
 	ProjectCard._loadAll(true).then((data) => {
-		/**
-		 * Method to add a project preview to the DOM.
-		 * @param projectPreview
-		 */
-		function htmlProjectPreview(projectPreview) {
-			const textField = `<div class="text"><h1>${projectPreview.title}</h1><p>${projectPreview.description}</p></div>`;
-			const imageField = `<div class="image"><img alt="${projectPreview.title} thumbnail" src="/img/projects/${projectPreview.id}/thumbnail.png"></div>`;
-
-			$('#projects .content .cards > .row').append(`<div class="row-flex"><a class="card" href="/project/${projectPreview.id}">${imageField}${textField}</a></div>`);
-		}
-
-		for (let i = 0; i < data.length; i++) {
-			htmlProjectPreview(data[i]);
-		}
-
-		updateProjectPreview();
-	});
-
-	// Give the preview buttons an onclick event.
-	$('#projects .button-left').click(() => {
-		updateProjectPreview(-1);
-	});
-
-	$('#projects .button-right').click(() => {
-		updateProjectPreview(1);
+		projectGallery = new Gallery({
+			'element': $('#projects .project-gallery'),
+			'featuring': data,
+			'itemHTML': (item) => `
+					<div class="image">
+						<img alt="${item.title} thumbnail" src="/img/projects/${item.id}/thumbnail.png">
+					</div>
+					<div class="text">
+						<h1>${item.title}</h1>
+						<p>${item.description}</p>
+					</div>`,
+			'itemURL': (item) => `/project/${item.id}`,
+			'displayAmount': (width) => 1 + Math.floor((width - 150) / 300)
+		});
 	});
 }
 
+/**
+ * Main onResize method that handles all resize effects.
+ */
+function onResize() {
+	if (projectGallery) {
+		projectGallery.onResize();
+	}
+}
 
 /**
  * Method to initialise everything of this page handler.
@@ -238,7 +191,7 @@ function initPageHandler() {
 
 	// Handle different screen sizes
 	$(window).resize(() => {
-		updateProjectPreview();
+		onResize();
 	});
 }
 

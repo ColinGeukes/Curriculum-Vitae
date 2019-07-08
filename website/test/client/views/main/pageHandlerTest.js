@@ -15,16 +15,19 @@ const Education = educationModule.__get__('Education');
 // The experience module
 const experienceModule = rewire('../../../../public/js/experience.js');
 const Experience = experienceModule.__get__('Experience');
-// The project ability
+// The project ability module
 const projectAbilityModule = rewire('../../../../public/js/views/project/projectAbility.js');
 const ProjectAbility = projectAbilityModule.__get__('ProjectAbility');
+// The gallery module
+const galleryModule = rewire('../../../../public/js/gallery.js');
+const Gallery = galleryModule.__get__('Gallery');
 // The project pageHandler module
 const PageHandlerModule = rewire('../../../../public/js/views/main/pageHandler.js');
 const initPageHandler = PageHandlerModule.__get__('initPageHandler');
 
 describe('Main PageHandler', () => {
 	context('DOM Manipulation while loading everything', () => {
-		before((done) => {
+		beforeEach((done) => {
 			// Create mock of jquery dom manipulation
 			function createJqueryMock(get, elementSettings) {
 				const jQueryMock = (element) => ({
@@ -46,6 +49,10 @@ describe('Main PageHandler', () => {
 					},
 					'click': (func) => {
 					},
+					'html': (html) => {
+						this.html = html;
+					},
+					'find': (elementToFind) => createJqueryMock(get, elementSettings)(elementToFind),
 					'children': () => createJqueryMock(get, elementSettings)('child 1'),
 					'width': () => elementSettings.width,
 					'each': (func) => {
@@ -146,13 +153,14 @@ describe('Main PageHandler', () => {
 			};
 
 			PageHandlerModule.__set__({
-				'$': createJqueryMock('', {"width": '5000px'}),
+				'$': createJqueryMock('', {"width": 5000}),
 				'Education': educationModule,
 				'Experience': experienceModule,
 				'ProjectCard': projectCardModule,
 				'Skill': skillModule,
 				'window': 'window',
-				'document': 'document'
+				'document': 'document',
+				Gallery
 			});
 
 			done();
@@ -161,6 +169,25 @@ describe('Main PageHandler', () => {
 		it('Should initialize the page without errors', (done) => {
 			initPageHandler();
 			done();
+		});
+	});
+
+	context('Testing resize', () => {
+		it('Resizing before gallery should not do anything', (done) => {
+			PageHandlerModule.__get__('onResize')();
+			done();
+		});
+
+		it('Resizing after gallery should call gallery resize event', (done) => {
+			// Mocking the gallery.
+			PageHandlerModule.__set__({
+				'projectGallery': {
+					'onResize': () => {
+						done();
+					}
+				}
+			});
+			PageHandlerModule.__get__('onResize')();
 		});
 	});
 });

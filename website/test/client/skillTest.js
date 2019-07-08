@@ -16,7 +16,7 @@ let testObject;
 
 describe('Skill', () => {
 	context('constructor', () => {
-		beforeEach((done) => {
+		before((done) => {
 			name = 'Java';
 			stars = 5;
 			extra = 'native';
