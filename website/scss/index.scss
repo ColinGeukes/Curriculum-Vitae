@@ -11,7 +11,7 @@
 }
 
 
-#info {
+#profile {
 
   .section-body .content {
     display: flex;
@@ -246,7 +246,7 @@ $hobby-bracket: 150px;
 }
 
 @media (max-width: 992px) {
-  #info .section-body .content {
+  #profile .section-body .content {
     flex-direction: column;
 
     .profile-outer {
@@ -284,13 +284,13 @@ $hobby-bracket: 150px;
 }
 
 @media (max-width: 768px) {
-  #info .section-body .content .profile-outer {
+  #profile .section-body .content .profile-outer {
     margin-top: -50px;
   }
 }
 
 @media (max-width: 616px) {
-  #info .section-body .content {
+  #profile .section-body .content {
 
     .profile-outer {
       margin-top: -90px;

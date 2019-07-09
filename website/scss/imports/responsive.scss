@@ -2,10 +2,16 @@
   .content-container {
     width: 1170px;
   }
+  .nav-inner {
+    width: 1170px;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
   .content-container {
+    width: 970px;
+  }
+  .nav-inner {
     width: 970px;
   }
 }
@@ -13,6 +19,21 @@
 @media (min-width: 768px) and (max-width: 992px) {
   .content-container {
     width: 750px;
+  }
+
+  .nav-inner {
+    width: 750px;
+
+    .nav-button {
+
+      &:not(:first-child) {
+        margin-left: 8px !important;
+      }
+
+      &:not(:last-child) {
+        margin-right: 8px !important;
+      }
+    }
   }
 }
 
@@ -87,6 +108,7 @@
       .extra {
         top: -13px;
       }
+
       .score {
         border-left: 3px dashed dimgrey;
         padding-left: 2px;

@@ -4,7 +4,7 @@ body {
   margin: 0;
   position: relative;
   background-image: url(../img/background.png);
-  padding: 65px 0 0;
+  padding: 0;
 
   .bottom-page {
     margin: 165px 0 0;
@@ -13,41 +13,41 @@ body {
   }
 }
 
-#home {
-  border-bottom: 5px solid #272524;
-  border-radius: 5px 5px 0 0;
-
-  .header-img {
-    background-position: center center;
-    background-image: url(../img/head-image.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 535px;
-    border-radius: 5px 5px 0 0;
-
-    &:before {
-      background-color: rgba(216, 205, 187, 0.5);
-      content: '';
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      border-radius: 5px 5px 0 0;
-    }
-
-    &:after {
-      content: '';
-      background-image: url(../img/shadow.png);
-      background-repeat: repeat-x;
-      background-position: bottom;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
+//#home {
+//  border-bottom: 5px solid #272524;
+//  border-radius: 5px 5px 0 0;
+//
+//  .header-img {
+//    background-position: center center;
+//    background-image: url(../img/head-image.jpg);
+//    background-size: cover;
+//    background-repeat: no-repeat;
+//    height: 535px;
+//    border-radius: 5px 5px 0 0;
+//
+//    &:before {
+//      background-color: rgba(216, 205, 187, 0.5);
+//      content: '';
+//      width: 100%;
+//      height: 100%;
+//      position: absolute;
+//      left: 0;
+//      top: 0;
+//      border-radius: 5px 5px 0 0;
+//    }
+//
+//    &:after {
+//      content: '';
+//      background-image: url(../img/shadow.png);
+//      background-repeat: repeat-x;
+//      background-position: bottom;
+//      position: absolute;
+//      bottom: 0;
+//      width: 100%;
+//      height: 100%;
+//    }
+//  }
+//}
 
 .content-container {
   padding: 0;
@@ -60,8 +60,9 @@ section, header {
 }
 
 section {
-  margin-top: 60px;
-  margin-bottom: 60px;
+  padding-top: 120px;
+  //margin-top: 60px;
+  //margin-bottom: 60px;
 }
 
 
@@ -107,12 +108,11 @@ section.central-section {
 }
 
 .section-header {
-  @extend .unselectable;
   white-space: nowrap;
   z-index: 20;
   position: absolute;
   left: 0;
-  top: -25px;
+  top: 85px;
   padding: 15px 25px 15px 50px;
 
   &.big-header {
@@ -534,6 +534,118 @@ ul.scores {
 
   .section-body:before {
     background-color: $color-3;
+  }
+}
+
+/**********
+--- NAVIGATION
+ **********/
+$nav-icon: 20px;
+$nav-tag: 18px;
+$nav-height: 56px;
+
+header {
+  height: $nav-height;
+
+  nav {
+    @include apply-box-shadow(0, 5px, 5px, $dark);
+    position: fixed;
+    z-index: 4321;
+    width: 100%;
+    background-color: $section-body;
+    height: $nav-height;
+
+    .nav-inner {
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      padding: 0 16px 0 20px;
+
+      .nav-button {
+        margin: 0 20px;
+        display: inline-block;
+        text-align: center;
+        background-color: $section-body-accent;
+        text-decoration: none;
+        color: $dark;
+        position: relative;
+        height: 100%;
+        width: 160px;
+        cursor: pointer;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+
+        i {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: -25%;
+          bottom: 0;
+          margin: auto;
+          width: $nav-icon;
+          height: $nav-icon;
+          font-size: $nav-icon;
+          line-height: $nav-icon;
+          transition: all 0.3s ease;
+        }
+
+        span {
+          position: absolute;
+          text-transform: capitalize;
+          left: 0;
+          right: 0;
+          top: 50%;
+          bottom: 0;
+          height: $nav-tag;
+          line-height: $nav-tag;
+          font-size: $nav-tag;
+          margin: auto;
+        }
+
+        &:hover, &.activated {
+
+          border: 2px dashed $dark;
+          border-top: 0;
+          border-bottom: 0;
+          color: white;
+
+          i {
+            @include apply-transform(scale(1.5));
+            top: -18px;
+            text-shadow: 2px 0 0 $dark, -2px 0 0 $dark, 0 2px 0 $dark, 0 -2px 0 $dark, 1px 1px $dark, -1px -1px 0 $dark, 1px -1px 0 $dark, -1px 1px 0 $dark;
+          }
+
+          span {
+            @include apply-transform(scale(0.9));
+            font-weight: bold;
+            text-shadow: 2px 0 0 $dark, -2px 0 0 $dark, 0 2px 0 $dark, 0 -2px 0 $dark, 1px 1px $dark, -1px -1px 0 $dark, 1px -1px 0 $dark, -1px 1px 0 $dark;
+          }
+
+          &:nth-child(4n + 1) {
+            background-color: $color-1;
+          }
+
+          &:nth-child(4n + 2) {
+            background-color: $color-2;
+          }
+
+          &:nth-child(4n + 3) {
+            background-color: $color-3;
+          }
+
+          &:nth-child(4n + 4) {
+            background-color: $color-4;
+          }
+        }
+      }
+    }
   }
 }
 
