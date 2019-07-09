@@ -11,6 +11,7 @@ html
         link(rel="stylesheet", type="text/css", href="/css/index.css")
         link(rel="stylesheet", type="text/css", href="/css/pageProject.css")
     body
+        include includes/navigation
         div(class="content-container fully-hidden")
             section(id="project" class="central-section")
                 div(class="section-header clip-always-visible has-shadow")
@@ -24,6 +25,7 @@ html
                             div(class="description")
                             div(id="project-tags")
                     div(class="shadow")
+        include includes/footer
         script(type="text/javascript", src="/js/views/project/project.js")
         script(type="text/javascript", src="/js/views/project/projectAbility.js")
         script(type="text/javascript", src="/js/views/project/pageHandler.js")
