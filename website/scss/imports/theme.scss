@@ -52,7 +52,7 @@ body {
 .content-container {
   padding: 0;
   border-radius: 5px;
-  margin: 0 auto;
+  margin: 0 auto 120px;
 }
 
 section, header {
@@ -645,6 +645,43 @@ header {
           }
         }
       }
+    }
+  }
+}
+
+/**********
+--- FOOTER
+ **********/
+$footer-height: 80px;
+
+footer {
+  background-color: $dark;
+  //height: $footer-height;
+  border-top: 2px dashed #444;
+  padding: 20px 0;
+
+  .footer-inner {
+    margin: 0 auto;
+    color: #999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+
+    .footer-tag {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .copyright-tag {
+      text-transform: uppercase;
+      font: bold 18px sofia-pro, sans-serif;
+      letter-spacing: .08em;
+      line-height: 1.5em;
+      flex-shrink: 0;
+      font-size: 16px;
+      text-align: right;
+      margin-left: 1em;
     }
   }
 }

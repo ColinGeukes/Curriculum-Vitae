@@ -1,23 +1,17 @@
 @media (min-width: 1200px) {
-  .content-container {
-    width: 1170px;
-  }
-  .nav-inner {
+  .content-container, .footer-inner, .nav-inner {
     width: 1170px;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-  .content-container {
-    width: 970px;
-  }
-  .nav-inner {
+  .content-container, .footer-inner, .nav-inner {
     width: 970px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .content-container {
+  .content-container, .footer-inner {
     width: 750px;
   }
 
@@ -35,6 +29,10 @@
       }
     }
   }
+
+  //.footer-inner {
+  //  padding: 0 30px;
+  //}
 }
 
 @media (max-width: 768px) {
@@ -51,6 +49,10 @@
 
   #abilities .row-2, #contact .row-2 {
     width: 100% !important;
+  }
+
+  .footer-inner {
+    padding: 0 30px;
   }
 }
 
@@ -114,6 +116,20 @@
         padding-left: 2px;
 
       }
+    }
+  }
+
+  .footer-inner {
+    flex-direction: column;
+
+    .footer-tag {
+      text-align: center;
+    }
+
+    .copyright-tag {
+      margin-top: 1em;
+      margin-left: 0 !important;
+      text-align: center !important;
     }
   }
 }

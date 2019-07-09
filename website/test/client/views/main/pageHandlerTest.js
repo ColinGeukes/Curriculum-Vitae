@@ -57,7 +57,7 @@ describe('Main PageHandler', () => {
 					'removeClass': (text) => {
 					},
 					'scroll': (func) => {
-						func()
+						func();
 					},
 					'click': (func) => {
 					},
