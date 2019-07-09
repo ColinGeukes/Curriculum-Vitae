@@ -110,6 +110,9 @@ function loadAll() {
 				</a>
 			</div>`);
 		});
+
+		// Make sure the selected nav is still the correct one.
+		scrollUpdate();
 	});
 
 	// Load experiences.
@@ -129,6 +132,9 @@ function loadAll() {
 				</a>
 			</div>`);
 		});
+
+		// Make sure the selected nav is still the correct one.
+		scrollUpdate();
 	});
 
 	// Load all the skills.
@@ -148,6 +154,9 @@ function loadAll() {
 			insertSkillTables(`#${key} ul`, 2, skillType.skills);
 			first = false;
 		});
+
+		// Make sure the selected nav is still the correct one.
+		scrollUpdate();
 	});
 
 	// Load all project previews inside a Gallery.
@@ -166,6 +175,9 @@ function loadAll() {
 			'itemURL': (item) => `/project/${item.id}`,
 			'displayAmount': (width) => 1 + Math.floor((width - 150) / 300)
 		});
+
+		// Make sure the selected nav is still the correct one.
+		scrollUpdate();
 	});
 }
 
@@ -187,11 +199,17 @@ function initPageHandler() {
 	// Do events when the document is ready.
 	$(document).ready(() => {
 		loadAll();
+		scrollUpdate();
 	});
 
 	// Handle different screen sizes
 	$(window).resize(() => {
 		onResize();
+	});
+
+	// Handle all scroll events of this page.
+	$(window).scroll(() => {
+		scrollUpdate();
 	});
 }
 

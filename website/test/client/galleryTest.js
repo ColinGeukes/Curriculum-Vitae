@@ -77,43 +77,63 @@ describe('Gallery', () => {
 	});
 
 	context('functionality testing', () => {
-		called = {
-			'itemHTML': [],
-			'itemURL': [],
-			'displayAmount': []
-		};
-
 		beforeEach((done) => {
-			// Setting the jQuery mock
+			/*
+			 * Setting the jQuery mock
+			 * Setting the jQuery mock
+			 */
 			jQuery = jQueryMock.create({
-				'children': [
+				'_element': {
+					'find': {
+						'.button-left': '_button-left',
+						'.button-right': '_button-right',
+						'.gallery-content': '_gallery-content',
+						'.cards': '_cards'
+					}
+				},
+				'#projects .cards > .row': {
+					'children': '_cardsChildren'
+				},
+				'_cardsChildren': [
 					'child 1',
 					'child 2',
 					'child 3'
-				]
+				],
+				'child 1': {
+					'attr': {
+						'id': 'child 1'
+					}
+				},
+				'child 2': {
+					'attr': {
+						'id': 'child 2'
+					}
+				},
+				'child 3': {
+					'attr': {
+						'id': 'child 3'
+					}
+				},
+				'_button-left': {},
+				'_button-right': {},
+				'_gallery-content': {},
+				'_cards': {
+					'width': 450
+				}
 			});
 			galleryModule.__set__({
 				'$': jQuery
 			});
 
-			parent = jQuery('parent');
-
 			settings = {
-				'element': parent,
+				'element': jQuery('_element'),
 				'featuring': [
 					'item a',
 					'item b'
 				],
-				'itemHTML': (item) => {
-					called.itemHTML.push(item);
-				},
-				'itemURL': (item) => {
-					called.itemHTML.push(item);
-				},
-				'displayAmount': (width) => {
-					called.displayAmount.push(width);
-					return 2;
-				}
+				'itemHTML': () => null,
+				'itemURL': () => null,
+				'displayAmount': () => 2
 			};
 
 			testingObj = new Gallery(settings, true);
@@ -125,13 +145,9 @@ describe('Gallery', () => {
 			expect(testingObj.featuringPointer).to.be.a('number');
 			expect(testingObj.featuringPointer).to.be.equal(0);
 
-			// Class .card-panel should always be added.
-			addClasses = jQuery.__changes.addClass;
-			for (let i = 0; i < addClasses.length; i++) {
-				if (addClasses[i] === 'card-panel') {
-					done();
-				}
-			}
+			// Added html to the element
+			expect(jQuery.config._element.__changes.html.length).to.be.equal(1);
+			done();
 		});
 
 		it('Click event of left button', (done) => {
@@ -139,7 +155,7 @@ describe('Gallery', () => {
 			expect(testingObj.featuringPointer).to.be.equal(0);
 
 			// Firing click event
-			jQuery.__changes.click[0]();
+			jQuery.config['_button-left'].__changes.click[0]();
 
 			// Featuring pointer should be wrapped around.
 			expect(testingObj.featuringPointer).to.be.equal(2);
@@ -151,7 +167,7 @@ describe('Gallery', () => {
 			expect(testingObj.featuringPointer).to.be.equal(0);
 
 			// Firing click event
-			jQuery.__changes.click[1]();
+			jQuery.config['_button-right'].__changes.click[0]();
 
 			// Featuring pointer should be wrapped around.
 			expect(testingObj.featuringPointer).to.be.equal(1);

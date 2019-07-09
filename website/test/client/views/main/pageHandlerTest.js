@@ -1,8 +1,17 @@
 `use strict`;
-
+/**
+ *******
+ * -- ENVIRONMENT
+ ********
+ */
 const chai = require('chai');
 const {expect} = chai;
 const rewire = require('rewire');
+/**
+ *******
+ * -- MODULES
+ ********
+ */
 // The project card module
 const projectCardModule = rewire('../../../../public/js/projectCard.js');
 const ProjectCard = projectCardModule.__get__('ProjectCard');
@@ -46,6 +55,9 @@ describe('Main PageHandler', () => {
 					'addClass': (text) => {
 					},
 					'removeClass': (text) => {
+					},
+					'scroll': (func) => {
+
 					},
 					'click': (func) => {
 					},
@@ -160,6 +172,7 @@ describe('Main PageHandler', () => {
 				'Skill': skillModule,
 				'window': 'window',
 				'document': 'document',
+				'scrollUpdate': () => {},
 				Gallery
 			});
 

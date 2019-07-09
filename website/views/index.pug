@@ -13,22 +13,22 @@ html
         header(id="home")
             nav
                 div(class="nav-inner")
-                    a(class="nav-button" href="/#profile")
+                    a(id="nav-profile" class="nav-button" href="/#profile")
                         i(class="fas fa-rocket")
                         span contact
-                    a(class="nav-button" href="/#education")
+                    a(id="nav-education" class="nav-button" href="/#education")
                         i(class="fas fa-tree")
                         span education
-                    a(class="nav-button" href="/#experiences")
+                    a(id="nav-experiences" class="nav-button" href="/#experiences")
                         i(class="fas fa-tree")
                         span experiences
-                    a(class="nav-button" href="/#abilities")
+                    a(id="nav-abilities" class="nav-button" href="/#abilities")
                         i(class="fas fa-tree")
                         span abilities
-                    a(class="nav-button" href="/#projects")
+                    a(id="nav-projects" class="nav-button" href="/#projects")
                         i(class="fas fa-tree")
                         span projects
-                    a(class="nav-button" href="/#contact")
+                    a(id="nav-contact" class="nav-button" href="/#contact")
                         i(class="fas fa-tree")
                         span contact
         div(class="content-container")
@@ -167,6 +167,7 @@ html
         script(type="text/javascript", src="/js/education.js")
         script(type="text/javascript", src="/js/experience.js")
         script(type="text/javascript", src="/js/gallery.js")
+        script(type="text/javascript", src="/js/views/main/scrollHandler.js")
         script(type="text/javascript", src="/js/views/main/pageHandler.js")
         script initPageHandler();
 

@@ -1,4 +1,4 @@
-function addArrayFunctionality(jQuery, array, elementSettings) {
+function addArrayFunctionality(jQuery, array, configuration) {
 	array.each = (func) => {
 		for (let i = 0; i < array.length; i++) {
 			func(i);
@@ -20,8 +20,39 @@ function addGeneralFunctionality(mock, settings) {
 	};
 }
 
-function createJqueryMock(elementSettings = {}) {
-	const jQueryMock = (element) => ({
+function createArrayElement(jQuery, configuration, element) {
+	const arrayObject = configuration[element];
+
+	// Add the each function
+	arrayObject.each = (func) => {
+		for (let i = 0; i < configuration[element].length; i++) {
+			func.bind(configuration[element][i])(i);
+		}
+	};
+
+	return arrayObject;
+}
+
+function createSingleElement(jQuery, configuration, element) {
+	// Add default values to keep track of changes
+	if (!(element in configuration)) {
+		throw Error(`jQueryMock has no element '${element}'`);
+	}
+
+	// Console.log(element);
+	configuration[element].__changes = {
+		'css': [],
+		'html': [],
+		'click': [],
+		'addClass': [],
+		'removeClass': [],
+		'prepend': [],
+		'append': [],
+		'text': []
+	};
+
+	// Create the element
+	return {
 		'selector': () => element,
 		'ready': (func) => {
 			func();
@@ -31,45 +62,50 @@ function createJqueryMock(elementSettings = {}) {
 		},
 
 		// DOM alteration functions
-		'text': (text) => jQueryMock.__changes.text.push(text),
-		'append': (append) => jQueryMock.__changes.append.push(append),
-		'prepend': (prepend) => jQueryMock.__changes.prepend.push(prepend),
-		'addClass': (addClass) => jQueryMock.__changes.addClass.push(addClass),
-		'removeClass': (removeClass) => jQueryMock.__changes.removeClass.push(removeClass),
-		'html': (html) => jQueryMock.__changes.html.push(html),
-		'css': (type, value) => jQueryMock.__changes.css.push({
-			type,
-			value
-		}),
-		'click': (click) => jQueryMock.__changes.click.push(click),
-
-		'find': (elementToFind) => jQueryMock(elementToFind),
-		'children': () => {
-			const children = [];
-
-			for (let i = 0; i < elementSettings.children.length; i++) {
-				children.push(jQueryMock(elementSettings.children[i]));
+		'text': (text) => configuration[element].__changes.text.push(text),
+		'append': (append) => configuration[element].__changes.append.push(append),
+		'prepend': (prepend) => configuration[element].__changes.prepend.push(prepend),
+		'addClass': (addClass) => configuration[element].__changes.addClass.push(addClass),
+		'removeClass': (removeClass) => configuration[element].__changes.removeClass.push(removeClass),
+		'html': (html) => configuration[element].__changes.html.push(html),
+		'css': (type, value) => configuration[element].__changes.css.push({type,
+			value}),
+		'click': (clickFunction) => configuration[element].__changes.click.push(clickFunction),
+		'find': (elementToFind) => {
+			// Check if the find is declared, if not throw an error.
+			if (!(elementToFind in configuration[element].find)) {
+				throw new Error(`Element '${element}' has no element '${elementToFind}' in [find]`);
 			}
-
-			addArrayFunctionality(this, children, elementSettings);
-			return children;
+			return jQuery(configuration[element].find[elementToFind]);
 		},
-		'width': () => elementSettings.width
-	});
+		'children': () => jQuery(configuration[element].children),
+		'width': () => configuration[element].width,
+		'height': () => configuration[element].height,
+		'scrollTop': () => configuration[element].scrollTop,
+		'offset': () => configuration[element].offset,
+		'attr': (attribute) => configuration[element].attr[attribute]
+	};
+}
 
-	jQueryMock.__changes = {
-		'click': [],
-		'css': [],
-		'html': [],
-		'addClass': [],
-		'removeClass': [],
-		'prepend': [],
-		'append': [],
-		'text': []
+function createJqueryMock(configuration = {}) {
+	const jQueryMock = function jQueryMock(element) {
+		// JQuery can also return an array of elements, which behaves differently
+		if (Array.isArray(configuration[element])) {
+			const arrayElement = createArrayElement(jQueryMock, configuration, element);
+
+			configuration[element].__element = arrayElement;
+			return arrayElement;
+		}
+		const singleElement = createSingleElement(jQueryMock, configuration, element);
+
+		configuration[element].__element = singleElement;
+		return singleElement;
 	};
 
 	// Functionality of the jQuery object
-	addGeneralFunctionality(this, elementSettings);
+	addGeneralFunctionality(this, configuration);
+
+	jQueryMock.config = configuration;
 	return jQueryMock;
 }
 
