@@ -91,7 +91,6 @@ function loadAll() {
 
 	// Load educations.
 	Education.loadAll(true).then((educations) => {
-
 		educations.forEach((education) => {
 			// Add filler classes to the experience so the colour-schema passes correctly to the next section.
 			$('#experiences .main-timeline').prepend(`<div class="fully-hidden"></div>`);
