@@ -9,19 +9,19 @@ html
         link(href="../fontawesome/css/brands.css" rel="stylesheet")
         link(href="../fontawesome/css/solid.css" rel="stylesheet")
         link(rel="stylesheet", type="text/css", href="/css/index.css")
+        link(rel="stylesheet", type="text/css", href="/css/pageThanks.css")
     body
+        include includes/navigation
         div(class="content-container")
-            div(class="content-wrap")
-                section(id="info" class="central-section")
-                    div(class="section-header clip-always-visible has-shadow")
-                        div(class="content")
-                            h1 Thank you!
-                        div(class="shadow")
-                    div(class="section-body small straight")
-                        div(class="content")
-                            p Thank you #{params.name}, for getting in contact with me. <br> I will get in contact with you as quick as possible.
-                        div(class="shadow")
-                div(class="button-bar")
-                    div(class="button")
-                        a(href="/")
-                            i(class="fas fa-home")
+            section(id="project" class="central-section")
+                div(class="section-header clip-always-visible has-shadow")
+                    div(class="content")
+                        h1 Thank you!
+                    div(class="shadow")
+                div(class="section-body straight")
+                    div(class="content")
+                        h2 Thank you #{params.name},
+                        p for getting in contact with me. <br> I will mostly reply within a week. <br> Future information is also sent by email.
+                        p Your sincerely, <br> Colin Geukes.
+                    div(class="shadow")
+        include includes/footer

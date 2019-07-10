@@ -10,6 +10,7 @@
     "express": "^4.17.1",
     "mysql": "^2.17.1",
     "node-sass": "^4.12.0",
+    "nodemailer": "^6.2.1",
     "pug": "^2.0.4"
   },
   "devDependencies": {
@@ -25,8 +26,8 @@
     "build-css": "node-sass -o public/css scss --recursive false",
     "test": "nyc mocha --all --recursive --timeout=10000 --exit && nyc report --reporter=lcov",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
-    "lint": "eslint 'public/js/**/*.js' 'routes/**/*.js' 'dao/**/*.js/' 'test/**/*.js' --ignore-pattern node_modules/",
-    "lint-fix": "eslint 'public/js/**/*.js' 'routes/**/*.js' 'dao/**/*.js/' 'test/**/*.js' --ignore-pattern node_modules/ --fix"
+    "lint": "eslint 'public/js/**/*.js' 'server/**/*.js' 'dao/**/*.js/' 'test/**/*.js' --ignore-pattern node_modules/",
+    "lint-fix": "eslint 'public/js/**/*.js' 'server/**/*.js' 'dao/**/*.js/' 'test/**/*.js' --ignore-pattern node_modules/ --fix"
   },
   "repository": {
     "type": "git",

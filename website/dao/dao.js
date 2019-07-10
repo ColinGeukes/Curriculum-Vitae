@@ -71,7 +71,7 @@ class Dao {
 
 		// Read the file and store it in the queries.
 		try {
-			this.queries[filename.split('.')[0]] = fs.readFileSync(dirname + filename, 'utf-8');
+			this.queries[filenameSplit[0]] = fs.readFileSync(dirname + filename, 'utf-8');
 		} catch (e) {
 			// Log the error to the console object.
 			Console.error("Error, while opening query file", e.message);

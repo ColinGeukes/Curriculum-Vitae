@@ -50,10 +50,38 @@ function createContactPath(api, url) {
 	api.post(url, async (req, res) => {
 		const body = req.body;
 
+		// Store the contact form in the database
 		api._dao.queryContact(body.name, body.organization, body.email, body.description, (err, rows) => {
 			if (rows) {
 				res.redirect(`/thanks/${body.name}`);
+				Console.log(`Successfully stored information about a new contact in the database: ${body.email}`);
 			}
+		});
+
+		// Send a thank you email to one that filled the form.
+		api.mailer.sendMail(body.email, 'Thank you for contacting!', 'thanks', {
+			'receiver': body.name,
+			'name': body.name,
+			'organization': body.organization,
+			'description': body.description,
+			'sender': api.mailer.username
+		}, () => {
+			Console.log(`Successfully send email contact to: ${body.email}`);
+		}, (failure) => {
+			Console.error(`ERROR: failed to send email ${failure}`);
+		});
+
+		// Send a notification to myself, to gain updates if someone tries to contact me
+		api.mailer.sendMail(api.notificationMail, 'Someone has contacted you!', 'inform', {
+			'receiver': api.mailer.username,
+			'name': body.name,
+			'organization': body.organization,
+			'email': body.email,
+			'description': body.description
+		}, () => {
+			Console.log(`Successfully send email contact inform to: ${api.notificationMail}`);
+		}, (failure) => {
+			Console.error(`ERROR: failed to send email ${failure}`);
 		});
 	});
 }
@@ -88,9 +116,11 @@ class Api extends express.Router {
 	 * @param {Dao} dao - A Database Access Object for requesting data
 	 * @param {boolean} debugging - If true, error logs will be printed on the console.
 	 */
-	constructor(dao, debugging = true) {
+	constructor(config, debugging = true) {
 		super();
-		this._dao = dao;
+		this._dao = config.dao;
+		this.mailer = config.mailer;
+		this.notificationMail = config.notificationMail;
 		this.debugging = debugging;
 
 		// Create a simple api query call.

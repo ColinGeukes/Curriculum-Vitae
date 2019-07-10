@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const config = require('./config.json');
 const Dao = require('./dao/dao.js');
-const Api = require('./routes/api.js');
+const Mailer = require('./server/mailer/mailer.js');
+const Api = require('./server/routes/api.js');
 // Instantiate app
 const app = express();
 
@@ -39,7 +40,12 @@ app.get('/project/:id', (req, res) => {
 
 // Create the api
 const dao = new Dao(config.dao, true);
-const api = new Api(dao);
+const mailer = new Mailer(config.email);
+const api = new Api({
+	'dao': dao,
+	'mailer': mailer,
+	'notificationMail': config.notificationMail
+});
 
 app.use('/api', api);
 
