@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  background-color: $dark;
 }
 
 body {
@@ -104,6 +105,7 @@ section.central-section {
     margin: 0 auto 0;
     border: 20px solid $background-color;
     border-radius: 20px;
+    background-color: $background-color;
 
     &.small {
       max-width: 600px;
