@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   overflow: hidden auto;
   background-color: #272425;
@@ -182,14 +186,16 @@ section.central-section {
   padding: 50px 20px;
   margin: 0 0 80px;
   width: 100%;
+  overflow: hidden;
 
   &:before {
     background: url(../img/noise.png);
     background-color: $section-body;
     position: absolute;
     content: '';
-    width: 100%;
-    height: 100%;
+    // Box-sizing not working, so adjust the border width.
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
     z-index: 0;
     top: 0;
     left: 0;
@@ -209,6 +215,10 @@ section.central-section {
     position: relative;
     z-index: 30;
     padding-top: 30px;
+    // For intro animation
+    transition: left 1s, opacity 0.3s;
+    opacity: 1;
+    left: 0;
 
     > .inner-content {
       padding: 0 20px;

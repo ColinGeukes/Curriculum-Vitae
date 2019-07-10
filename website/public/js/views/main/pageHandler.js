@@ -111,6 +111,10 @@ function loadAll() {
 			</div>`);
 		});
 
+		// Remove the loading effect
+		$('#education .section-body > .content-loader').remove();
+		$('#education .section-body > .content.loading').removeClass('loading');
+
 		// Make sure the selected nav is still the correct one.
 		scrollUpdate();
 	});
@@ -132,6 +136,10 @@ function loadAll() {
 				</a>
 			</div>`);
 		});
+
+		// Remove the loading effect
+		$('#experiences .section-body > .content-loader').remove();
+		$('#experiences .section-body > .content.loading').removeClass('loading');
 
 		// Make sure the selected nav is still the correct one.
 		scrollUpdate();
@@ -155,6 +163,10 @@ function loadAll() {
 			first = false;
 		});
 
+		// Remove the loading effect
+		$('#abilities .section-body > .content-loader').remove();
+		$('#abilities .section-body > .content.loading').removeClass('loading');
+
 		// Make sure the selected nav is still the correct one.
 		scrollUpdate();
 	});
@@ -175,6 +187,10 @@ function loadAll() {
 			'itemURL': (item) => `/project/${item.id}`,
 			'displayAmount': (width) => 1 + Math.floor((width - 150) / 300)
 		});
+
+		// Remove the loading effect
+		$('#projects .section-body > .content-loader').remove();
+		$('#projects .section-body > .content.loading').removeClass('loading');
 
 		// Make sure the selected nav is still the correct one.
 		scrollUpdate();

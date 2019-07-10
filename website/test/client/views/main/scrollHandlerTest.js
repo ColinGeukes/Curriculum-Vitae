@@ -244,6 +244,13 @@ describe('Main ScrollHandler', () => {
 					'attr': {
 						'id': 'last-section'
 					}
+				},
+				'.intro-animation:not(.loading)': ['_animation'],
+				'_animation': {
+					'offset': {
+						'top': 10,
+						'height': 100
+					}
 				}
 			});
 
@@ -270,7 +277,7 @@ describe('Main ScrollHandler', () => {
 			// Bottom of page should be called, function is already tested thus it is stubbed.
 			scrollHandlerModule.__get__("scrollUpdate")();
 		});
-		it('Scroll update, highlight middle section', (done) => {
+		it('Scroll update, highlight middle section and apply animaton', (done) => {
 			// Setting up the jQuery mock.
 			jQuery = jQueryMock.create({
 				'window': {
@@ -291,7 +298,14 @@ describe('Main ScrollHandler', () => {
 						'id': 'middle-section'
 					}
 				},
-				'section-3': {}
+				'section-3': {},
+				'.intro-animation:not(.loading)': ['_animation'],
+				'_animation': {
+					'offset': {
+						'top': 960
+					},
+					'height': 10
+				}
 			});
 
 
@@ -309,6 +323,10 @@ describe('Main ScrollHandler', () => {
 				'bottomOfPage': (bottom, notBottom) => notBottom(),
 				'isInView': (element) => element === jQuery.config['section-2'].__element,
 				'selectSingleNavButton': () => {
+
+					// Should remove the intro animation class.
+					expect(jQuery.config['_animation'].__changes['removeClass'][0]).to.be.equal('intro-animation');
+
 					// Getting here is the end of the function.
 					done();
 				}

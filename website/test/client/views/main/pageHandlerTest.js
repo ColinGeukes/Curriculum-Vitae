@@ -52,6 +52,8 @@ describe('Main PageHandler', () => {
 					},
 					'prepend': (text) => {
 					},
+					'remove': () => {
+					},
 					'addClass': (text) => {
 					},
 					'removeClass': (text) => {
@@ -172,7 +174,8 @@ describe('Main PageHandler', () => {
 				'Skill': skillModule,
 				'window': 'window',
 				'document': 'document',
-				'scrollUpdate': () => {},
+				'scrollUpdate': () => {
+				},
 				Gallery
 			});
 

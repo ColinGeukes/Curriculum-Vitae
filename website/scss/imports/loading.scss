@@ -1,0 +1,38 @@
+.content-loader {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 64px;
+}
+.content-loader div {
+  display: inline-block;
+  position: absolute;
+  width: 13px;
+  background: $dark;
+  animation: content-loading 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.content-loader div:nth-child(1) {
+  @include apply-transform(translateX(-50%));
+  left: calc(50% - 20px);
+  animation-delay: -0.24s;
+}
+.content-loader div:nth-child(2) {
+  @include apply-transform(translateX(-50%));
+  left: calc(50%);
+  animation-delay: -0.12s;
+}
+.content-loader div:nth-child(3) {
+  @include apply-transform(translateX(-50%));
+  left: calc(50% + 20px);
+  animation-delay: 0;
+}
+@keyframes content-loading {
+  0% {
+    top: 6px;
+    height: 51px;
+  }
+  50%, 100% {
+    top: 19px;
+    height: 26px;
+  }
+}
