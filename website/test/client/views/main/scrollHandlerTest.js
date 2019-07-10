@@ -323,9 +323,8 @@ describe('Main ScrollHandler', () => {
 				'bottomOfPage': (bottom, notBottom) => notBottom(),
 				'isInView': (element) => element === jQuery.config['section-2'].__element,
 				'selectSingleNavButton': () => {
-
 					// Should remove the intro animation class.
-					expect(jQuery.config['_animation'].__changes['removeClass'][0]).to.be.equal('intro-animation');
+					expect(jQuery.config._animation.__changes.removeClass[0]).to.be.equal('intro-animation');
 
 					// Getting here is the end of the function.
 					done();

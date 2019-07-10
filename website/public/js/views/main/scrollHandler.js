@@ -15,8 +15,6 @@ function isScrolledIntoView(element) {
 	const topOfElement = element.offset().top;
 	// Get coordinates of element relative to the document.
 	const botOfElement = topOfElement + element.height();
-
-
 	// Calculate the height of screen with factor applied that enables the scroll in effect.
 	const heightDiff = $(window).height() * SCROLLED_INTO_VIEW_FACTOR;
 
@@ -67,10 +65,11 @@ function selectSingleNavButton(sectionElement) {
 function animateSections() {
 	$('.intro-animation:not(.loading)').each(function introAnimation() {
 		const element = $(this);
+
 		if (isScrolledIntoView(element)) {
 			element.removeClass('intro-animation');
 		}
-	})
+	});
 }
 
 /**

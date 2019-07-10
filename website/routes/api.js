@@ -40,7 +40,6 @@ function createBasicQueryPath(api, url, query, params = []) {
 		const requestParams = getRequestParams(req.query, params);
 
 		api._dao.query(query, requestParams, (err, rows) => {
-
 			// Send the response
 			standardResponse(res, err, rows);
 		});
