@@ -1,0 +1,8 @@
+website/node_modules/
+website/config.json
+.idea/
+website/.idea/
+website/.nyc_output
+website/coverage
+website/public/css
+
