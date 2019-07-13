@@ -1,9 +1,10 @@
 const express = require('express');
 const path = require('path');
-const config = require('./config.json');
-const Dao = require('./dao/dao.js');
-const Mailer = require('./server/mailer/mailer.js');
-const Api = require('./server/routes/api.js');
+const config = require(`${__dirname}/config.json`);
+const Dao = require(`${__dirname}/dao/dao.js`);
+const Mailer = require(`${__dirname}/server/mailer/mailer.js`);
+const Api = require(`${__dirname}/server/routes/api.js`);
+
 // Instantiate app
 const app = express();
 
