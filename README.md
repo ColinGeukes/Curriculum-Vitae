@@ -24,3 +24,5 @@ The javascript code should always embrace some standards to make programming a l
 ## Database
 The database used is `MySQL`. Always used `MySQL` for the majority of my projects and will continue to do so for this very project. After the final launch updating the project is bothersome for small updates. This is where a database can come in handy to automate that process better. Just insert some more rows into the database and it will automatically be displayed on the website. By using data in the database it is easy to make relations between them and display properly. Which gives the website a more integrated feel.
 
+## Production
+Automatic production is done by using `git push live master`
