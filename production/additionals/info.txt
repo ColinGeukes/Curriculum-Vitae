@@ -1,0 +1,2 @@
+All additional information that needs to be added manually, should be located inside this directory.
+This include all config files that rely on passwords/secrets.

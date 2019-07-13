@@ -1,0 +1,43 @@
+#!/bin/sh
+TARGET="/var/www/curriculum-vitae/"
+TEMP="/var/tmp/curriculum-vitae/"
+ADDITIONALS="/opt/curriculum-vitae.git/additionals/."
+REPO="/opt/curriculum-vitae.git/"
+NAME="Curriculum-vitae-website"
+
+echo 'create temporary directory'
+mkdir -p $TEMP
+mkdir -p $TARGET
+
+echo 'checkout the git directory in the temporary directory'
+git --work-tree=$TEMP --git-dir=$REPO checkout -f
+
+echo 'set up temporary directory'
+cd $TEMP
+cd website
+
+echo 'Install npm'
+npm install -g npm@latest
+npm install --production
+
+echo 'Build css'
+npm run build-css
+
+echo 'Add additionals to the temp directory'
+cd /
+cp -R $ADDITIONALS $TEMP
+rm -rf $TARGET
+
+echo 'Add temporary building directory to target directory'
+mv $TEMP $TARGET
+
+echo 'map port 80 to port 3000'
+sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
+
+echo 'Starting the express app on npm2'
+cd $TARGET/website
+pm2 delete $NAME
+pm2 start index.js --name $NAME
+
+echo 'Done!'
+
