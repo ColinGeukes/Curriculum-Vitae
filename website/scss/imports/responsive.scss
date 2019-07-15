@@ -15,17 +15,17 @@
     width: 750px;
   }
 
-  .nav-inner {
+  header nav .nav-inner {
     width: 750px;
 
     .nav-button {
 
       &:not(:first-child) {
-        margin-left: 8px !important;
+        margin-left: 8px;
       }
 
       &:not(:last-child) {
-        margin-right: 8px !important;
+        margin-right: 8px;
       }
     }
   }
@@ -79,6 +79,7 @@
     &:before {
       border-left: 0;
       border-right: 0;
+      width: 100%;
     }
   }
 }

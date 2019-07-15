@@ -1,3 +1,6 @@
+$min-width: 320px;
+$scrollbar-width: 17px;
+
 html {
   scroll-behavior: smooth;
   background-color: $dark;
@@ -15,6 +18,15 @@ body {
     margin: 165px 0 0;
     padding: 0 0 65px;
     background: #484848;
+  }
+
+  min-width: $min-width;
+}
+
+
+@media (max-width: $min-width) {
+  body {
+    overflow: auto;
   }
 }
 
@@ -561,6 +573,7 @@ header {
 
   nav {
     @include apply-box-shadow(0, 5px, 5px, $dark);
+    min-width: calc(#{$min-width} - #{$scrollbar-width});
     position: fixed;
     z-index: 4321;
     width: 100%;
@@ -571,7 +584,7 @@ header {
       margin: 0 auto;
       height: 100%;
       display: flex;
-      padding: 0 16px 0 20px;
+      padding: 0 20px 0;
 
       .nav-button {
         margin: 0 20px;
@@ -601,7 +614,7 @@ header {
           top: -25%;
           bottom: 0;
           margin: auto;
-          width: $nav-icon;
+          width: 100%;
           height: $nav-icon;
           font-size: $nav-icon;
           line-height: $nav-icon;
@@ -654,6 +667,46 @@ header {
 
           &:nth-child(4n + 4) {
             background-color: $color-4;
+          }
+        }
+      }
+
+      //i {
+      //  @include apply-transform(translate(-50%, -50%));
+      //  position: absolute;
+      //  left: 50%;
+      //  top: 50%;
+      //  line-height: 30px;
+      //  font-size: 30px;
+      //}
+    }
+
+
+    // Effects for mobile sized nav.
+    &.nav-small {
+      .nav-inner {
+        padding: 0 5px;
+
+        .nav-button {
+          margin: 0 2px 0;
+
+          &:not(.activated) {
+            max-width: 100px;
+            flex-basis: auto;
+
+            span {
+              visibility: hidden;
+            }
+
+            i {
+              @include apply-transform(translateY(-50%));
+              top: 50%;
+            }
+          }
+
+          &.activated {
+            min-width: 100px;
+            flex: 1 1;
           }
         }
       }

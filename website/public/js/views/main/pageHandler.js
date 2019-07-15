@@ -1,5 +1,6 @@
 // Which project preview should be displayed
 let projectGallery;
+let navigation;
 
 /**
  * Method to add an ability skill to the page
@@ -197,12 +198,20 @@ function loadAll() {
 	});
 }
 
+function createNavigation() {
+	navigation = new Navigation();
+}
+
 /**
  * Main onResize method that handles all resize effects.
  */
 function onResize() {
 	if (projectGallery) {
 		projectGallery.onResize();
+	}
+
+	if(navigation) {
+		navigation.onResize();
 	}
 }
 
@@ -214,6 +223,7 @@ function onResize() {
 function initPageHandler() {
 	// Do events when the document is ready.
 	$(document).ready(() => {
+		createNavigation();
 		loadAll();
 		scrollUpdate();
 	});
