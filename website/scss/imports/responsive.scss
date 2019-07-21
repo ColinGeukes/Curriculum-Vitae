@@ -2,6 +2,10 @@
   .content-container, .footer-inner, .nav-inner {
     width: 1170px;
   }
+
+  header nav .nav-inner .nav-button {
+    flex-basis: 140px !important;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
@@ -89,6 +93,9 @@
     padding: 10px 15px !important;
   }
 
+  .section-body {
+    padding: 50px 0 !important;
+  }
   ul.scores li {
     position: relative;
 

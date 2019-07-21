@@ -49,8 +49,8 @@ describe('Education', () => {
 		});
 
 		it('Should have correct description', () => {
-			expect(testObject.description).to.be.a('string');
-			expect(testObject.description).to.be.equal(settings.description);
+			expect(testObject.description).to.be.a('array');
+			expect(testObject.description[0]).to.be.equal(settings.description);
 		});
 
 		it('Should have correct icon', () => {
@@ -205,8 +205,8 @@ describe('Education', () => {
 			expect(testObject[0].type).to.be.equal(settings[0].type);
 			expect(testObject[0].title).to.be.a('string');
 			expect(testObject[0].title).to.be.equal(settings[0].title);
-			expect(testObject[0].description).to.be.a('string');
-			expect(testObject[0].description).to.be.equal(settings[0].description);
+			expect(testObject[0].description).to.be.a('array');
+			expect(testObject[0].description[0]).to.be.equal(settings[0].description);
 			expect(testObject[0].icon).to.be.a('string');
 			expect(testObject[0].icon).to.be.equal(settings[0].icon);
 			expect(testObject[0].dateStart).to.be.a('Date');
@@ -225,8 +225,8 @@ describe('Education', () => {
 			expect(testObject[1].type).to.be.equal(settings[1].type);
 			expect(testObject[1].title).to.be.a('string');
 			expect(testObject[1].title).to.be.equal(settings[1].title);
-			expect(testObject[1].description).to.be.a('string');
-			expect(testObject[1].description).to.be.equal(settings[1].description);
+			expect(testObject[1].description).to.be.a('array');
+			expect(testObject[1].description[0]).to.be.equal(settings[1].description);
 			expect(testObject[1].icon).to.be.a('string');
 			expect(testObject[1].icon).to.be.equal(settings[1].icon);
 			expect(testObject[1].dateStart).to.be.a('Date');
@@ -284,8 +284,8 @@ describe('Education', () => {
 			expect(testObject[0].type).to.be.equal(settings[1].type);
 			expect(testObject[0].title).to.be.a('string');
 			expect(testObject[0].title).to.be.equal(settings[1].title);
-			expect(testObject[0].description).to.be.a('string');
-			expect(testObject[0].description).to.be.equal(settings[1].description);
+			expect(testObject[0].description).to.be.a('array');
+			expect(testObject[0].description[0]).to.be.equal(settings[1].description);
 			expect(testObject[0].icon).to.be.a('string');
 			expect(testObject[0].icon).to.be.equal(settings[1].icon);
 			expect(testObject[0].dateStart).to.be.a('Date');
@@ -303,8 +303,8 @@ describe('Education', () => {
 			expect(testObject[1].type).to.be.equal(settings[0].type);
 			expect(testObject[1].title).to.be.a('string');
 			expect(testObject[1].title).to.be.equal(settings[0].title);
-			expect(testObject[1].description).to.be.a('string');
-			expect(testObject[1].description).to.be.equal(settings[0].description);
+			expect(testObject[1].description).to.be.a('array');
+			expect(testObject[1].description[0]).to.be.equal(settings[0].description);
 			expect(testObject[1].icon).to.be.a('string');
 			expect(testObject[1].icon).to.be.equal(settings[0].icon);
 			expect(testObject[1].dateStart).to.be.a('Date');

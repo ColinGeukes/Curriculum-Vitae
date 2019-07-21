@@ -5,7 +5,7 @@ class Education {
 		this.type = settings.type;
 		this.title = settings.title;
 		this.icon = settings.icon;
-		this.description = settings.description;
+		this.description = settings.description.split('<br>');
 		this.dateStart = settings.dateStart;
 		this.dateEnd = settings.dateEnd;
 		this.url = settings.url;

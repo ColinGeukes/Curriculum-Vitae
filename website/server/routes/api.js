@@ -126,11 +126,11 @@ class Api extends express.Router {
 		// Create a simple api query call.
 		const that = this;
 
-
 		createBasicQueryPath(this, '/abilities', 'get_abilities');
 		createBasicQueryPath(this, '/projects', 'get_projects');
 		createBasicQueryPath(this, '/educations', 'get_educations');
 		createBasicQueryPath(this, '/experiences', 'get_experiences');
+		createBasicQueryPath(this, '/achievements', 'get_achievements');
 		createProjectPath(this, '/project');
 		createContactPath(this, '/contact');
 	}

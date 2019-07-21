@@ -30,6 +30,12 @@ const ProjectAbility = projectAbilityModule.__get__('ProjectAbility');
 // The gallery module
 const galleryModule = rewire('../../../../public/js/gallery.js');
 const Gallery = galleryModule.__get__('Gallery');
+// The achievement module
+const achievementModule = rewire('../../../../public/js/achievement.js');
+const Achievement = achievementModule.__get__('Achievement');
+// The navigation module
+const navigationModule = rewire('../../../../public/js/views/navigation.js');
+const Navigation = navigationModule.__get__('Navigation');
 // The project pageHandler module
 const PageHandlerModule = rewire('../../../../public/js/views/main/pageHandler.js');
 const initPageHandler = PageHandlerModule.__get__('initPageHandler');
@@ -166,12 +172,28 @@ describe('Main PageHandler', () => {
 				});
 			};
 
+			achievementModule.loadAll = function loadAll() {
+				return new Promise((resolve) => {
+					resolve([
+						new Achievement({
+							'id': 1,
+							'title': 'Achievement title',
+							'description': 'Achievement description',
+							'icon': 'fa-icon',
+							'date': new Date('2001-01-01')
+						})
+					]);
+				});
+			};
+
 			PageHandlerModule.__set__({
 				'$': createJqueryMock('', {"width": 5000}),
 				'Education': educationModule,
 				'Experience': experienceModule,
 				'ProjectCard': projectCardModule,
 				'Skill': skillModule,
+				'Achievement': achievementModule,
+				Navigation,
 				'window': 'window',
 				'document': 'document',
 				'scrollUpdate': () => {

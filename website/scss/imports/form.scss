@@ -39,6 +39,11 @@
     min-width: 160px;
     background-color: $color-2;
     font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-2-light;
+    }
   }
 }
 

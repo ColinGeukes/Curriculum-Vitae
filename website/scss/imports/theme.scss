@@ -1,5 +1,6 @@
 $min-width: 320px;
 $scrollbar-width: 17px;
+$min-nav-button-width: 115px;
 
 html {
   scroll-behavior: smooth;
@@ -90,24 +91,26 @@ section {
   background-color: $background-color;
 }
 
-section:nth-child(4n) .section-header:before {
+section.color-1 .section-header:before {
   background-color: $color-1;
 }
 
-section:nth-child(4n + 1) .section-header:before {
+section.color-2 .section-header:before {
   background-color: $color-2;
 }
 
-section:nth-child(4n + 2) .section-header:before {
+section.color-3 .section-header:before {
   background-color: $color-3;
 }
 
-section:nth-child(4n + 3) .section-header:before {
+section.color-4 .section-header:before {
   background-color: $color-4;
 }
 
 
-section.central-section {
+section {
+  margin: auto;
+
   .section-header {
     left: 50%;
     transform: translate(-50%, 0);
@@ -446,121 +449,6 @@ ul.scores {
   }
 }
 
-#projects {
-  .cards {
-    max-width: calc(100% - 90px);
-
-    .row {
-      display: flex;
-      justify-content: center;
-    }
-
-    .hidden {
-      position: absolute;
-      visibility: hidden;
-    }
-
-    .card {
-      background-color: white;
-      height: 270px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      border-radius: 6px;
-      text-decoration: none;
-      color: black;
-
-      .image {
-        flex: 1 1 auto;
-        overflow: hidden;
-        position: relative;
-        background-color: $dark;
-        color: white;
-
-        img {
-          transition: min-height 0.3s ease-out, max-height 0.3s ease-out, height 0.3s ease-out,
-          min-width 0.3s ease-out, max-width 0.3s ease-out, width 0.3s ease-out;
-
-          -o-object-fit: cover;
-          object-fit: cover;
-          min-height: 105%;
-          min-width: 105%;
-          width: 100%;
-          margin: auto;
-          display: block;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          @include apply-transform(translate(-50%, -50%))
-        }
-      }
-
-      .text {
-        flex: 0 1 100px;
-        margin-top: -14px;
-        z-index: 1;
-
-        h1 {
-          text-transform: none;
-          font-size: 20px;
-          display: inline-block;
-          margin-bottom: 6px;
-          background-color: $color-4;
-          padding: 2px 10px;
-          border-radius: 4px;
-        }
-
-        $font-size: 16px;
-        $line-height: 1.4;
-        $lines-to-show: 3;
-
-        p {
-          margin: -20px 0 0;
-          padding: 20px 8px 4px;
-          display: -webkit-box;
-          //height: $font-size*$line-height*$lines-to-show;
-          font-size: $font-size;
-          line-height: $line-height;
-          -webkit-line-clamp: $lines-to-show;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-      }
-
-      &:hover {
-        cursor: pointer;
-
-        h1 {
-          background-color: #5dbbe8;
-        }
-
-        .image img {
-          min-height: 130%;
-          min-width: 130%;
-        }
-      }
-    }
-  }
-}
-
-
-/**********
---- Color schemes
- **********/
-
-.section-theme-3 {
-
-  .section-header:before {
-    background-color: $color-2 !important;
-  }
-
-  .section-body:before {
-    background-color: $color-3;
-  }
-}
-
 /**********
 --- NAVIGATION
  **********/
@@ -585,9 +473,9 @@ header {
       height: 100%;
       display: flex;
       padding: 0 20px 0;
+      justify-content: space-between;
 
       .nav-button {
-        margin: 0 20px;
         display: inline-block;
         text-align: center;
         background-color: $section-body-accent;
@@ -597,15 +485,7 @@ header {
         height: 100%;
         width: 160px;
         cursor: pointer;
-
-        &:first-child {
-          margin-left: 0;
-        }
-
-        &:last-child {
-          margin-right: 0;
-        }
-
+        flex-basis: $min-nav-button-width;
 
         i {
           position: absolute;
@@ -653,19 +533,19 @@ header {
             text-shadow: 2px 0 0 $dark, -2px 0 0 $dark, 0 2px 0 $dark, 0 -2px 0 $dark, 1px 1px $dark, -1px -1px 0 $dark, 1px -1px 0 $dark, -1px 1px 0 $dark;
           }
 
-          &:nth-child(4n + 1) {
+          &.color-1 {
             background-color: $color-1;
           }
 
-          &:nth-child(4n + 2) {
+          &.color-2 {
             background-color: $color-2;
           }
 
-          &:nth-child(4n + 3) {
+          &.color-3 {
             background-color: $color-3;
           }
 
-          &:nth-child(4n + 4) {
+          &.color-4 {
             background-color: $color-4;
           }
         }
@@ -681,7 +561,16 @@ header {
       //}
     }
 
-
+    // Effects for big nav.
+    //&:not(.nav-small){
+    //  .nav-inner {
+    //    justify-content: space-between;
+    //
+    //    .nav-button {
+    //      min-width: $min-nav-button-width;
+    //    }
+    //  }
+    //}
     // Effects for mobile sized nav.
     &.nav-small {
       .nav-inner {
@@ -705,7 +594,7 @@ header {
           }
 
           &.activated {
-            min-width: 100px;
+            min-width: $min-nav-button-width;
             flex: 1 1;
           }
         }

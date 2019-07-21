@@ -10,7 +10,7 @@ html
     body
         include includes/navigation
         div(class="content-container")
-            section(id="profile" class="central-section")
+            section(id="profile" class="color-2")
                 div(class="section-header big-header has-shadow")
                     div(class="content")
                         h1 Colin Geukes
@@ -38,9 +38,8 @@ html
                                             span +31 (06) 55725038
 
                         div(class="content-body")
-                            p I am an allround web developer. I am a senior programmer with good knowledge of front-end techniques. I love structure and order and I also stand for quality. I love spending time on fixing little details and optimizing web apps. Also I like working in a team, you'll learn faster and much more. As the saying goes: 'two heads are better than one'.
-                            p I am an allround web devnding time on fixing little details and optimizing web apps. Also I like working in a team, you'll learn faster and much more. As the saying goes: 'two heads are better than one'.
-
+                            p I am a highly competent software developer that can solve a fast amount of different tasks, including designing websites, networking, database management, algorithms and much more. I have strong technical skills as well as a passion for designing software. In my early life, I learned all in an autodidactic manner. Later on, I attended university to enhance my technical skills. I am eager to be challenged in order to grow and further improve my software developing skills. My greatest passion in life is using my technical understandings to benefit other people and organizations.
+                            p I enjoy writing code that is well structured and properly documented, to make it easily maintainable and improve group performance. I like working in a team, and can handle scrum meetings without any hassle!
                             div(class="hobbies-tag")
                                 h2 Interests & hobbies
                             div(class="hobbies-outer")
@@ -71,7 +70,7 @@ html
                     div(class="shadow")
 
             //---- Education section
-            section(id="education" class="central-section")
+            section(id="education" class="color-3")
                 div(class="section-header has-shadow")
                     div(class="content")
                         h1 education
@@ -86,7 +85,7 @@ html
                     div(class="shadow")
 
             //---- Experience section
-            section(id="experiences" class="central-section")
+            section(id="experiences" class="color-4")
                 div(class="section-header has-shadow")
                     div(class="content")
                         h1 experiences
@@ -101,7 +100,7 @@ html
                     div(class="shadow")
 
             //---- Abilities section
-            section(id="abilities" class="central-section")
+            section(id="abilities" class="color-1")
                 div(class="section-header has-shadow")
                     div(class="content")
                         h1 abilities
@@ -116,7 +115,7 @@ html
                     div(class="shadow")
 
             //---- Projects preview section
-            section(id="projects" class="central-section")
+            section(id="projects" class="color-2")
                 div(class="section-header has-shadow")
                     div(class="content")
                         h1 projects
@@ -124,13 +123,31 @@ html
                 div(class="section-body")
                     div(class="content loading intro-animation")
                         div(class="project-gallery")
+                        div(class="project-on-github")
+                            p This project is build on a custom made nodeJS framework. It contains a lot of features and functionality to show what I am capable of.
+                            a(href="https://github.com/ColinGeukes/Curriculum-Vitae") See project on github
                     div(class="content-loader")
                         div
                         div
                         div
                     div(class="shadow")
 
-            section(id="contact" class="central-section section-theme-3")
+            //---- Achievements section
+            section(id="achievements" class="color-3")
+                div(class="section-header has-shadow")
+                    div(class="content")
+                        h1 achievements
+                    div(class="shadow")
+                div(class="section-body")
+                    div(class="content loading intro-animation")
+                        div(class="main-timeline")
+                    div(class="content-loader")
+                        div
+                        div
+                        div
+                    div(class="shadow")
+
+            section(id="contact" class="color-2")
                 div(class="section-header clip-always-visible has-shadow")
                     div(class="content")
                         h1 How can I help?
@@ -159,6 +176,7 @@ html
         script(type="text/javascript", src="/js/education.js")
         script(type="text/javascript", src="/js/experience.js")
         script(type="text/javascript", src="/js/gallery.js")
+        script(type="text/javascript", src="/js/achievement.js")
         script(type="text/javascript", src="/js/views/main/scrollHandler.js")
         script(type="text/javascript", src="/js/views/main/pageHandler.js")
         script initPageHandler();

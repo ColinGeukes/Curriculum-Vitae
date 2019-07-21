@@ -78,6 +78,16 @@ create TABLE experience (
     PRIMARY KEY (id)
 ) ENGINE=INNODB;
 
+create TABLE achievement (
+    id INT AUTO_INCREMENT,
+    title VARCHAR(120) NOT NULL,
+    description VARCHAR(120) NOT NULL,
+    icon varchar(200) NOT NULL,
+    link varchar(200),
+    date DATE NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=INNODB;
+
 -- INITIAL VALUES
 delete from types where 1=1;
 insert into types
@@ -146,16 +156,24 @@ values
 insert into education
   (id, icon, name, type, title, description, date_start, date_end, link)
 values
-  (1,'fas fa-university', 'Technical University of Delft', 'University education', 'BSc: Computer Science', 'Self-driving cars, smartphone navigation, personalized offers based on surfing behavior, healthcare robots, and searching through films and pictures. During the Computer Science and Engineering degree program, one learns how to develop software and implement data processing for the intelligent systems of today and the future. This could include medical systems, security and perhaps even the new YouTube. Mathematical analysis and modeling, logical reasoning, programming algorithms and working with concepts of programming languages are all important subjects of this study, and so is collaboration. This is why, every half a year, one will work on a project with a group of fellow students, designing systems like an intelligent bot in a computer game.', date('2016-09-05'), null, 'https://www.tudelft.nl/en/education/programmes/bachelors/cse/bachelor-of-computer-science-and-engineering/'),
-  (2,'fas fa-school', 'De Goudse Waarden', 'Pre-university education', 'Grammar school','A pre-university located in Gouda',DATE('2011-09-05'), DATE('2015-07-05'), 'https://www.degoudsewaarden.nl/');
+  (1,'fas fa-university', 'Technical University of Delft', 'University education', 'BSc: Computer Science', 'The Computer Science bachelor tutored by the Technical University of Delft focuses on learning a vast majority of different programming languages and technical skills. Working in agile project groups are part of enhancing participants to a better standard in developing all kinds of software. <br> While attending this education I also joined two student associations namely: D.S.V. Sint Jansbrug and Haagsch Student SchuttersKorps. Participating in several different student committees.', date('2016-09-05'), null, 'https://www.tudelft.nl/en/education/programmes/bachelors/cse/bachelor-of-computer-science-and-engineering/'),
+  (2,'fas fa-school', 'De Goudse Waarden', 'Pre-university education', 'Grammar school','De Goudse Waarden is a pre-university located in Gouda. From the beginning of this education, I already knew what I wanted to do in life and that was becoming a software developer. So I choose to participate in all the technical courses the school taught. My GPA for these courses is high and intensified the decision I made to become a software developer. <br> In the fifth year I was awarded the title of an excellent student and allowed me to participate with several masterclasses. ',DATE('2011-09-05'), DATE('2015-07-05'), 'https://www.degoudsewaarden.nl/');
 
 
 insert into experience
   (id, icon, name, title, description, date_start, date_end, link)
 values
-  (0, 'fas fa-hands-helping', 'De Heemtuin', 'Volunteer gardener', 'Volunteer work as a gardener at a nature preserve located in Gouda. This work consisted of every mundane task that can be done in a volunteer nature preserve. The most important aspect of this work was teamwork and coordination.', date('2013-11-01'), date('2014-05-28'), 'http://www.heemtuingoudsehout.nl/'),
-  (1, 'fas fa-chalkboard-teacher','De Bijles Student', 'Assistent teacher', 'Teaching the basics of programming in p5js to a pre-vocational secondary education class. This class had no prior experiences in programming at all, hence the key aspect of this task was to explain everything as effectively as possible.', DATE('2018-11-01'), DATE('2018-11-30'), 'https://www.debijlesstudent.nl/');
+  (1, 'fas fa-hands-helping', 'De Heemtuin', 'Volunteer gardener', 'Volunteer work as a gardener at a nature preserve located in Gouda. This work consisted of every mundane task that can be done in a volunteer nature preserve. The most important aspect of this work was teamwork and coordination.', date('2013-11-01'), date('2014-05-28'), 'http://www.heemtuingoudsehout.nl/'),
+  (2, 'fas fa-chalkboard-teacher','De Bijles Student', 'Assistent teacher', 'Teaching the basics of programming in p5js to a pre-vocational secondary education class. This class had no prior experiences in programming at all, hence the key aspect of this task was to explain everything as effectively as possible.', DATE('2018-11-01'), DATE('2018-11-30'), 'https://www.debijlesstudent.nl/'),
+  (3, 'fas fa-hands-helping', 'Madurodam Manege', 'Volunteer handyman', 'Yearly volunteer work on a horse riding school for people with a disorder. This work consists out of different tasks, mainly to improve to current situation of the place.', date('2018-07-25'), null, 'http://madurodammanege.nl/');
 
+
+insert into achievement
+  (id, title, description, icon, date, link)
+values
+  (1, 'First place AI class', 'The AI we wrote for a course given by Technical University of Delft ended up being the winner of the final competition.', 'fas fa-trophy', DATE('2017-11-08'), null),
+  (2, 'Participating Ludum Dare', 'Participating in a challenge to create a complete game from scratch in just a week by yourself.', 'fas fa-certificate', DATE('2015-12-14'), 'http://ludumdare.com/compo/ludum-dare-34/?action=preview&uid=62758'),
+  (3, 'Excellent student', 'I was awarded the status of an excellent student while studying at De Goudse Waarden.', 'fas fa-award', DATE('2015-03-11'), null);
 
 insert into project_ability
   (project_id, ability_id)

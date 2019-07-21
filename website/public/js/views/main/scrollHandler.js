@@ -1,5 +1,5 @@
 const LAST_SECTION_SCROLL_NAV_SELECT_DIFF = 10;
-const SCROLLED_INTO_VIEW_FACTOR = 0.2;
+const SCROLLED_INTO_VIEW_FACTOR = 0.1;
 
 /**
  * Method that checks if the element has been scrolled into view.

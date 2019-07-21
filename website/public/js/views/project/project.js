@@ -5,6 +5,7 @@ class Project {
 		this.description = settings.description.split('<br>');
 		this.startDate = settings.startDate;
 		this.endDate = settings.endDate;
+		this.url = settings.url;
 		this.tags = {};
 	}
 
@@ -27,7 +28,8 @@ class Project {
 			'title': projectData.title,
 			'description': projectData.description,
 			'startDate': new Date(projectData.date_start),
-			'endDate': new Date(projectData.date_end)
+			'endDate': new Date(projectData.date_end),
+			'url': projectData.link
 		});
 
 		// Add the tags of the project to the list of Tags inside the Project.

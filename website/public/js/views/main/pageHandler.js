@@ -20,6 +20,13 @@ function addSkill(parent, skill) {
 		 * @param {boolean} filled - If the star should be filled
 		 * @returns {string} html representation of a (filled) star.
 		 */
+
+		// Negatves stars means that no stars should be visible.
+		if (amount < 0) {
+			return '<span class="score"></span>';
+		}
+
+		// The create star function. Used for creating a single star which is called several times.
 		function createStar(filled) {
 			// Return a filled star
 			if (filled) {
@@ -92,6 +99,15 @@ function loadAll() {
 
 	// Load educations.
 	Education.loadAll(true).then((educations) => {
+		function createDescription(descriptionArray) {
+			let ret = '';
+
+			descriptionArray.forEach((description) => {
+				ret += `<p class="description">${description}</p>`;
+			});
+			return ret;
+		}
+
 		educations.forEach((education) => {
 			// Add filler classes to the experience so the colour-schema passes correctly to the next section.
 			$('#experiences .main-timeline').prepend(`<div class="fully-hidden"></div>`);
@@ -106,7 +122,7 @@ function loadAll() {
 					<div class="content">
 						<h3 class="title">${education.name}</h3>
 						<h4 class="subtitle">${education.title}</h4>
-						<p class="description">${education.description}</p>
+						${createDescription(education.description)}
 					</div>
 				</a>
 			</div>`);
@@ -196,6 +212,38 @@ function loadAll() {
 		// Make sure the selected nav is still the correct one.
 		scrollUpdate();
 	});
+
+	// Load experiences.
+	Achievement.loadAll(true).then((achievements) => {
+		function createHREF(link) {
+			if (link) {
+				return `href="${link}"`;
+			}
+			return '';
+		}
+
+		achievements.forEach((achievement) => {
+			$('#achievements .main-timeline').append(`<div class="timeline">
+				<a ${createHREF(achievement.url)} class="timeline-content">
+					<div class="timeline-year-tag">
+						<div class="timeline-icon"><i class="${achievement.icon}" aria-hidden="true"></i></div>
+						<span class="timeline-year">${achievement.date.getFullYear()}</span>
+					</div>
+					<div class="content">
+						<h3 class="title">${achievement.title}</h3>
+						<p class="description">${achievement.description}</p>
+					</div>
+				</a>
+			</div>`);
+		});
+
+		// Remove the loading effect
+		$('#achievements .section-body > .content-loader').remove();
+		$('#achievements .section-body > .content.loading').removeClass('loading');
+
+		// Make sure the selected nav is still the correct one.
+		scrollUpdate();
+	});
 }
 
 function createNavigation() {
@@ -210,7 +258,7 @@ function onResize() {
 		projectGallery.onResize();
 	}
 
-	if(navigation) {
+	if (navigation) {
 		navigation.onResize();
 	}
 }
