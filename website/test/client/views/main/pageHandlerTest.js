@@ -141,7 +141,7 @@ describe('Main PageHandler', () => {
 							'skills': [
 								new Skill({
 									'name': 'Java',
-									'stars': 5,
+									'stars': 4,
 									'extra': 'Very good at it'
 								})
 							]
@@ -151,7 +151,7 @@ describe('Main PageHandler', () => {
 							'skills': [
 								new Skill({
 									'name': 'Testing',
-									'stars': 3
+									'stars': -1
 								})
 							]
 						}
@@ -180,7 +180,8 @@ describe('Main PageHandler', () => {
 							'title': 'Achievement title',
 							'description': 'Achievement description',
 							'icon': 'fa-icon',
-							'date': new Date('2001-01-01')
+							'date': new Date('2001-01-01'),
+							'url': 'hello.com'
 						})
 					]);
 				});

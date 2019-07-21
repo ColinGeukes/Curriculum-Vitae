@@ -97,6 +97,13 @@ function loadAll() {
 		return `${yearA} - ${yearB}`;
 	}
 
+	function createHREF(link) {
+		if (link) {
+			return `href="${link}"`;
+		}
+		return '';
+	}
+
 	// Load educations.
 	Education.loadAll(true).then((educations) => {
 		function createDescription(descriptionArray) {
@@ -114,7 +121,7 @@ function loadAll() {
 
 			// Add the education to the education timeline.
 			$('#education .main-timeline').append(`<div class="timeline">
-				<a href="${education.url}" class="timeline-content">
+				<a ${createHREF(education.url)} class="timeline-content">
 					<div class="timeline-year-tag">
 						<div class="timeline-icon"><i class="${education.icon}" aria-hidden="true"></i></div>
 						<span class="timeline-year">${getYearDifference(education.dateStart, education.dateEnd)}</span>
@@ -140,7 +147,7 @@ function loadAll() {
 	Experience.loadAll(true).then((experiences) => {
 		experiences.forEach((experience) => {
 			$('#experiences .main-timeline').append(`<div class="timeline">
-				<a href="${experience.url}" class="timeline-content">
+				<a ${createHREF(experience.url)} class="timeline-content">
 					<div class="timeline-year-tag">
 						<div class="timeline-icon"><i class="${experience.icon}" aria-hidden="true"></i></div>
 						<span class="timeline-year">${getYearDifference(experience.dateStart, experience.dateEnd)}</span>
@@ -215,13 +222,6 @@ function loadAll() {
 
 	// Load experiences.
 	Achievement.loadAll(true).then((achievements) => {
-		function createHREF(link) {
-			if (link) {
-				return `href="${link}"`;
-			}
-			return '';
-		}
-
 		achievements.forEach((achievement) => {
 			$('#achievements .main-timeline').append(`<div class="timeline">
 				<a ${createHREF(achievement.url)} class="timeline-content">

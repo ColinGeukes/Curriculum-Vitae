@@ -76,19 +76,63 @@ describe('Dao', () => {
 		});
 	});
 
-	context('query calls', () => {
-		before((done) => {
-			dao = new Dao(config, true);
-			done();
-		});
-
+	context('query calls no autoloading', () => {
 		it('Initialising DAO without autoloading queries', (done) => {
 			dao = new Dao(config, false);
 
 			// No queries should be loaded.
 			expect(Object.keys(dao.queries).length).to.be.equal(0);
 
+			dao.close();
 			done();
+		});
+	});
+
+	context('query calls with mock sql', () => {
+		it('test query path', (done) => {
+			// Create the dao and close connection with database in order to mock it.
+			dao = new Dao(config, false);
+			dao.close();
+
+			// Mock functionality.
+			dao.queries = {'test-path': 'select * from test_table'};
+			dao.sql = {
+				'query': (query, identifiers, callback) => {
+					callback(null, 'success');
+				}
+			};
+
+			// Perform the mocked query.
+			dao.query('test-path', [], (err, rows) => {
+				expect(rows).to.be.equal('success');
+				done();
+			});
+		});
+
+		it('test query path contact', (done) => {
+			// Create the dao and close connection with database in order to mock it.
+			dao = new Dao(config, false);
+			dao.close();
+
+			const name = 'Jan';
+			const organization = 'company';
+			const email = 'Jan@company';
+			const description = 'help';
+			const ret = name + organization + email + description;
+
+			// Mock functionality.
+			dao.queries = {'post_contact': 'post contact to database in sql'};
+			dao.sql = {
+				'query': (query, identifiers, callback) => {
+					callback(null, ret);
+				}
+			};
+
+			// Perform the mocked query.
+			dao.queryContact(name, organization, email, description, (err, rows) => {
+				expect(rows).to.be.equal(ret);
+				done();
+			});
 		});
 	});
 });
