@@ -30,6 +30,17 @@ function createArrayElement(jQuery, configuration, element) {
 		}
 	};
 
+	arrayObject.get = function get() {
+		return {
+			'reverse': () => {
+				const ret = [];
+				for (let i = arrayObject.length - 1; i >= 0; i--) {
+					ret.push(arrayObject[i]);
+				}
+				return jQuery(ret, configuration, element);
+			}
+		}
+	};
 	return arrayObject;
 }
 
@@ -68,8 +79,10 @@ function createSingleElement(jQuery, configuration, element) {
 		'addClass': (addClass) => configuration[element].__changes.addClass.push(addClass),
 		'removeClass': (removeClass) => configuration[element].__changes.removeClass.push(removeClass),
 		'html': (html) => configuration[element].__changes.html.push(html),
-		'css': (type, value) => configuration[element].__changes.css.push({type,
-			value}),
+		'css': (type, value) => configuration[element].__changes.css.push({
+			type,
+			value
+		}),
 		'click': (clickFunction) => configuration[element].__changes.click.push(clickFunction),
 		'find': (elementToFind) => {
 			// Check if the find is declared, if not throw an error.
@@ -83,7 +96,7 @@ function createSingleElement(jQuery, configuration, element) {
 		'height': () => configuration[element].height,
 		'scrollTop': () => configuration[element].scrollTop,
 		'offset': () => configuration[element].offset,
-		'attr': (attribute) => configuration[element].attr[attribute]
+		'attr': (attribute) => configuration[element].attr[attribute],
 	};
 }
 

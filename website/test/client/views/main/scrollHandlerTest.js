@@ -84,7 +84,7 @@ describe('Main ScrollHandler', () => {
 			// Setting up the jQuery mock.
 			jQuery = jQueryMock.create({
 				'window': {
-					'scrollTop': 100,
+					'scrollTop': 300,
 					'height': 400
 				},
 				'view-element': {
@@ -277,7 +277,7 @@ describe('Main ScrollHandler', () => {
 			// Bottom of page should be called, function is already tested thus it is stubbed.
 			scrollHandlerModule.__get__("scrollUpdate")();
 		});
-		it('Scroll update, highlight middle section and apply animaton', (done) => {
+		it('Scroll update, highlight middle section and apply animation', (done) => {
 			// Setting up the jQuery mock.
 			jQuery = jQueryMock.create({
 				'window': {
@@ -292,13 +292,25 @@ describe('Main ScrollHandler', () => {
 					'section-2',
 					'section-3'
 				],
+				'section-3,section-2,section-1': [
+					'section-3',
+					'section-2',
+					'section-1'
+				],
 				'section-1': {},
 				'section-2': {
 					'attr': {
 						'id': 'middle-section'
+					},
+					'offset': {
+						'top': 499
 					}
 				},
-				'section-3': {},
+				'section-3': {
+					'offset': {
+						'top': 2000
+					}
+				},
 				'.intro-animation:not(.loading)': ['_animation'],
 				'_animation': {
 					'offset': {

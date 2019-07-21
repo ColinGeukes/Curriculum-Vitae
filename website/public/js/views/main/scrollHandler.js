@@ -27,14 +27,7 @@ function isScrolledIntoView(element) {
  * @return {boolean} - true if in the view, false otherwise.
  */
 function isInView(element) {
-	// Declare variable for top of viewport
-	const topViewPort = $(window).scrollTop();
-	// Declare variable for bottom of viewport
-	const botViewPort = topViewPort + $(window).height();
-	// Get coordinates of element relative to the document.
-	const botOfElement = element.offset().top + element.height();
-
-	return botOfElement <= botViewPort && botOfElement >= topViewPort;
+	return element.offset().top <= $(window).scrollTop();
 }
 
 function bottomOfPage(bottom, notBottom) {
@@ -87,7 +80,7 @@ function highlightCurrentNavElement() {
 		// If user is not scrolled to the bottom of the page, check which section the user is currently at.
 		let navActivated = false;
 
-		sections.each(function checkSectionInView() {
+		$(sections.get().reverse()).each(function checkSectionInView() {
 			// Don't do anything if a nav button has already been activated.
 			if (!navActivated) {
 				const element = $(this);
