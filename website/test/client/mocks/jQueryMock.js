@@ -34,12 +34,13 @@ function createArrayElement(jQuery, configuration, element) {
 		return {
 			'reverse': () => {
 				const ret = [];
+
 				for (let i = arrayObject.length - 1; i >= 0; i--) {
 					ret.push(arrayObject[i]);
 				}
 				return jQuery(ret, configuration, element);
 			}
-		}
+		};
 	};
 	return arrayObject;
 }
@@ -96,7 +97,7 @@ function createSingleElement(jQuery, configuration, element) {
 		'height': () => configuration[element].height,
 		'scrollTop': () => configuration[element].scrollTop,
 		'offset': () => configuration[element].offset,
-		'attr': (attribute) => configuration[element].attr[attribute],
+		'attr': (attribute) => configuration[element].attr[attribute]
 	};
 }
 
