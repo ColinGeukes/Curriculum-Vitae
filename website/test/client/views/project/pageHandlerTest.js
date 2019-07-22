@@ -3,6 +3,8 @@
 const chai = require('chai');
 const {expect} = chai;
 const rewire = require('rewire');
+// The jQuery mock
+const jQueryMock = require('../../mocks/jQueryMock.js');
 // The project module
 const projectModule = rewire('../../../../public/js/views/project/project.js');
 const Project = projectModule.__get__('Project');
@@ -12,6 +14,11 @@ const ProjectAbility = projectAbilityModule.__get__('ProjectAbility');
 // The project pageHandler module
 const PageHandlerModule = rewire('../../../../public/js/views/project/pageHandler.js');
 const loadProject = PageHandlerModule.__get__('loadProject');
+// The navigation module
+const navigationModule = rewire('../../../../public/js/views/navigation.js');
+const Navigation = navigationModule.__get__('Navigation');
+// Variables
+let jQuery;
 let appliedTags;
 
 describe('PageHandler', () => {
@@ -33,24 +40,48 @@ describe('PageHandler', () => {
 				})
 			});
 
-			// Create mock of jquery dom manipulation
-			const jQueryMock = (element) => ({
-				'text': (text) => {
+			/*
+			 * Create mock of jquery dom manipulation
+			 * const jQueryMock = (element) => ({
+			 * 	'text': (text) => {
+			 * 	},
+			 * 	'append': (text) => {
+			 * 	},
+			 * 	'removeClass': (text) => {
+			 * 	}
+			 * });
+			 *
+			 * jQueryMock.each = (dictionary, func) => {
+			 * 	Object.keys(dictionary).forEach((key) => {
+			 * 		func(key, dictionary[key]);
+			 * 	});
+			 * };
+			 */
+			jQuery = jQueryMock.create({
+				'#project .section-header h1': {},
+				'#project .section-body .image': {},
+				'#project .section-body .description': {},
+				'#project-tags': {},
+				'#project-tags #type-language': {},
+				'.content-container': {},
+				'_window': {
+					'width': 500
 				},
-				'append': (text) => {
+				'_document': {
+					'width': 500
 				},
-				'removeClass': (text) => {
-				}
+				'header nav': {}
 			});
 
-			jQueryMock.each = (dictionary, func) => {
-				Object.keys(dictionary).forEach((key) => {
-					func(key, dictionary[key]);
-				});
-			};
-
-			PageHandlerModule.__set__({'$': jQueryMock});
-			projectModule.__set__({'$': jQueryMock});
+			PageHandlerModule.__set__({
+				'$': jQuery,
+				'window': '_window',
+				Navigation
+			});
+			projectModule.__set__({
+				'$': jQuery,
+				'document': '_document'
+			});
 
 			done();
 		});

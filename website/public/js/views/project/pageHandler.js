@@ -1,3 +1,5 @@
+let navigation;
+
 function loadProject(projectId) {
 	Project.load(projectId).then((project) => {
 		// Set the title.
@@ -25,5 +27,15 @@ function loadProject(projectId) {
 
 		// Make the project page visible.
 		$('.content-container').removeClass('fully-hidden');
+	});
+
+	// Create the navigation component
+	navigation = new Navigation();
+
+	// Handle different screen sizes
+	$(window).resize(() => {
+		if (navigation) {
+			navigation.onResize();
+		}
 	});
 }

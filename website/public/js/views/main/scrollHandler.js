@@ -1,5 +1,6 @@
 const LAST_SECTION_SCROLL_NAV_SELECT_DIFF = 10;
 const SCROLLED_INTO_VIEW_FACTOR = 0.1;
+const EXTRA_SCROLL = 80;
 
 /**
  * Method that checks if the element has been scrolled into view.
@@ -27,7 +28,7 @@ function isScrolledIntoView(element) {
  * @return {boolean} - true if in the view, false otherwise.
  */
 function isInView(element) {
-	return element.offset().top <= $(window).scrollTop();
+	return element.offset().top - EXTRA_SCROLL <= $(window).scrollTop();
 }
 
 function bottomOfPage(bottom, notBottom) {

@@ -117,7 +117,7 @@ function createJqueryMock(configuration = {}) {
 	};
 
 	// Functionality of the jQuery object
-	addGeneralFunctionality(this, configuration);
+	addGeneralFunctionality(jQueryMock, configuration);
 
 	jQueryMock.config = configuration;
 	return jQueryMock;
