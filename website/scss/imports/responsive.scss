@@ -1,4 +1,4 @@
-@media (min-width: 1200px) {
+@media only screen and (min-width: 1200px) {
   .content-container, .footer-inner, .nav-inner {
     width: 1170px;
   }
@@ -8,13 +8,13 @@
   }
 }
 
-@media (min-width: 992px) and (max-width: 1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   .content-container, .footer-inner, .nav-inner {
     width: 970px;
   }
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
+@media only screen and (min-width: 768px) and (max-width: 992px) {
   .content-container, .footer-inner {
     width: 750px;
   }
@@ -39,7 +39,7 @@
   //}
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .section-header:not(.clip-always-visible) {
 
     &:after {
@@ -60,7 +60,7 @@
   }
 }
 
-@media (max-width: 616px) {
+@media only screen and (max-width: 616px) {
   .section-header {
     text-shadow: 0 0 0 $dark !important;
 
@@ -88,7 +88,7 @@
   }
 }
 
-@media (max-width: 450px) {
+@media only screen and (max-width: 450px) {
   .big-header {
     padding: 10px 15px !important;
   }
